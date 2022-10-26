@@ -1,0 +1,33 @@
+[tool.poetry]
+name = "ce-portal"
+version = "0.1.0"
+description = ""
+authors = ["a.zinoviev"]
+packages = [{include = "ce_portal"}]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+django = "^4.1.2"
+arrow = "^1.2.3"
+django-mptt = "^0.14.0"
+django-taggit = "^3.0.0"
+django-modelcluster = "^6.0"
+six = "^1.16.0"
+djangorestframework = "^3.14.0"
+django-filter = "^22.1"
+pillow = "^9.2.0"
+django-ckeditor = "^6.5.1"
+django-crispy-forms = "^1.14.0"
+django-admin-interface = "^0.22.1"
+django-solo = "^2.0.0"
+sorl-thumbnail = "^12.9.0"
+django-taggit-labels = "^0.7.0"
+django-taggit-anywhere = "^1.0.0"
+django-taggit-helpers = "^0.1.4"
+django-birthday = "^0.1.4"
+django-vote = "^2.3.0"
+django-editorjs = "^0.2.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
