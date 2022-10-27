@@ -52,6 +52,18 @@ django-flat-theme = ">=1.0,<2.0"
 six = ">=1.9.0,<2.0.0"
 
 [[package]]
+name = "django-autoslug"
+version = "1.9.8"
+description = "An automated slug field for Django."
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.extras]
+cyrillic = ["pytils (>=0.2)"]
+translitcodec = ["translitcodec (>=0.3)"]
+
+[[package]]
 name = "django-birthday"
 version = "0.1.4"
 description = "Helper field and manager for working with birthdays"
@@ -101,6 +113,14 @@ description = "Django plugin for using Editor.js in admin"
 category = "main"
 optional = false
 python-versions = ">=3.4,<4.0"
+
+[[package]]
+name = "django-editorjs-fields"
+version = "0.2.7"
+description = "Django plugin for using Editor.js"
+category = "main"
+optional = false
+python-versions = ">=3.6,<4.0"
 
 [[package]]
 name = "django-filter"
@@ -314,7 +334,7 @@ python-versions = ">=2"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "a540c19634fdc69cfad10d1eea192ca57f8ac355a000c18b52ac5ea5ae858850"
+content-hash = "1c46f586cefea172d08e7beba72f8b732bd03e373408fa9faccc15c50e2710df"
 
 [metadata.files]
 arrow = [
@@ -332,6 +352,10 @@ django = [
 django-admin-interface = [
     {file = "django-admin-interface-0.22.1.tar.gz", hash = "sha256:f61c3273bc702373d33a0f47f69ad2374995ce4289392f87f9b2492ce8be61ca"},
     {file = "django_admin_interface-0.22.1-py3-none-any.whl", hash = "sha256:4738a57bb825da4e328a9a88d317d00ac0c1f18686a274f6f5610aeb4647ccf6"},
+]
+django-autoslug = [
+    {file = "django-autoslug-1.9.8.tar.gz", hash = "sha256:bae66c27d35615f472865b99c4d107f3b3add3d22ee337e84960fc07694abd45"},
+    {file = "django_autoslug-1.9.8-py2.py3-none-any.whl", hash = "sha256:26459eeddec207e307c55777a10fc25d17f4978753695340b16a17ed248a6f70"},
 ]
 django-birthday = [
     {file = "django-birthday-0.1.4.tar.gz", hash = "sha256:bab5930be90030208de943cea8bac293309751f1fa95b7b6a0d823bda251ef9a"},
@@ -352,6 +376,10 @@ django-crispy-forms = [
 django-editorjs = [
     {file = "django-editorjs-0.2.1.tar.gz", hash = "sha256:806faafdd6fffab10e174e21843c6df359ea4b6a849a73ba25de356daecd6a60"},
     {file = "django_editorjs-0.2.1-py3-none-any.whl", hash = "sha256:fe01810d50c9d304799871c6f3d82c1bc8513e2dd13edb3eaef99e566069dc7c"},
+]
+django-editorjs-fields = [
+    {file = "django-editorjs-fields-0.2.7.tar.gz", hash = "sha256:f31d8db403c2a0b0e8a24b320c826a76861b92853f8a911695114dc74344e8aa"},
+    {file = "django_editorjs_fields-0.2.7-py3-none-any.whl", hash = "sha256:2f3f139330ec1a024ed15ad9bd00deb123141eeabca7a3dd4ab8bbb1756ba991"},
 ]
 django-filter = [
     {file = "django-filter-22.1.tar.gz", hash = "sha256:ed473b76e84f7e83b2511bb2050c3efb36d135207d0128dfe3ae4b36e3594ba5"},

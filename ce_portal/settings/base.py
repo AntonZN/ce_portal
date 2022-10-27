@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "organization.apps.OrgConfig",
     "organization.employees.apps.EmployeesConfig",
+    "blog.apps.BlogConfig",
     "sorl.thumbnail",
     "mptt",
     "django_filters",
@@ -50,6 +51,7 @@ INSTALLED_APPS = [
     "taggit_labels",
     "taggit_anywhere",
     "vote",
+    "django_editorjs_fields",
 ]
 
 MIDDLEWARE = [
@@ -136,7 +138,6 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 AUTH_USER_MODEL = "employees.Employee"
 
 STATICFILES_DIRS = (os.path.join(BASE_DIR, "../static"),)
-STATIC_ROOT = os.path.join(BASE_DIR, "../")
 
 STATICFILES_FINDERS = [
     "django.contrib.staticfiles.finders.FileSystemFinder",
@@ -147,3 +148,4 @@ MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "../media"
 
 from .taggit import *  # noqa
+from .editor_conf import *  # noqa
