@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "organization.apps.OrgConfig",
     "organization.employees.apps.EmployeesConfig",
     "blog.apps.BlogConfig",
+    "polls.apps.PollsConfig",
     "sorl.thumbnail",
     "mptt",
     "django_filters",
@@ -60,7 +61,7 @@ MIDDLEWARE = [
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
-    "ce_portal.middleware.AuthRequiredMiddleware",
+    # "ce_portal.middleware.AuthRequiredMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
@@ -70,7 +71,7 @@ ROOT_URLCONF = "ce_portal.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [BASE_DIR / "../templates"],
+        "DIRS": [BASE_DIR / "../templates", BASE_DIR / "../polls/templates"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -137,7 +138,10 @@ STATIC_URL = "static/"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 AUTH_USER_MODEL = "employees.Employee"
 
-STATICFILES_DIRS = (os.path.join(BASE_DIR, "../static"),)
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "../static"),
+    os.path.join(BASE_DIR, "../polls/static"),
+)
 
 STATICFILES_FINDERS = [
     "django.contrib.staticfiles.finders.FileSystemFinder",

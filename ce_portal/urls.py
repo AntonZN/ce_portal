@@ -19,10 +19,14 @@ urlpatterns = [
         view=ProfileView.as_view(),
         name="author_profile_update",
     ),
+    path("polls/", include("polls.urls")),
     path("organization/", include("organization.urls", namespace="organization")),
-    path("organization/employees/", include("organization.employees.urls", namespace="employees")),
+    path(
+        "organization/employees/",
+        include("organization.employees.urls", namespace="employees"),
+    ),
     path("news/", include("blog.urls"), name="news"),
-    path('editorjs/', include('django_editorjs_fields.urls')),
+    path("editorjs/", include("django_editorjs_fields.urls")),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 if settings.DEBUG:

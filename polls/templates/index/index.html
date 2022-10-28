@@ -1,0 +1,39 @@
+{% extends 'index/layout.html' %}
+{% load static %}
+{% block script %}
+    <script src="{% static 'index/index.js' %}" defer></script>
+    <script src="{% static 'lib/cookie.min.js' %}" defer></script>
+{% endblock %}
+{% load static %}
+{% block body %}
+    {% if user.is_staff %}
+        <div class="container-fluid">
+            <div class="create-form">
+                <div class="container">
+                    <div class="form-template-box">
+                        <img src="{% static 'Icon/blank-form.png' %}" alt="Blank form" title="Blank form"
+                             id="create-blank-form">
+                        <span class="form-template-label">Создать новую форму</span>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="form-list">
+                    <p class="forms-label">Your forms:</p>
+                    {% for i in forms %}
+                        <a href="{% url 'edit_form' i.code %}" class="form-list-link">
+                            <div class="form-box">
+                                <div class="form-list-title"><h5 class="form-list-title-text">{{ i.title }}</h5></div>
+                                {% if i.created_at == i.updated_at %}
+                                    <p class="form-list-timestamp">{{ i.created_at }}</p>
+                                {% else %}
+                                    <p class="form-list-timestamp">{{ i.updated_at }}</p>
+                                {% endif %}
+                            </div>
+                        </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}
