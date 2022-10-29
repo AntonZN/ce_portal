@@ -1,13 +1,8 @@
-# Django imports
 from django import forms
-from organization.employees.models import Employee
+from organization.employees.models import Employee, Contacts
 
 
-class EmployeeUpdateForm(forms.ModelForm):
-    """
-    Creates form for user to update their account.
-    """
-
+class EmployeeForm(forms.ModelForm):
     email = forms.EmailField(
         widget=forms.EmailInput(
             attrs={
@@ -20,7 +15,7 @@ class EmployeeUpdateForm(forms.ModelForm):
 
     class Meta:
         model = Employee
-        fields = ["fio", "birthday", "username", "email", "avatar"]
+        fields = ["fio", "birthday", "email", "avatar"]
 
         widgets = {
             "fio": forms.TextInput(
@@ -30,15 +25,8 @@ class EmployeeUpdateForm(forms.ModelForm):
                     "id": "fio",
                 }
             ),
-            "description": forms.Textarea(
-                attrs={
-                    "name": "description",
-                    "class": "form-control",
-                    "id": "bio",
-                    "rows": "5",
-                }
-            ),
             "birthday": forms.DateInput(
+                format='%Y-%m-%d',
                 attrs={
                     "type": "date",
                     "class": "form-control",
@@ -50,8 +38,37 @@ class EmployeeUpdateForm(forms.ModelForm):
                 attrs={
                     "class": "form-control clearablefileinput",
                     "type": "file",
-                    "id": "profileImage",
+                    "id": "avatar",
                 }
             ),
         }
+
+
+class EmployeeContactsForm(forms.ModelForm):
+
+    class Meta:
+        model = Contacts
+        fields = ["name", "value"]
+        exclude = ("id", "employee")
+
+        widgets = {
+            "name": forms.TextInput(
+                attrs={
+                    "name": "name",
+                    "class": "form-control",
+                    "id": "name",
+                }
+            ),
+            "value": forms.TextInput(
+                attrs={
+                    "name": "value",
+                    "class": "form-control",
+                    "id": "value",
+                }
+            ),
+        }
+
+
+EmployeeContactsFormSet = forms.inlineformset_factory(
+    Employee, Contacts, form=EmployeeContactsForm, extra=1, max_num=10)
 

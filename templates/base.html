@@ -40,6 +40,7 @@
 
     <!-- App css-->
     <link rel="stylesheet" type="text/css" href="{% static 'assets/css/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/custom.css' %}">
     {% block head %}
     {% endblock %}
 </head>
@@ -49,6 +50,19 @@
     {% include "header.html" %}
 
     <div class="page-body-wrapper">
+        {% if messages %}
+        <div id="djangoMessages">
+            <div class="notificationsBox">
+                <ul class="messagelist">{% for message in messages %}
+                    <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <script>
+            setTimeout("document.getElementById('djangoMessages').remove()", 3000);
+        </script>
+        {% endif %}
         {% include "sidebar.html" %}
         {% block content %}
         {% endblock %}

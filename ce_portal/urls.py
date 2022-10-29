@@ -3,7 +3,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 
-from ce_portal.views import HomeView, ProfileView
+from ce_portal.views import HomeView, ProfileView, manage_employee_contacts
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -12,13 +12,14 @@ urlpatterns = [
     path(
         route="profile/",
         view=ProfileView.as_view(),
-        name="author_profile_details",
+        name="profile",
     ),
     path(
-        route="profile/update/",
-        view=ProfileView.as_view(),
-        name="author_profile_update",
+        route="profile/contacts/update/",
+        view=manage_employee_contacts,
+        name="contacts_update",
     ),
+
     path("polls/", include("polls.urls")),
     path("organization/", include("organization.urls", namespace="organization")),
     path(

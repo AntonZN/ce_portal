@@ -1,4 +1,5 @@
 {% load static %}
+{% load thumbnail %}
 
 <!-- Page Header Start-->
 <div class="page-main-header">
@@ -87,8 +88,16 @@
 
                     <li class="onhover-dropdown">
                         <div class="media align-items-center">
-                            <img class="align-self-center pull-right img-50 blur-up lazyloaded"
-                                 src="{% static 'assets/images/dashboard/user3.jpg' %}" alt="header-user">
+                            {% if user.avatar %}
+                                {% thumbnail user.avatar "100" crop="50px 50px" format="PNG" as avatar %}
+                                    <img class="align-self-center pull-right img-50 blur-up lazyloaded"
+                                     src="{{ avatar.url }}" alt="header-user">
+                                {% endthumbnail %}
+
+                            {% else %}
+                                <img class="align-self-center pull-right img-50 blur-up lazyloaded"
+                                     src="{% static 'assets/images/dashboard/user3.jpg' %}" alt="header-user">
+                            {% endif %}
                             <div class="dotted-animation">
                                 <span class="animate-circle"></span>
                                 <span class="main-circle"></span>
