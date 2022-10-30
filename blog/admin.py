@@ -1,17 +1,9 @@
 from django.contrib import admin
-
-# Register your models here.
-from mptt.admin import DraggableMPTTAdmin
 from sorl.thumbnail.admin import AdminImageMixin
 
 from blog.models import News, Category
 
-
-@admin.register(Category)
-class CategoryAdmin(AdminImageMixin, DraggableMPTTAdmin):
-    mptt_indent_field = "id"
-    list_display = ("tree_actions", "id", "name", "approved")
-    list_display_links = ("id", "name")
+admin.site.register(Category)
 
 
 @admin.register(News)

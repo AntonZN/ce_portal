@@ -26,7 +26,7 @@ urlpatterns = [
         "organization/employees/",
         include("organization.employees.urls", namespace="employees"),
     ),
-    path("news/", include("blog.urls"), name="news"),
+    path("blog/", include("blog.urls"), name="news"),
     path("editorjs/", include("django_editorjs_fields.urls")),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 

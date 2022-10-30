@@ -29,6 +29,7 @@ django-vote = "^2.3.0"
 django-editorjs = "^0.2.1"
 django-autoslug = "^1.9.8"
 django-editorjs-fields = "^0.2.7"
+django-view-breadcrumbs = "^2.4.1"
 
 [build-system]
 requires = ["poetry-core"]

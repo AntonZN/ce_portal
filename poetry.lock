@@ -249,6 +249,24 @@ python-versions = "*"
 django-taggit = ">=0.17.0"
 
 [[package]]
+name = "django-view-breadcrumbs"
+version = "2.4.1"
+description = "Django generic view breadcrumbs"
+category = "main"
+optional = false
+python-versions = ">=3.6"
+
+[package.dependencies]
+Django = "*"
+
+[package.extras]
+deploy = ["bump2version", "git-changelog", "readme-renderer[md]", "twine"]
+development = ["Django", "Sphinx", "black", "codacy-coverage (==1.3.11)", "coverage", "django-bootstrap5", "django-filter", "django-tables2", "flake8", "isort", "mock", "pip-tools", "pluggy (>=0.7)", "pytest", "tox (==3.26.0)", "tox-gh-actions", "yamllint"]
+docs = ["Sphinx"]
+lint = ["black", "flake8", "isort", "yamllint"]
+test = ["codacy-coverage (==1.3.11)", "coverage", "mock", "pluggy (>=0.7)", "pytest", "tox (==3.26.0)", "tox-gh-actions"]
+
+[[package]]
 name = "django-vote"
 version = "2.3.0"
 description = "A simple Django app to conduct vote."
@@ -334,7 +352,7 @@ python-versions = ">=2"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "1c46f586cefea172d08e7beba72f8b732bd03e373408fa9faccc15c50e2710df"
+content-hash = "51444b4050a50a745725837b0de05e9f549c6b9b6c028830bcabba8d386a2873"
 
 [metadata.files]
 arrow = [
@@ -422,6 +440,10 @@ django-taggit-helpers = [
 django-taggit-labels = [
     {file = "django-taggit-labels-0.7.0.tar.gz", hash = "sha256:130f2e7769aecee1310039675a360cd1a4eb93232db720876cb86d4a8b782347"},
     {file = "django_taggit_labels-0.7.0-py2.py3-none-any.whl", hash = "sha256:45fcbd9c52e2d1a2fa7b0704ef93bb361c7aa6b58a473b3b1d18bb83a3041802"},
+]
+django-view-breadcrumbs = [
+    {file = "django-view-breadcrumbs-2.4.1.tar.gz", hash = "sha256:15720543efaf132b124b7f0484abcd9c7bfc0ecefffddfe2b3a38f17333c8ac0"},
+    {file = "django_view_breadcrumbs-2.4.1-py3-none-any.whl", hash = "sha256:99a5011a0063f4200b33e947260b2597191bf445999c35285dbe418580e3d349"},
 ]
 django-vote = [
     {file = "django-vote-2.3.0.tar.gz", hash = "sha256:1c8dfbea5d09ff4161a0500435ef010e2ce81638c21c5e9488d33db48dd16f6e"},

@@ -12,18 +12,9 @@ from taggit.managers import TaggableManager
 from blog.utils import count_words, read_time
 
 
-class Category(MPTTModel):
-    parent = TreeForeignKey(
-        "self",
-        verbose_name="Родительская категория",
-        on_delete=models.SET_NULL,
-        null=True,
-        blank=True,
-    )
+class Category(models.Model):
     name = models.CharField("Название", max_length=100, null=False, blank=False)
     slug = AutoSlugField("Название для ulr", populate_from="name")
-    image = ImageField(upload_to="images/posts/category", blank=True, null=True)
-    approved = models.BooleanField(default=True)
     date_created = models.DateTimeField(auto_now_add=True)
     date_updated = models.DateTimeField(auto_now=True)
 
