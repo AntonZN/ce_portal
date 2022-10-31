@@ -46,8 +46,7 @@ class Post(models.Model):
     author = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="posts"
     )
-    title = models.CharField("Заголовок", max_length=250, null=False, blank=False)
-    slug = AutoSlugField("Название для ulr", populate_from="title")
+
     description = models.TextField("Краткое описание", null=False, blank=False)
     body = EditorJsJSONField(
         hideToolbar=False,
@@ -70,9 +69,6 @@ class Post(models.Model):
     date_created = models.DateTimeField("Создание", auto_now_add=True)
     date_updated = models.DateTimeField("Обновление", auto_now=True)
 
-    def __str__(self):
-        return self.title
-
     def save(self, *args, **kwargs):
         self.count_words = count_words(self.body)
         self.read_time = read_time(self.body)
@@ -83,6 +79,9 @@ class News(Post):
     class Meta:
         verbose_name = "Новость"
         verbose_name_plural = "Новости"
+
+    title = models.CharField("Заголовок", max_length=250, null=False, blank=False)
+    slug = AutoSlugField("Название для ulr", populate_from="title", unique=True, db_index=True, always_update=True)
 
     category = models.ForeignKey(
         Category,
@@ -109,6 +108,9 @@ class News(Post):
         blank=True,
         null=True,
     )
+
+    def __str__(self):
+        return self.title
 
     def get_absolute_url(self):
         return reverse(

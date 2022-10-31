@@ -1,111 +1,110 @@
 {% extends 'base.html' %}
+{% load view_breadcrumbs %}
+
 {% block content %}
-<div class="page-body">
-    <div class="container-fluid">
-        <div class="page-header">
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="page-header-left">
-                        <h3>Профиль
-                            <small>Персональные настройки</small>
-                        </h3>
+    <div class="page-body">
+        <div class="container-fluid">
+            <div class="page-header">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="page-header-left">
+                            <h3>Профиль
+                                <small>Персональные настройки</small>
+                            </h3>
+                        </div>
                     </div>
-                </div>
-                <div class="col-lg-6">
-                    <ol class="breadcrumb pull-right">
-                        <li class="breadcrumb-item">
-                            <a href="/">
-                                <i data-feather="home"></i>
-                            </a>
-                        </li>
-                        <li class="breadcrumb-item active">Профиль</li>
-                    </ol>
+                    <div class="col-lg-6">
+                        {% render_breadcrumbs "breadcrumbs.html" %}
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="container-fluid">
-        <div class="row product-adding">
-            <div class="col-xl-6">
-                <form method="POST" , action="{% url 'profile' %}" enctype="multipart/form-data">
-                    {% csrf_token %}
+        <div class="container-fluid">
+            <div class="row product-adding">
+                <div class="col-xl-6">
+                    <form method="POST" , action="{% url 'profile' %}" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="card">
+                            <div class="card-header">
+                                <h5>Главное</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="digital-add">
+                                    {% for field in employee_form %}
+                                        <div class="form-group">
+                                            <label for="{{ field.auto_id }}" class="col-form-label pt-0">
+                                                {{ field.label }}</label>
+                                            {{ field }}
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                                <div class="form-group mb-0 mt-5">
+                                    <div class="product-buttons">
+                                        <button type="submit" class="btn btn-primary">Сохранить</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="col-xl-6">
                     <div class="card">
                         <div class="card-header">
-                            <h5>Главное</h5>
+                            <h5>Контакты
+
+                            </h5>
                         </div>
                         <div class="card-body">
-                            <div class="digital-add">
-                                {% for field in employee_form %}
-                                <div class="form-group">
-                                    <label for="{{ field.auto_id }}" class="col-form-label pt-0">
-                                        {{ field.label }}</label>
-                                    {{ field }}
-                                </div>
-                                {% endfor %}
-                            </div>
-                            <div class="form-group mb-0 mt-5">
-                                <div class="product-buttons">
-                                    <button type="submit" class="btn btn-primary">Сохранить</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-
-            <div class="col-xl-6">
-                <div class="card">
-                    <div class="card-header">
-                        <h5>Контакты
-
-                        </h5>
-                    </div>
-                    <div class="card-body">
-                        <form class="row g-3 inline-form" action="{% url 'contacts_update' %}" method="post">
-                            {% csrf_token %}
-                            {{ employee_contacts_form.management_form }}
-                            {% for form in employee_contacts_form %}
-                                {{form.id}}
-                                {{from.employee}}
-                                <div class="row mt-1 digital-add">
-                                    <div class="col-auto form-group">
-                                        <label for="{{ form.name.auto_id }}" class="col-form-label">{{ form.name.label }}</label>
-                                        {{form.name}}
-                                        {{form.name.errors}}
-                                    </div>
-                                    <div class="col-auto form-group">
-                                        <label for="{{ form.value.auto_id }}" class="col-form-label">{{ form.value.label }}</label>
-                                        {{form.value}}
-                                        {{form.value.errors}}
-                                    </div>
-                                    {% if form.name.value and form.value.value %}
-                                        <div class="col-auto form-group d-flex align-items-end">
-                                            <label class="col-form-label" for="{{ form.DELETE.auto_id }}">
-                                                <input class="checkbox_animated" name="contacts-{{ forloop.counter0 }}-{{ form.DELETE.name }}" id="{{ form.DELETE.auto_id }}" type="checkbox">
-                                                {{form.DELETE.label}}
-                                            </label>
+                            <form class="row g-3 inline-form" action="{% url 'contacts_update' %}" method="post">
+                                {% csrf_token %}
+                                {{ employee_contacts_form.management_form }}
+                                {% for form in employee_contacts_form %}
+                                    {{ form.id }}
+                                    {{ from.employee }}
+                                    <div class="row mt-1 digital-add">
+                                        <div class="col-auto form-group">
+                                            <label for="{{ form.name.auto_id }}"
+                                                   class="col-form-label">{{ form.name.label }}</label>
+                                            {{ form.name }}
+                                            {{ form.name.errors }}
                                         </div>
-                                    {% endif %}
+                                        <div class="col-auto form-group">
+                                            <label for="{{ form.value.auto_id }}"
+                                                   class="col-form-label">{{ form.value.label }}</label>
+                                            {{ form.value }}
+                                            {{ form.value.errors }}
+                                        </div>
+                                        {% if form.name.value and form.value.value %}
+                                            <div class="col-auto form-group d-flex align-items-end">
+                                                <label class="col-form-label" for="{{ form.DELETE.auto_id }}">
+                                                    <input class="checkbox_animated"
+                                                           name="contacts-{{ forloop.counter0 }}-{{ form.DELETE.name }}"
+                                                           id="{{ form.DELETE.auto_id }}" type="checkbox">
+                                                    {{ form.DELETE.label }}
+                                                </label>
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                {% endfor %}
+                                <div class="form-group mb-0 mt-5">
+                                    <div class="product-buttons">
+                                        <button type="submit" class="btn btn-primary">Сохранить</button>
+                                    </div>
                                 </div>
-                            {% endfor %}
-                            <div class="form-group mb-0 mt-5">
-                                <div class="product-buttons">
-                                    <button type="submit" class="btn btn-primary">Сохранить</button>
-                                </div>
-                            </div>
-                        </form>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 {% endblock %}
 
 {% block scripts %}
-<script>
-    {% if employee_contacts_form.errors %}
-        setTimeout("document.querySelectorAll(\".errorlist\").forEach(el => el.remove());", 3000);
-    {% endif %}
-</script>
-{% endblock%}
+    <script>
+        {% if employee_contacts_form.errors %}
+            setTimeout("document.querySelectorAll(\".errorlist\").forEach(el => el.remove());", 3000);
+        {% endif %}
+    </script>
+{% endblock %}

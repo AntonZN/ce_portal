@@ -1,9 +1,10 @@
 from django.urls import path
-from .views import NewsListView
+from .views import NewsList, NewsDetail
 
 app_name = "blog"
 
 # article/urls.py
 urlpatterns = [
-    path(route="news", view=NewsListView.as_view(), name="news_list"),
+    path(route="news", view=NewsList.as_view(), name="news_list"),
+    path(route="news/<slug:slug>/", view=NewsDetail.as_view(), name="news_detail"),
 ]

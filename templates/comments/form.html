@@ -1,0 +1,32 @@
+<div id="form-comment">
+    <h3>Оставьте Комментарий</h3>
+    <br>
+    <form class="theme-form" action="/comments/post/" method="post">{% csrf_token %}
+
+        {% for field in form.hidden_fields %}
+            {{ field }}
+        {% endfor %}
+
+        {% if  request.user.email %}
+            <input type="hidden" name="email" value="{{ request.user.email }}" id="id_email">
+        {% else %}
+            <input type="hidden" name="email" value="example@mail.ru" id="id_email">
+        {% endif %}
+
+        {% if request.user.fio %}
+            <input type="hidden" name="name" value="{{ request.user.fio }}" id="id_name">
+        {% else %}
+            <input type="hidden" name="name" value="Не заполено" id="id_name">
+        {% endif %}
+
+        <div class="form-row row">
+            <div class="col-md-12">
+                <textarea name="comment" class="form-control" placeholder="Введите комментарий"
+                          id="id_comment" rows="6" required></textarea>
+            </div>
+            <div class="col-md-12">
+                <button class="btn btn-solid" type="submit">Отправить</button>
+            </div>
+        </div>
+    </form>
+</div>

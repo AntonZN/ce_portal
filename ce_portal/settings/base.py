@@ -26,7 +26,7 @@ SECRET_KEY = "django-insecure-hvu*#3909wo$!d)f00u3tez^bpaa$v$mj!*+&07pg*gn#wfm9$
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
+SITE_ID=1
 
 # Application definition
 
@@ -39,10 +39,12 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django.contrib.sites",
     "organization.apps.OrgConfig",
     "organization.employees.apps.EmployeesConfig",
     "blog.apps.BlogConfig",
     "polls.apps.PollsConfig",
+    "view_breadcrumbs",
     "sorl.thumbnail",
     "mptt",
     "django_filters",
@@ -53,6 +55,8 @@ INSTALLED_APPS = [
     "taggit_anywhere",
     "vote",
     "django_editorjs_fields",
+    "threadedcomments",
+    "django_comments",
 ]
 
 MIDDLEWARE = [
@@ -150,6 +154,10 @@ STATICFILES_FINDERS = [
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "../media"
+
+BREADCRUMBS_HOME_LABEL = "Главная"
+COMMENTS_APP = 'threadedcomments'
+
 
 from .taggit import *  # noqa
 from .editor_conf import *  # noqa

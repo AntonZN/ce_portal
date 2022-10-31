@@ -15,6 +15,7 @@ class NewsAdmin(AdminImageMixin, admin.ModelAdmin):
                 "fields": (
                     "category",
                     "title",
+                    "slug",
                     "description",
                     "main_image",
                     "body",

@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load thumbnail %}
+{% load view_breadcrumbs %}
+{% load threadedcomments_tags %}
+
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/blog.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="page-body blog-detail-page">
+        <div class="container">
+            <div class="page-header">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="page-header-left">
+                            <h3>Новости
+                                <small>{{ news.category }}</small>
+                            </h3>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        {% render_breadcrumbs "breadcrumbs.html" %}
+                    </div>
+                </div>
+            </div>
+            <div class="blog-page">
+                <div class="row">
+                    <div class="col-sm-12 blog-detail">
+                        {% if news.main_image %}
+                            {% thumbnail news.main_image "1376x300" crop="center" as news_image %}
+                                <img
+                                        src="{{ news_image.url }}"
+                                        class="img-fluid lazyload"
+                                >
+                            {% endthumbnail %}
+                        {% else %}
+                            <img class="align-self-center pull-right img-50 blur-up lazyloaded"
+                                 src="{% static 'assets/images/dashboard/user3.jpg' %}"
+                                 alt="header-user">
+                        {% endif %}
+                        <h3>{{ news.title }}</h3>
+                        <ul class="post-social">
+                            <li>{{ news.date_published }}</li>
+                            <li>Автор : {{ news.author }}</li>
+                            <li><i class="fa fa-heart"></i> 5 Hits</li>
+                            <li><i class="fa fa-comments"></i> 10 Comment</li>
+                        </ul>
+
+                    </div>
+                </div>
+                <div class="row section-b-space">
+                    <div class="col-sm-12">
+                        {% render_comment_list for news %}
+                    </div>
+                </div>
+                <div class="row blog-contact">
+                    <div class="col-sm-12">
+                        {% render_comment_form for news %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script type="text/javascript">
+
+        function show_reply_form(event) {
+            console.log("Пизда Пизда");
+            var $this = $(this);
+            var comment_id = $this.data('comment-id');
+
+            $('#id_parent').val(comment_id);
+            $('#form-comment').insertAfter($this.closest('.comment'));
+        };
+
+        function cancel_reply_form(event) {
+            $('#id_comment').val('');
+            $('#id_parent').val('');
+            $('#form-comment').appendTo($('#wrap_write_comment'));
+        }
+
+        $.fn.ready(function () {
+            $('.comment_reply_link').click(show_reply_form);
+            $('#cancel_reply').click(cancel_reply_form);
+        })
+
+    </script>
+{% endblock %}

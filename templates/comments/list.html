@@ -1,0 +1,37 @@
+{% load threadedcomments_tags %}
+{% load static %}
+
+<ul class="comments comment-section">
+    {% for comment in comment_list|fill_tree|annotate_tree %}
+        {% if comment.open %}
+            <ul>
+        {% else %}
+            </li>
+        {% endif %}
+    <li class="comment_li" id="c{{ comment.id }}">
+        <div class="media">
+            <a href="#"
+               class="">
+                <img src="
+
+
+                        {% if comment.user.avatar %}{{ comment.user.avatar.url }}{% else %}{% static '/assets/images/smlogo.jpg' %}{% endif %}"
+                     class="" alt="">
+            </a>
+            <div class="media-body">
+                <h6>{{ comment.user.fio }}
+                    <span>( {{ comment.submit_date }} )</span>
+                    <a href="#c{{ comment.id }}"
+                       data-comment-id="{{ comment.id }}"
+                       class="comment_reply_link ">Ответить</a>
+                </h6>
+                <p>{{ comment.comment }}</p>
+            </div>
+        </div>
+
+
+        {% for close in comment.close %}</li></ul>{% endfor %}
+
+    {% endfor %}
+</ul>
+

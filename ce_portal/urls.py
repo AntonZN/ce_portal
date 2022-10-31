@@ -26,8 +26,9 @@ urlpatterns = [
         "organization/employees/",
         include("organization.employees.urls", namespace="employees"),
     ),
-    path("blog/", include("blog.urls"), name="news"),
+    path("blog/", include("blog.urls"), name="blog"),
     path("editorjs/", include("django_editorjs_fields.urls")),
+    path('comments/', include('django_comments.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 if settings.DEBUG:

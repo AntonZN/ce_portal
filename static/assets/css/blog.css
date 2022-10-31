@@ -1,3 +1,83 @@
 .blog-page .blog-sidebar .theme-card {
     padding: 30px;
 }
+
+.blog-detail-page .blog-detail img {
+    margin-bottom: 40px;
+}
+
+.blog-detail-page .blog-detail h3 {
+    color: #222;
+    font-weight: 700;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+.blog-detail-page .blog-detail .post-social {
+    color: #777;
+    text-align: left;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 15px;
+}
+.blog-detail-page .blog-detail .post-social li + li {
+    padding-left: 15px;
+    margin-left: 15px;
+    border-left: 1px solid #ddd;
+}
+.blog-detail-page .blog-detail p {
+    color: #777;
+    line-height: 1.8;
+}
+
+.section-b-space {
+    padding-bottom: 70px;
+}
+
+.blog-detail-page .blog-contact h2 {
+    margin-bottom: 30px;
+    margin-top: -5px;
+}
+
+.blog-detail-page .blog-contact .theme-form label {
+    text-transform: capitalize;
+    color: #333;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.blog-detail-page .blog-contact .theme-form input, .blog-detail-page .blog-contact .theme-form textarea {
+    border-color: #ddd;
+    font-size: 14px;
+    padding: 17px 25px;
+    margin-bottom: 30px;
+}
+
+.blog-detail-page .blog-contact .theme-form input, .blog-detail-page .blog-contact .theme-form textarea {
+    border-color: #ddd;
+    font-size: 14px;
+    padding: 17px 25px;
+    margin-bottom: 30px;
+}
+
+.btn-solid {
+    padding: 13px 29px;
+    color: #fff;
+    letter-spacing: 0.05em;
+    border: 2px solid var(--theme-color);
+    background-image: linear-gradient(30deg, var(--theme-color) 50%, transparent 50%);
+    background-size: 850px;
+    background-repeat: no-repeat;
+    background-position: 0;
+    -webkit-transition: background 300ms ease-in-out;
+    transition: background 300ms ease-in-out;
+}
+
+.blog-detail-page .comment-section li img {
+    height: auto;
+    width: 80px;
+    margin-right: 20px;
+}
+.blog-detail-page .comment-section li ul {
+ margin-left: 100px;
+}
