@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+{% load view_breadcrumbs %}
+
+
+{% block content %}
+    <div class="page-body">
+
+        <div class="container-fluid">
+            <div class="page-header">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="page-header-left">
+                            <h3>Сотрудники
+                                <small>Список всех сотрудников компании</small>
+                            </h3>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        {% render_breadcrumbs "breadcrumbs.html" %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid">
+            <div class="card">
+                <div class="card-header">
+                    <form class="form-inline search-form search-box">
+                        <div class="form-group">
+                            <input id="employeeSearch"  type="search" placeholder="Поиск сотрудников"><span
+                                class="d-sm-none mobile-search"><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                     height="24" viewBox="0 0 24 24" fill="none"
+                                                                     stroke="currentColor" stroke-width="2"
+                                                                     stroke-linecap="round" stroke-linejoin="round"
+                                                                     class="feather feather-search"><circle cx="11"
+                                                                                                            cy="11"
+                                                                                                            r="8"></circle><line
+                                x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="card-body">
+                    <div class="table-responsive table-desi">
+                        <table class="all-package coupon-table table table-striped">
+                            <thead>
+                            <tr>
+                                <th>Фото</th>
+                                <th>ФИО</th>
+                                <th>Email</th>
+                                <th>Департамент</th>
+                                <th>Должность</th>
+                                <th></th>
+                            </tr>
+                            </thead>
+
+                            <tbody id="replaceableContent">
+                            {% include "employees/employees_results_partial.html" %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        const user_input = $("#employeeSearch")
+        const search_icon = $('.feather-search')
+        const table = $('#replaceableContent')
+        const endpoint = '{% url 'employees:employee_list' %}'
+        const delay_by_in_ms = 700
+        let scheduled_function = false
+
+        let ajax_call = function (endpoint, request_parameters) {
+            $.getJSON(endpoint, request_parameters)
+                .done(response => {
+                    // fade out the artists_div, then:
+                    table.fadeTo('slow', 0).promise().then(() => {
+                        // replace the HTML contents
+                        table.html(response['html_from_view'])
+                        // fade-in the div with new contents
+                        table.fadeTo('slow', 1)
+                        // stop animating search icon
+                        search_icon.removeClass('blink')
+                    })
+                })
+        }
+
+        user_input.on('keyup', function () {
+
+            const request_parameters = {
+                query: $(this).val()
+            }
+
+            search_icon.addClass('blink')
+
+            if (scheduled_function) {
+                clearTimeout(scheduled_function)
+            }
+
+            scheduled_function = setTimeout(ajax_call, delay_by_in_ms, endpoint, request_parameters)
+        })
+    </script>
+{% endblock %}

@@ -64,7 +64,7 @@ class EmployeeAdmin(AdminImageMixin, UserAdmin, DraggableMPTTAdmin):
     inlines = (ContactsInline,)
 
     def get_readonly_fields(self, request, obj=None):
-        if obj and not obj.is_superuser:
+        if obj and not request.user.is_superuser:
             return self.readonly_fields + ("is_active", "is_staff", "is_superuser")
         return self.readonly_fields
 

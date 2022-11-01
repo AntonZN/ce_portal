@@ -1,41 +1,71 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db.models import Q
 from django.shortcuts import render
+from django.template.loader import render_to_string
+from django.http import JsonResponse
 
-from django.views import View
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
+from view_breadcrumbs import ListBreadcrumbMixin, DetailBreadcrumbMixin
 
 from organization.employees.models import Employee
+from organization.models import Department
 
 
-class EmployeeListView(LoginRequiredMixin, View):
-    template_name = "employees/employee_list.html"
-    context_object = {}
-
-    def get(self, request):
-        return render(request, self.template_name, self.context_object)
-
-
-class EmployeeList(ListView):
+class EmployeeList(LoginRequiredMixin, ListBreadcrumbMixin, ListView):
     template_name = "employees/employee_list.html"
     model = Employee
     context_object_name = "employees"
 
     def get_queryset(self):
         params = self.request.GET
-        queryset = Employee.objects.filter(active=True)
+        queryset = Employee.objects.all()
+
+        query = params.get("query", None)
+
+        if query:
+            query = query.strip()
+            queryset = queryset.filter(
+                Q(fio__icontains=query)
+                | Q(username__icontains=query)
+                | Q(position__name__icontains=query)
+                | Q(department__name__icontains=query)
+            )
+
+        if params.get("department_id", None):
+            department_id = params.get("department_id")
+            department = Department.objects.get(id=department_id)
+            queryset = department.supervisor.get_descendants(include_self=True)
+
+        if params.get("position_id", None):
+            queryset = queryset.filter(position_id=params.get("position_id"))
 
         return queryset
 
-    def get_context_data(self, *, object_list=None, **kwargs):
-        params = self.request.GET
-        context = super().get_context_data(**kwargs)
-        return context
+    def get(self, request, *args, **kwargs):
+        context = dict()
+        queryset = self.get_queryset()
+        is_ajax_request = request.headers.get("x-requested-with") == "XMLHttpRequest"
+        context.update({"employees": queryset})
+
+        if is_ajax_request:
+            html = render_to_string(
+                template_name="employees/employees_results_partial.html",
+                context=context,
+            )
+
+            data_dict = {"html_from_view": html}
+
+            return JsonResponse(data=data_dict, safe=False)
+
+        return render(request, "employees/employee_list.html", context=context)
 
 
-class EmployeeDetail(LoginRequiredMixin, View):
-
+class EmployeeDetail(LoginRequiredMixin, DetailBreadcrumbMixin, DetailView):
     template_name = "employees/employee_detail.html"
-    context_object = {}
+    model = Employee
+    context_object_name = "employee"
 
-    def get(self, request):
-        return render(request, self.template_name, self.context_object)
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["children_employees"] = self.object.get_children()
+        return context

@@ -14,97 +14,97 @@
         <a href="javascript:void(0)" class="sidebar-back d-lg-none d-block"><i class="fa fa-times"
                                                                                aria-hidden="true"></i></a>
         {% if user.is_authenticated %}
-        <div class="sidebar-user">
-            {% if user.avatar %}
-                {% thumbnail user.avatar "100" crop="100px 100px" format="PNG" as avatar %}
-                <img class="align-self-center pull-right img-60 blur-up lazyloaded"
-                     src="{{ avatar.url }}" alt="header-user">
-                {% endthumbnail %}
+            <div class="sidebar-user">
+                {% if user.avatar %}
+                    {% thumbnail user.avatar "100" crop="100px 100px" format="PNG" as avatar %}
+                        <img class="align-self-center pull-right img-60 blur-up lazyloaded"
+                             src="{{ avatar.url }}" alt="header-user">
+                    {% endthumbnail %}
 
-            {% else %}
-                <img class="align-self-center pull-right img-60 blur-up lazyloaded"
-                     src="{% static 'assets/images/dashboard/user3.jpg' %}" alt="header-user">
-            {% endif %}
-            <div>
-                <h6 class="f-14">{{ user }}</h6>
-                {% if user.position %}
-                    <p>{{ user.position }}</p>
+                {% else %}
+                    <img class="align-self-center pull-right img-60 blur-up lazyloaded"
+                         src="{% static 'assets/images/dashboard/user3.jpg' %}" alt="header-user">
                 {% endif %}
+                <div>
+                    <h6 class="f-14">{{ user }}</h6>
+                    {% if user.position %}
+                        <p>{{ user.position }}</p>
+                    {% endif %}
+                </div>
             </div>
-        </div>
         {% endif %}
         <ul class="sidebar-menu">
             {% if user.is_authenticated %}
-            <li>
-                <a class="sidebar-header" href="/">
-                    <i data-feather="home"></i>
-                    <span>Главная</span>
-                </a>
-            </li>
+                <li>
+                    <a class="sidebar-header" href="{% url 'home' %}">
+                        <i data-feather="home"></i>
+                        <span>Главная</span>
+                    </a>
+                </li>
 
-            <li>
-                <a class="sidebar-header" href="{% url 'blog:news_list' %}">
-                    <i data-feather="box"></i>
-                    <span>Новости</span>
-                    <i class="fa fa-angle-right pull-right"></i>
-                </a>
-            </li>
+                <li>
+                    <a class="sidebar-header" href="{% url 'blog:news_list' %}">
+                        <i data-feather="box"></i>
+                        <span>Новости</span>
+                        <i class="fa fa-angle-right pull-right"></i>
+                    </a>
+                </li>
 
 
-            <li>
-                <a class="sidebar-header" href="#">
-                    <i data-feather="archive"></i>
-                    <span>Подразделения</span>
-                    <i class="fa fa-angle-right pull-right"></i>
-                </a>
-            </li>
+                <li>
+                    <a class="sidebar-header" href="#">
+                        <i data-feather="archive"></i>
+                        <span>Подразделения</span>
+                        <i class="fa fa-angle-right pull-right"></i>
+                    </a>
+                </li>
 
-            <li>
-                <a class="sidebar-header" href="#">
-                    <i data-feather="dollar-sign"></i>
-                    <span>Сотрудники</span>
-                    <i class="fa fa-angle-right pull-right"></i>
-                </a>
-            </li>
+                <li>
+                    <a class="sidebar-header" href="{% url 'employees:employee_list' %}">
+                        <i data-feather="dollar-sign"></i>
+                        <span>Сотрудники</span>
+                        <i class="fa fa-angle-right pull-right"></i>
+                    </a>
+                </li>
 
-            <li>
-                <a class="sidebar-header" href="javascript:void(0)">
-                    <i data-feather="align-left"></i>
-                    <span>Корп. Обучение</span>
-                    <i class="fa fa-angle-right pull-right"></i>
-                </a>
-                <ul class="sidebar-submenu">
-                    <li>
-                        <a href="#">
-                            <i class="fa fa-circle"></i>База знаний
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="fa fa-circle"></i>Библиотека
-                        </a>
-                    </li>
-                </ul>
-            </li>
-            <li>
-                <a class="sidebar-header" href="/logout/">
-                    <i data-feather="log-in"></i>
-                    <span>Выйти</span>
-                </a>
-            </li>
+                <li>
+                    <a class="sidebar-header" href="javascript:void(0)">
+                        <i data-feather="align-left"></i>
+                        <span>Корп. Обучение</span>
+                        <i class="fa fa-angle-right pull-right"></i>
+                    </a>
+                    <ul class="sidebar-submenu">
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-circle"></i>База знаний
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-circle"></i>Библиотека
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a class="sidebar-header" href="/logout/">
+                        <i data-feather="log-in"></i>
+                        <span>Выйти</span>
+                    </a>
+                </li>
             {% else %}
-            <li>
-                <a class="sidebar-header" href="/login/">
-                    <i data-feather="log-in"></i>
-                    <span>Войти</span>
-                </a>
-            </li>
-            <li>
-                <a class="sidebar-header" href="#">
-                    <i data-feather="key"></i>
-                    <span>Забыл пароль</span>
-                </a>
-            </li>
+                <li>
+                    <a class="sidebar-header" href="/login/">
+                        <i data-feather="log-in"></i>
+                        <span>Войти</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="sidebar-header" href="#">
+                        <i data-feather="key"></i>
+                        <span>Забыл пароль</span>
+                    </a>
+                </li>
             {% endif %}
         </ul>
     </div>

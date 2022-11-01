@@ -1,13 +1,16 @@
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, include, re_path
+from drf_yasg import openapi
+from drf_yasg.views import get_schema_view as get_schema_view_yasg
+from rest_framework import permissions
 
 from ce_portal.views import HomeView, ProfileView, manage_employee_contacts
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("", HomeView.as_view(), name="home"),
+    path("home/", HomeView.as_view(), name="home"),
     path("", include("django.contrib.auth.urls")),
     path(
         route="profile/",
@@ -33,3 +36,37 @@ urlpatterns = [
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
+schema_url_patterns = [
+    path("organization/", include("organization.urls", namespace="organization")),
+]
+
+
+schema_view_yasg = get_schema_view_yasg(
+    openapi.Info(
+        title="Dozor Manager API",
+        default_version="v1",
+    ),
+    public=True,
+    permission_classes=[permissions.IsAdminUser],
+    patterns=schema_url_patterns,
+)
+
+urlpatterns += [
+    re_path(
+        r"^swagger-rest(?P<format>\.json|\.yaml)$",
+        schema_view_yasg.without_ui(cache_timeout=0),
+        name="schema-json",
+    ),
+    path(
+        "swagger-rest/",
+        schema_view_yasg.with_ui("swagger", cache_timeout=0),
+        name="schema-swagger-ui",
+    ),
+    path(
+        "redoc/",
+        schema_view_yasg.with_ui("redoc", cache_timeout=0),
+        name="schema-redoc",
+    ),
+]

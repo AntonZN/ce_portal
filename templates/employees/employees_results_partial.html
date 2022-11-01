@@ -1,0 +1,34 @@
+{% load thumbnail %}
+{% load static %}
+
+
+{% if employees %}
+    {% for employee in employees %}
+        <tr data-row-id="1">
+            <td>
+                {% if employee.avatar %}
+                    {% thumbnail employee.avatar "200" crop="100px 100px" format="PNG" as avatar %}
+                        <img class=""
+                             src="{{ avatar.url }}">
+                    {% endthumbnail %}
+
+                {% else %}
+                    <img class=""
+                         src="{% static 'assets/images/dashboard/user3.jpg' %}" alt="header-user">
+                {% endif %}
+            </td>
+
+            <td>{{ employee.fio }}</td>
+
+            <td>{{ employee.email }}</td>
+
+            <td>{{ employee.department.name }}</td>
+
+            <td>{{ employee.position.name }}</td>
+            <td><a href="{% url 'employees:employee_detail' employee.pk %}">Подробнее</a></td>
+        </tr>
+    {% endfor %}
+{% else %}
+    <tr>
+        <td colspan="6">Сотрудники не найдены</td>
+{% endif %}

@@ -67,7 +67,7 @@ $(window).resize(function () {
   }
 });
 
-// $(".sidebar-menu>li").removeClass("active");
+$(".sidebar-menu>li").removeClass("active");
 $(".sidebar-menu").find("a").removeClass("active");
 $(".sidebar-menu").find("li").removeClass("active");
 
@@ -82,7 +82,7 @@ $(".sidebar-menu>li a").filter(function () {
     if (current.indexOf(link) != -1) {
       $(this).parents('li').addClass('active');
       $(this).addClass('active');
-      // console.log(link + " found");
+      console.log(link + " found");
     }
   }
 });

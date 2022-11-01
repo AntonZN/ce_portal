@@ -115,3 +115,18 @@ class Employee(AbstractUser, MPTTModel):
     likes = models.PositiveIntegerField("Лайки", default=0)
     avatar = ImageField("Аватар", upload_to="avatars", null=True, blank=True)
     manager = EmployeeManager()
+
+
+class EmployeeLikes(models.Model):
+    class Meta:
+        verbose_name = "Лайк"
+        verbose_name_plural = "Лайки"
+
+    employee = models.ForeignKey(
+        "Employee", on_delete=models.CASCADE, related_name="all_likes"
+    )
+    user = models.ForeignKey(
+        "Employee", on_delete=models.CASCADE, related_name="+"
+    )
+    created = models.DateTimeField("Создание", auto_now_add=True)
+

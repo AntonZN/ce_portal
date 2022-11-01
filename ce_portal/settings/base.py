@@ -57,6 +57,7 @@ INSTALLED_APPS = [
     "django_editorjs_fields",
     "threadedcomments",
     "django_comments",
+    "drf_yasg",
 ]
 
 MIDDLEWARE = [
