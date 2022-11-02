@@ -1,0 +1,19 @@
+.employee-like{
+    display: flex;
+        justify-content: space-between;
+}
+
+.employee-like .vote{
+    display: flex;
+}
+
+.employee-like .vote:hover {
+    color: #ff0000;
+    cursor: pointer;
+}
+
+.employee-like i {
+    font-size: 1.2rem;
+    margin-left: 10px;
+    margin-right: 10px;
+}

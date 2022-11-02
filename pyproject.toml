@@ -33,6 +33,9 @@ django-view-breadcrumbs = "^2.4.1"
 pytils = "^0.4.1"
 django-threadedcomments = "^2.0"
 drf-yasg = "^1.21.4"
+django-widget-tweaks = "^1.4.12"
+django-model-utils = "^4.2.0"
+django-htmx = "^1.12.2"
 
 [build-system]
 requires = ["poetry-core"]

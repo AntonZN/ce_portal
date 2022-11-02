@@ -4,8 +4,7 @@ from django.db import models
 from django.urls import reverse
 from django.utils import timezone
 from django_editorjs_fields import EditorJsJSONField
-from mptt.fields import TreeForeignKey
-from mptt.models import MPTTModel
+from model_utils.managers import QueryManager
 from sorl.thumbnail import ImageField
 from taggit.managers import TaggableManager
 
@@ -81,7 +80,13 @@ class News(Post):
         verbose_name_plural = "Новости"
 
     title = models.CharField("Заголовок", max_length=250, null=False, blank=False)
-    slug = AutoSlugField("Название для ulr", populate_from="title", unique=True, db_index=True, always_update=True)
+    slug = AutoSlugField(
+        "Название для ulr",
+        populate_from="title",
+        unique=True,
+        db_index=True,
+        always_update=True,
+    )
 
     category = models.ForeignKey(
         Category,
@@ -108,6 +113,11 @@ class News(Post):
         blank=True,
         null=True,
     )
+
+    objects = models.Manager()
+    public = QueryManager(
+        status=Post.PUBLISHED, date_published__gte=timezone.now()
+    ).order_by("-date_published")
 
     def __str__(self):
         return self.title

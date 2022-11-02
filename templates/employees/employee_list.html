@@ -27,15 +27,8 @@
                 <div class="card-header">
                     <form class="form-inline search-form search-box">
                         <div class="form-group">
-                            <input id="employeeSearch"  type="search" placeholder="Поиск сотрудников"><span
-                                class="d-sm-none mobile-search"><svg xmlns="http://www.w3.org/2000/svg" width="24"
-                                                                     height="24" viewBox="0 0 24 24" fill="none"
-                                                                     stroke="currentColor" stroke-width="2"
-                                                                     stroke-linecap="round" stroke-linejoin="round"
-                                                                     class="feather feather-search"><circle cx="11"
-                                                                                                            cy="11"
-                                                                                                            r="8"></circle><line
-                                x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
+                            <input id="employeeSearch" type="search" placeholder="Поиск сотрудников"><span
+                                class="d-sm-none mobile-search"></span>
                         </div>
                     </form>
                 </div>
@@ -68,35 +61,45 @@
 {% block scripts %}
     <script>
         const user_input = $("#employeeSearch")
-        const search_icon = $('.feather-search')
         const table = $('#replaceableContent')
         const endpoint = '{% url 'employees:employee_list' %}'
-        const delay_by_in_ms = 700
+        const delay_by_in_ms = 600
         let scheduled_function = false
 
         let ajax_call = function (endpoint, request_parameters) {
             $.getJSON(endpoint, request_parameters)
                 .done(response => {
-                    // fade out the artists_div, then:
                     table.fadeTo('slow', 0).promise().then(() => {
-                        // replace the HTML contents
                         table.html(response['html_from_view'])
-                        // fade-in the div with new contents
                         table.fadeTo('slow', 1)
-                        // stop animating search icon
-                        search_icon.removeClass('blink')
                     })
                 })
         }
 
         user_input.on('keyup', function () {
-
             const request_parameters = {
                 query: $(this).val()
             }
+            if (scheduled_function) {
+                clearTimeout(scheduled_function)
+            }
 
-            search_icon.addClass('blink')
+            scheduled_function = setTimeout(ajax_call, delay_by_in_ms, endpoint, request_parameters)
+        })
+        user_input.on('search', function () {
+            const request_parameters = {
+                query: $(this).val()
+            }
+            if (scheduled_function) {
+                clearTimeout(scheduled_function)
+            }
 
+            scheduled_function = setTimeout(ajax_call, delay_by_in_ms, endpoint, request_parameters)
+        })
+        user_input.on('clear', function () {
+            const request_parameters = {
+                query: $(this).val()
+            }
             if (scheduled_function) {
                 clearTimeout(scheduled_function)
             }
