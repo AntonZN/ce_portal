@@ -2,6 +2,7 @@
 {% load static %}
 {% load thumbnail %}
 {% load view_breadcrumbs %}
+{% load mptt_tags %}
 
 {% block head %}
     <link rel="stylesheet" href="{% static 'assets/css/employees.css' %}">
@@ -50,8 +51,8 @@
                             <hr>
                             <div class="project-status">
                                 <h5 class="f-w-600">О сотруднике</h5>
-                                <p>{{ employee.description }}</p>
-                                    {% include 'employees/employee_likes.html' %}
+                                <p>{{ employee.description|linebreaks }}</p>
+                                {% include 'employees/employee_likes.html' %}
                             </div>
                         </div>
                     </div>
@@ -66,11 +67,20 @@
                                         data-feather="user"
                                         class="me-2"></i>О сотруднике</a>
                                 </li>
-                                <li class="nav-item"><a class="nav-link" id="contact-top-tab"
-                                                        data-bs-toggle="tab" href="#top-contact" role="tab"
-                                                        aria-controls="top-contact" aria-selected="false"><i
-                                        data-feather="settings" class="me-2"></i>Контакты</a>
-                                </li>
+                                {% if employee.contacts.all %}
+                                    <li class="nav-item"><a class="nav-link" id="contact-top-tab"
+                                                            data-bs-toggle="tab" href="#top-contact" role="tab"
+                                                            aria-controls="top-contact" aria-selected="false"><i
+                                            data-feather="phone" class="me-2"></i>Контакты</a>
+                                    </li>
+                                {% endif %}
+                                {% if children_employees %}
+                                    <li class="nav-item"><a class="nav-link" id="employees-top-tab"
+                                                            data-bs-toggle="tab" href="#top-employees" role="tab"
+                                                            aria-controls="top-employees" aria-selected="false"><i
+                                            data-feather="settings" class="me-2"></i>Подчиненные</a>
+                                    </li>
+                                {% endif %}
                             </ul>
                             <div class="tab-content" id="top-tabContent">
                                 <div class="tab-pane fade show active" id="top-profile" role="tabpanel"
@@ -92,10 +102,15 @@
                                                     <td>{{ employee.birthday }}</td>
                                                 </tr>
                                             {% endif %}
-                                            <tr>
-                                                <td>Location:</td>
-                                                <td>USA</td>
-                                            </tr>
+                                            {% if employee.parent %}
+                                                <tr>
+                                                    <td>Руководитель:</td>
+                                                    <td>
+                                                        <a href="{% url 'employees:employee_detail' employee.parent.id %}">{{ employee.parent.fio }}</a>
+                                                    </td>
+                                                </tr>
+                                            {% endif %}
+
                                             </tbody>
                                         </table>
                                     </div>
@@ -103,34 +118,28 @@
                                 <div class="tab-pane fade" id="top-contact" role="tabpanel"
                                      aria-labelledby="contact-top-tab">
                                     <div class="account-setting">
-                                        <h5 class="f-w-600">Notifications</h5>
-                                        <div class="row">
-                                            <div class="col">
-                                                <label class="d-block" for="chk-ani">
-                                                    <input class="checkbox_animated" id="chk-ani"
-                                                           type="checkbox">
-                                                    Allow Desktop Notifications
-                                                </label>
-                                                <label class="d-block" for="chk-ani1">
-                                                    <input class="checkbox_animated" id="chk-ani1"
-                                                           type="checkbox">
-                                                    Enable Notifications
-                                                </label>
-                                                <label class="d-block" for="chk-ani2">
-                                                    <input class="checkbox_animated" id="chk-ani2"
-                                                           type="checkbox">
-                                                    Get notification for my own activity
-                                                </label>
-                                                <label class="d-block mb-0" for="chk-ani3">
-                                                    <input class="checkbox_animated" id="chk-ani3"
-                                                           type="checkbox" checked="">
-                                                    DND
-                                                </label>
+                                        {% for contact in employee.contacts.all %}
+                                            <div class="row">
+                                                <div class="col-auto">
+                                                    {{ contact.name }}:
+                                                </div>
+                                                <div class="col-auto">
+                                                    {{ contact.value }}
+                                                </div>
                                             </div>
-                                        </div>
+                                        {% endfor %}
                                     </div>
+                                </div>
+                                <div class="tab-pane fade" id="top-employees" role="tabpanel"
+                                     aria-labelledby="employees-top-tab">
+                                    <div class="childrenEmployees">
 
-
+                                            {% recursetree children_employees %}
+                                                <div>
+                                                    <a href="{% url 'employees:employee_detail' node.id %}">{{ node.fio }}</a>
+                                                </div>
+                                            {% endrecursetree %}
+                                    </div>
                                 </div>
                             </div>
                         </div>
