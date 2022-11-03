@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 from mptt.models import MPTTModel, TreeForeignKey
 
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, AbstractUser
@@ -49,6 +50,12 @@ class Awards(models.Model):
     name = models.CharField("Название", max_length=256)
     description = models.TextField("Описание", blank=True, null=True)
     image = ImageField("Изображение", upload_to="awards", null=True, blank=True)
+
+    def get_absolute_url(self):
+        return reverse(
+            "organization:award_detail",
+            kwargs={"pk": self.pk},
+        )
 
     def __str__(self):
         return ""

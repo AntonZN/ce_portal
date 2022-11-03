@@ -1,10 +1,11 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import DetailView, ListView
 from view_breadcrumbs import ListBreadcrumbMixin, DetailBreadcrumbMixin
 
 from blog.models import News, Category
 
 
-class NewsList(ListBreadcrumbMixin, ListView):
+class NewsList(LoginRequiredMixin, ListBreadcrumbMixin, ListView):
     template_name = "blog/news/list.html"
     model = News
     paginate_by = 12
@@ -20,7 +21,7 @@ class NewsList(ListBreadcrumbMixin, ListView):
         return context
 
 
-class NewsDetail(DetailBreadcrumbMixin, DetailView):
+class NewsDetail(LoginRequiredMixin, DetailBreadcrumbMixin, DetailView):
     model = News
     template_name = "blog/news/detail.html"
     context_object_name = "news"

@@ -81,6 +81,13 @@
                                             data-feather="settings" class="me-2"></i>Подчиненные</a>
                                     </li>
                                 {% endif %}
+                                {% if employee.awards.all %}
+                                    <li class="nav-item"><a class="nav-link" id="employeeAward-top-tab"
+                                                            data-bs-toggle="tab" href="#top-employeeAward" role="tab"
+                                                            aria-controls="top-employeeAward" aria-selected="false"><i
+                                            data-feather="settings" class="me-2"></i>Награды</a>
+                                    </li>
+                                {% endif %}
                             </ul>
                             <div class="tab-content" id="top-tabContent">
                                 <div class="tab-pane fade show active" id="top-profile" role="tabpanel"
@@ -141,12 +148,22 @@
                                             {% endrecursetree %}
                                     </div>
                                 </div>
+                                <div class="tab-pane fade" id="top-employeeAward" role="tabpanel"
+                                     aria-labelledby="employeeAward-top-tab">
+                                    <div class="childrenEmployees">
+                                        {% for award in employee.awards.all %}
+                                            <div>
+                                                {# {% url 'employees:award_detail' award.id %} #}
+                                                <a href="#">{{ award.award.name }}</a>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- Container-fluid Ends-->
     </div>
 {% endblock %}

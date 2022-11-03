@@ -22,26 +22,23 @@ urlpatterns = [
         view=manage_employee_contacts,
         name="contacts_update",
     ),
-
     path("polls/", include("polls.urls")),
-    path("organization/", include("organization.urls", namespace="organization")),
+    path("organization/", include("organization.urls")),
     path(
         "organization/employees/",
-        include("organization.employees.urls", namespace="employees"),
+        include("organization.employees.urls"),
     ),
-    path("blog/", include("blog.urls"), name="blog"),
+    path("blog/", include("blog.urls")),
     path("editorjs/", include("django_editorjs_fields.urls")),
-    path('comments/', include('django_comments.urls')),
+    path("comments/", include("django_comments.urls")),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-
 schema_url_patterns = [
     path("organization/", include("organization.urls", namespace="organization")),
 ]
-
 
 schema_view_yasg = get_schema_view_yasg(
     openapi.Info(
