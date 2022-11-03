@@ -20,11 +20,13 @@
     border-bottom: 1px solid #ddd;
     margin-bottom: 15px;
 }
+
 .blog-detail-page .blog-detail .post-social li + li {
     padding-left: 15px;
     margin-left: 15px;
     border-left: 1px solid #ddd;
 }
+
 .blog-detail-page .blog-detail p {
     color: #777;
     line-height: 1.8;
@@ -73,11 +75,67 @@
     transition: background 300ms ease-in-out;
 }
 
+.blog-detail-page .comment-section li {
+    display: block;
+}
+
 .blog-detail-page .comment-section li img {
     height: auto;
     width: 80px;
     margin-right: 20px;
 }
-.blog-detail-page .comment-section li ul {
- margin-left: 100px;
+
+.blog-detail-page .comment-section .media {
+    padding: 10px;
+        margin-top: 1rem;
+    margin-bottom: 1rem;
+    align-items: center;
+    box-shadow: 0 0 50px rgb(0 0 0 / 10%);
+}
+
+.blog-detail-page .comment-section ul ul:not(:first-child) {
+    margin-left: 3rem;
+
+    position: relative;
+}
+
+.blog-detail-page .comment-section ul ul:last-child::before {
+  content: "";
+  background-color: rgb(170, 170, 170);
+  position: absolute;
+  min-height: 100%;
+  width: 1px;
+  left: -45px;
+}
+
+.blog-detail-page .comment-section ul ul:not(:last-child)::before {
+  content: "";
+
+  left: -10px;
+}
+
+.blog-page .blog-media .blog-right ul {
+    color: #777;
+    margin-bottom: 15px;
+}
+
+.blog-page .blog-media .blog-right ul li {
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.blog-page .blog-media .blog-right ul li i {
+    padding-right: 3px;
+}
+
+.blog-page .blog-media .blog-right p {
+    line-height: 1.8;
+    margin-bottom: 0;
+    letter-spacing: 0.04em;
+}
+
+.blog-page .blog-media .blog-right ul li + li {
+    padding-left: 15px;
+    margin-left: 15px;
+    border-left: 1px solid #ddd;
 }

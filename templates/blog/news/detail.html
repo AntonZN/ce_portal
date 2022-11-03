@@ -3,6 +3,7 @@
 {% load thumbnail %}
 {% load view_breadcrumbs %}
 {% load threadedcomments_tags %}
+{% load comments %}
 
 {% block head %}
     <link rel="stylesheet" type="text/css" href="{% static 'assets/css/blog.css' %}">
@@ -44,8 +45,8 @@
                         <ul class="post-social">
                             <li>{{ news.date_published }}</li>
                             <li>Автор : {{ news.author }}</li>
-                            <li><i class="fa fa-heart"></i> 5 Hits</li>
-                            <li><i class="fa fa-comments"></i> 10 Comment</li>
+                            {% get_comment_count for news as comment_count %}
+                            <li><i class="fa fa-comments"></i> Комментариев: {{ comment_count }}</li>
                         </ul>
 
                     </div>

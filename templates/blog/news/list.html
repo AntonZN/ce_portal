@@ -2,6 +2,7 @@
 {% load static %}
 {% load thumbnail %}
 {% load view_breadcrumbs %}
+{% load comments %}
 
 {% block head %}
     <link rel="stylesheet" type="text/css" href="{% static 'assets/css/blog.css' %}">
@@ -53,8 +54,8 @@
                                         </a>
                                             <ul class="post-social">
                                                 <li>Автор : {{ news.author }}</li>
-                                                <li><i class="fa fa-heart"></i> 5 Лайков</li>
-                                                <li><i class="fa fa-comments"></i> 10 Комментариев</li>
+                                                {% get_comment_count for news as comment_count %}
+                                                <li><i class="fa fa-comments"></i> Комментариев: {{ comment_count }}</li>
                                             </ul>
                                             <p>{{ news.description }}</p>
                                         </div>
