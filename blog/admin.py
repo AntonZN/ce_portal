@@ -2,7 +2,7 @@ from django.contrib import admin
 from sorl.thumbnail.admin import AdminImageMixin
 
 from blog.models import News, Category
-
+from utils.admin import copy_action
 admin.site.register(Category)
 
 
@@ -73,6 +73,7 @@ class NewsAdmin(AdminImageMixin, admin.ModelAdmin):
     list_per_page = 10
     list_max_show_all = 100
     list_select_related = True
+    actions = (copy_action,)
 
     def save_model(self, request, obj, form, change):
         if not obj.pk:

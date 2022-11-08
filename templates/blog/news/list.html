@@ -21,55 +21,64 @@
                         </div>
                     </div>
                     <div class="col-lg-6">
-                         {% render_breadcrumbs "breadcrumbs.html" %}
+                        {% render_breadcrumbs "breadcrumbs.html" %}
                     </div>
                 </div>
             </div>
             <div class="blog-page">
                 <div class="row">
                     <div class="col-xl-9 col-lg-8 col-md-7">
-                        {% for news in news_list %}
-                            <div class="row blog-media">
-                                <div class="col-xl-4">
-                                    <div class="blog-left">
-                                        {% if news.main_image %}
-                                            {% thumbnail news.main_image "x400" as news_image %}
-                                                <img
-                                                        src="{{ news_image.url }}"
-                                                        class="img-fluid lazyload"
-                                                >
-                                            {% endthumbnail %}
-                                        {% else %}
-                                            <img class="align-self-center pull-right img-50 blur-up lazyloaded"
-                                                 src="{% static 'assets/images/dashboard/user3.jpg' %}"
-                                                 alt="header-user">
-                                        {% endif %}
-                                    </div>
-                                </div>
-                                <div class="col-xl-6">
-                                    <div class="blog-right">
-                                        <div>
-                                            <h6>{{ news.date_published }}</h6> <a href="{% url 'blog:news_detail' news.slug %}">
-                                            <h4>{{ news.title }}</h4>
-                                        </a>
-                                            <ul class="post-social">
-                                                <li>Автор : {{ news.author }}</li>
-                                                {% get_comment_count for news as comment_count %}
-                                                <li><i class="fa fa-comments"></i> Комментариев: {{ comment_count }}</li>
-                                            </ul>
-                                            <p>{{ news.description }}</p>
+                        <div class="card">
+                            <div class="card-body">
+                                {% for news in news_list %}
+                                    <div class="row blog-media">
+                                        <div class="col-xl-4">
+                                            <div class="blog-left">
+                                                <a href="{% url 'blog:news_detail' news.slug %}">
+                                                    {% if news.main_image %}
+                                                        {% thumbnail news.main_image "x400" as news_image %}
+                                                            <img
+                                                                    src="{{ news_image.url }}"
+                                                                    class="img-fluid lazyload"
+                                                            >
+                                                        {% endthumbnail %}
+                                                    {% else %}
+                                                        <img class="align-self-center pull-right img-50 blur-up lazyloaded"
+                                                             src="{% static 'assets/images/dashboard/user3.jpg' %}"
+                                                             alt="header-user">
+                                                    {% endif %}
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-6">
+                                            <div class="blog-right">
+                                                <div>
+                                                    <h6>{{ news.date_published }}</h6> <a
+                                                        href="{% url 'blog:news_detail' news.slug %}">
+                                                    <h4>{{ news.title }}</h4>
+                                                </a>
+                                                    <ul class="post-social">
+                                                        <li>Автор : {{ news.author }}</li>
+                                                        {% get_comment_count for news as comment_count %}
+                                                        <li><i class="fa fa-comments"></i>
+                                                            Комментариев: {{ comment_count }}
+                                                        </li>
+                                                    </ul>
+                                                    <p>{{ news.description }}</p>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                {% endfor %}
                             </div>
-                        {% endfor %}
+                        </div>
+
                     </div>
                     <div class="col-xl-3 col-lg-4 col-md-5">
                         <div class="blog-sidebar card o-hidden widget-cards">
                             <div class="theme-card">
                                 <h3>Категории</h3>
                                 <br>
-
                                 <h4><a href="{% url 'blog:news_list' %}">Все</a></h4>
                                 {% for category in categories %}
                                     <br>
@@ -81,6 +90,7 @@
                     </div>
                 </div>
             </div>
+            {% include 'pagination.html' %}
         </div>
     </div>
 

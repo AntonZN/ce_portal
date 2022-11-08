@@ -8,7 +8,7 @@ from blog.models import News, Category
 class NewsList(LoginRequiredMixin, ListBreadcrumbMixin, ListView):
     template_name = "blog/news/list.html"
     model = News
-    paginate_by = 12
+    paginate_by = 10
     context_object_name = "news_list"
     queryset = News.objects.all()
     ordering = ["-date_published"]

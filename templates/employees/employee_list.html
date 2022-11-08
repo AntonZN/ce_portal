@@ -1,6 +1,9 @@
 {% extends 'base.html' %}
 {% load view_breadcrumbs %}
-
+{% load static %}
+{% block head %}
+    <script src="{% static 'assets/js/htmx.min.js' %}"></script>
+{% endblock %}
 
 {% block content %}
     <div class="page-body">
@@ -27,7 +30,7 @@
                 <div class="card-header">
                     <form class="form-inline search-form search-box">
                         <div class="form-group">
-                            <input id="employeeSearch" type="search" placeholder="Поиск сотрудников"><span
+                            <input id="employeeSearch" type="search" name="query" value="{{ request.GET.query }}" placeholder="Поиск сотрудников"><span
                                 class="d-sm-none mobile-search"></span>
                         </div>
                     </form>

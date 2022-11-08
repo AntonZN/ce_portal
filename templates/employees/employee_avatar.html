@@ -1,0 +1,13 @@
+{% load thumbnail %}
+{% load static %}
+
+{% if obj.avatar %}
+    {% thumbnail obj.avatar "150x150" crop="30%" as avatar %}
+        <img class="img-fluid img-{{ size }} rounded-circle blur-up lazyloaded"
+             src="{{ avatar.url }}">
+    {% endthumbnail %}
+
+{% else %}
+    <img class="img-fluid img-{{ size }} rounded-circle blur-up lazyloaded"
+         src="{% static 'assets/images/dashboard/user3.jpg' %}">
+{% endif %}

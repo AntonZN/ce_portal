@@ -123,8 +123,6 @@ class Employee(AbstractUser, MPTTModel):
     avatar = ImageField("Аватар", upload_to="avatars", null=True, blank=True)
     manager = EmployeeManager()
 
-    def __str__(self):
-        return self.fio
 
 
 class EmployeeLikes(models.Model):

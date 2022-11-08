@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     "drf_yasg",
     "widget_tweaks",
     "django_htmx",
+    "solo"
 ]
 
 MIDDLEWARE = [

@@ -4,19 +4,20 @@
 <div class="page-sidebar">
     <div class="main-header-left d-none d-lg-block">
         <div class="logo-wrapper">
-            <a href="index.html">
-                <img class="d-none d-lg-block blur-up lazyloaded"
-                     src="{% static 'assets/images/dashboard/multikart-logo.png' %}" alt="">
+            <a href="{% url 'home' %}">
+                <img class="d-none d-lg-block"
+                     src="{% static 'assets/images/logo_colored.svg' %}" alt="">
             </a>
         </div>
     </div>
     <div class="sidebar custom-scrollbar">
         <a href="javascript:void(0)" class="sidebar-back d-lg-none d-block"><i class="fa fa-times"
                                                                                aria-hidden="true"></i></a>
+        <!--
         {% if user.is_authenticated %}
             <div class="sidebar-user">
                 {% if user.avatar %}
-                    {% thumbnail user.avatar "100" crop="100px 100px" format="PNG" as avatar %}
+                     {% thumbnail user.avatar "60x60" crop="30%" as avatar %}
                         <img class="align-self-center pull-right img-60 blur-up lazyloaded"
                              src="{{ avatar.url }}" alt="header-user">
                     {% endthumbnail %}
@@ -33,6 +34,7 @@
                 </div>
             </div>
         {% endif %}
+        -->
         <ul class="sidebar-menu">
             {% if user.is_authenticated %}
                 <li>

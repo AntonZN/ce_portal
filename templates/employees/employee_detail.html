@@ -34,17 +34,7 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="profile-details text-center">
-                                {% if employee.avatar %}
-                                    {% thumbnail employee.avatar "300" crop="150px 150px" format="PNG" as avatar %}
-                                        <img class="img-fluid img-90 rounded-circle blur-up lazyloaded"
-                                             src="{{ avatar.url }}">
-                                    {% endthumbnail %}
-
-                                {% else %}
-                                    <img class="img-fluid img-90 rounded-circle blur-up lazyloaded"
-                                         src="{% static 'assets/images/dashboard/user3.jpg' %}">
-                                {% endif %}
-
+                                {% include 'employees/employee_avatar.html' with size=90 obj=employee %}
                                 <h5 class="f-w-600 mb-0">{{ employee.fio }}</h5>
                                 <span>{{ employee.email }}</span>
                             </div>
@@ -65,7 +55,7 @@
                                                         data-bs-toggle="tab" href="#top-profile" role="tab"
                                                         aria-controls="top-profile" aria-selected="true"><i
                                         data-feather="user"
-                                        class="me-2"></i>О сотруднике</a>
+                                        class="me-2"></i>Информация</a>
                                 </li>
                                 {% if employee.contacts.all %}
                                     <li class="nav-item"><a class="nav-link" id="contact-top-tab"
@@ -113,50 +103,59 @@
                                                 <tr>
                                                     <td>Руководитель:</td>
                                                     <td>
-                                                        <a href="{% url 'employees:employee_detail' employee.parent.id %}">{{ employee.parent.fio }}</a>
+                                                        <a href="{% url 'employees:employee_detail' employee.parent.id %}">
+                                                            {{ employee.parent.fio }}</a>
                                                     </td>
                                                 </tr>
                                             {% endif %}
-
                                             </tbody>
                                         </table>
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="top-contact" role="tabpanel"
                                      aria-labelledby="contact-top-tab">
-                                    <div class="account-setting">
-                                        {% for contact in employee.contacts.all %}
-                                            <div class="row">
-                                                <div class="col-auto">
-                                                    {{ contact.name }}:
-                                                </div>
-                                                <div class="col-auto">
-                                                    {{ contact.value }}
-                                                </div>
-                                            </div>
-                                        {% endfor %}
+                                    <div class="table-responsive profile-table">
+                                        <table class="table table-borderless">
+                                            <tbody>
+                                            {% for contact in employee.contacts.all %}
+                                                <tr>
+                                                    <td>{{ contact.name }}</td>
+                                                    <td>{{ contact.value }}</td>
+                                                </tr>
+                                            {% endfor %}
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
+
                                 <div class="tab-pane fade" id="top-employees" role="tabpanel"
                                      aria-labelledby="employees-top-tab">
-                                    <div class="childrenEmployees">
-
+                                    <div class="table-responsive profile-table">
+                                        <table class="table table-borderless">
+                                            <tbody>
                                             {% recursetree children_employees %}
-                                                <div>
-                                                    <a href="{% url 'employees:employee_detail' node.id %}">{{ node.fio }}</a>
-                                                </div>
+                                                <tr>
+                                                    <td>
+                                                        <a href="{% url 'employees:employee_detail' node.id %}">{{ node.fio }}</a>
+                                                    </td>
+                                                </tr>
                                             {% endrecursetree %}
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="top-employeeAward" role="tabpanel"
                                      aria-labelledby="employeeAward-top-tab">
-                                    <div class="childrenEmployees">
-                                        {% for award in employee.awards.all %}
-                                            <div>
-                                                {# {% url 'employees:award_detail' award.id %} #}
-                                                <a href="#">{{ award.award.name }}</a>
-                                            </div>
-                                        {% endfor %}
+                                    <div class="table-responsive profile-table">
+                                        <table class="table table-borderless">
+                                            <tbody>
+                                            {% for award in employee.awards.all %}
+                                                <tr>
+                                                    <td><a href="#">{{ award.award.name }}</a></td>
+                                                </tr>
+                                            {% endfor %}
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
                             </div>

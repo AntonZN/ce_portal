@@ -4,6 +4,7 @@ from django.contrib.auth.admin import UserAdmin
 from mptt.admin import DraggableMPTTAdmin
 from sorl.thumbnail.admin import AdminImageMixin
 
+from utils.admin import copy_user_action
 from utils.forms import TagsAdminForm
 from .models import Employee, Position, Contacts, Awards, EmployeeAwards
 
@@ -62,6 +63,7 @@ class EmployeeAdmin(AdminImageMixin, UserAdmin, DraggableMPTTAdmin):
     readonly_fields = ("last_login", "date_joined")
     list_filter = ("is_staff", "is_superuser", "is_active", "department", "position")
     inlines = (ContactsInline,)
+    actions = (copy_user_action,)
 
     def get_readonly_fields(self, request, obj=None):
         if obj and not request.user.is_superuser:

@@ -1,9 +1,9 @@
 .theme-color {
-    --theme-color: #ff4c3b
+    --theme-color: #f48320
 }
 
 :root {
-    --theme-color: #ff4c3b
+    --theme-color: #f48320
 }
 
 @-webkit-keyframes textNoise1 {
@@ -1084,7 +1084,7 @@
 }
 
 .font-primary {
-    color: #ff4c3b !important
+    color: #f48320 !important
 }
 
 .font-secondary {
@@ -1125,11 +1125,11 @@
 }
 
 .label-theme {
-    background-color: #ff4c3b
+    background-color: #f48320
 }
 
 .label-primary {
-    background-color: #ff4c3b
+    background-color: #f48320
 }
 
 .label-secondary {
@@ -1161,7 +1161,7 @@
 }
 
 .badge-primary {
-    background-color: #ff4c3b
+    background-color: #f48320
 }
 
 .badge-secondary {
@@ -1193,7 +1193,7 @@
 }
 
 .bg-primary {
-    background-color: #ff4c3b !important;
+    background-color: #f48320 !important;
     color: #fff
 }
 
@@ -1233,23 +1233,23 @@
 }
 
 .btn-primary {
-    background-color: #ff4c3b !important;
-    border-color: #ff4c3b !important
+    background-color: #f48320 !important;
+    border-color: #f48320 !important
 }
 
 .btn-primary.disabled {
-    background-color: #ff4c3b !important;
-    border-color: #ff4c3b !important
+    background-color: #f48320 !important;
+    border-color: #f48320 !important
 }
 
 .btn-primary:disabled {
-    background-color: #ff4c3b !important;
-    border-color: #ff4c3b !important
+    background-color: #f48320 !important;
+    border-color: #f48320 !important
 }
 
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active {
-    background-color: #ff1d08 !important;
-    border-color: #ff1d08 !important
+    background-color: #efb807 !important;
+    border-color: #efb807 !important
 }
 
 .btn-primary:focus {
@@ -1434,15 +1434,15 @@
 
 .btn-outline-primary-2x {
     border-width: 2px;
-    border-color: #ff4c3b;
-    color: #ff4c3b;
+    border-color: #f48320;
+    color: #f48320;
     background-color: transparent
 }
 
 .btn-outline-primary-2x:hover, .btn-outline-primary-2x:focus, .btn-outline-primary-2x:active, .btn-outline-primary-2x.active {
     color: #fff;
-    background-color: #ff1d08 !important;
-    border-color: #ff1d08 !important;
+    background-color: #efb807 !important;
+    border-color: #efb807 !important;
     -webkit-box-shadow: none;
     box-shadow: none
 }
@@ -1553,19 +1553,19 @@
 }
 
 .btn-outline-primary {
-    border-color: #ff4c3b;
-    color: #ff4c3b;
+    border-color: #f48320;
+    color: #f48320;
     background-color: transparent
 }
 
 .btn-outline-primary.disabled {
-    color: #ff4c3b
+    color: #f48320
 }
 
 .btn-outline-primary:hover, .btn-outline-primary:focus, .btn-outline-primary:active, .btn-outline-primary.active {
     color: #fff;
-    background-color: #ff1d08 !important;
-    border-color: #ff1d08 !important
+    background-color: #efb807 !important;
+    border-color: #efb807 !important
 }
 
 .btn-outline-secondary {
@@ -1682,16 +1682,16 @@
 }
 
 .btn-primary:not([disabled]):not(.disabled).active {
-    background-color: #ff1d08;
-    border-color: #ff1d08;
+    background-color: #efb807;
+    border-color: #efb807;
     -webkit-box-shadow: none !important;
     box-shadow: none !important
 }
 
 .btn-primary:not([disabled]):not(.disabled).active:hover, .btn-primary:not([disabled]):not(.disabled).active:focus, .btn-primary:not([disabled]):not(.disabled).active:active, .btn-primary:not([disabled]):not(.disabled).active.active {
     color: #fff;
-    background-color: #ff1d08;
-    border-color: #ff1d08
+    background-color: #efb807;
+    border-color: #efb807
 }
 
 .btn-secondary:not([disabled]):not(.disabled).active {
@@ -1786,8 +1786,8 @@
 }
 
 .btn-outline-primary-2x:not([disabled]):not(.disabled).active {
-    background-color: #ff4c3b;
-    border-color: #ff4c3b;
+    background-color: #f48320;
+    border-color: #f48320;
     -webkit-box-shadow: none !important;
     box-shadow: none !important;
     color: #fff
@@ -1797,8 +1797,8 @@
     color: #fff;
     -webkit-box-shadow: none !important;
     box-shadow: none !important;
-    background-color: #ff1d08 !important;
-    border-color: #ff1d08 !important
+    background-color: #efb807 !important;
+    border-color: #efb807 !important
 }
 
 .btn-outline-secondary-2x:not([disabled]):not(.disabled).active {
@@ -1914,7 +1914,7 @@
 }
 
 table thead .border-bottom-primary th, table tbody .border-bottom-primary th, table tbody .border-bottom-primary td {
-    border-bottom: 1px solid #ff4c3b
+    border-bottom: 1px solid #f48320
 }
 
 table thead .border-bottom-secondary th, table tbody .border-bottom-secondary th, table tbody .border-bottom-secondary td {
@@ -1946,14 +1946,14 @@ table thead .border-bottom-warning th, table tbody .border-bottom-warning th, ta
 }
 
 .table-styling .table-primary, .table-styling.table-primary {
-    background-color: #ff4c3b;
+    background-color: #f48320;
     color: #fff;
-    border: 3px solid #ff4c3b
+    border: 3px solid #f48320
 }
 
 .table-styling .table-primary thead, .table-styling.table-primary thead {
-    background-color: #ff1d08;
-    border: 3px solid #ff1d08
+    background-color: #efb807;
+    border: 3px solid #efb807
 }
 
 .table-styling .table-secondary, .table-styling.table-secondary {
@@ -2034,23 +2034,23 @@ table thead .border-bottom-warning th, table tbody .border-bottom-warning th, ta
 }
 
 .b-primary {
-    border: 1px solid #ff4c3b !important
+    border: 1px solid #f48320 !important
 }
 
 .b-t-primary {
-    border-top: 1px solid #ff4c3b !important
+    border-top: 1px solid #f48320 !important
 }
 
 .b-b-primary {
-    border-bottom: 1px solid #ff4c3b !important
+    border-bottom: 1px solid #f48320 !important
 }
 
 .b-l-primary {
-    border-left: 1px solid #ff4c3b !important
+    border-left: 1px solid #f48320 !important
 }
 
 .b-r-primary {
-    border-right: 1px solid #ff4c3b !important
+    border-right: 1px solid #f48320 !important
 }
 
 .b-secondary {
@@ -2234,7 +2234,7 @@ table thead .border-bottom-warning th, table tbody .border-bottom-warning th, ta
 }
 
 .order-shape-primary {
-    background-color: #ff4c3b;
+    background-color: #f48320;
     width: 18px;
     height: 8px;
     margin-top: 7px;
@@ -2298,7 +2298,7 @@ table thead .border-bottom-warning th, table tbody .border-bottom-warning th, ta
 }
 
 .order-color-primary {
-    background-color: #ff4c3b;
+    background-color: #f48320;
     width: 8px;
     height: 8px;
     margin-top: 7px;
@@ -2367,8 +2367,8 @@ table thead .border-bottom-warning th, table tbody .border-bottom-warning th, ta
 }
 
 .btn-air-primary:hover, .btn-air-primary:active, .btn-air-primary:not([disabled]):not(.disabled):active {
-    background-color: #ff1d08;
-    border-color: #ff1d08
+    background-color: #efb807;
+    border-color: #efb807
 }
 
 .btn-air-secondary {
@@ -2447,7 +2447,7 @@ table thead .border-bottom-warning th, table tbody .border-bottom-warning th, ta
 }
 
 .input-air-primary:focus {
-    border-color: #ff4c3b
+    border-color: #f48320
 }
 
 .input-air-secondary {
@@ -2514,20 +2514,20 @@ table thead .border-bottom-warning th, table tbody .border-bottom-warning th, ta
 }
 
 .form-bg-primary {
-    background: #ff4c3b;
-    border-color: #ff4c3b;
+    background: #f48320;
+    border-color: #f48320;
     color: #fff
 }
 
 .form-bg-primary:focus {
-    border-color: #ff4c3b;
-    background: #ff4c3b;
+    border-color: #f48320;
+    background: #f48320;
     color: #fff
 }
 
 .form-bg-primary:focus:active {
-    border-color: #ff4c3b;
-    background: #ff4c3b;
+    border-color: #f48320;
+    background: #f48320;
     color: #fff
 }
 
@@ -2794,7 +2794,7 @@ ul {
 }
 
 * a {
-    color: #ff4c3b
+    color: #f48320
 }
 
 p {
@@ -2804,7 +2804,7 @@ p {
 }
 
 code {
-    color: #ff4c3b !important;
+    color: #f48320 !important;
     background-color: #f8f8f9;
     padding: 3px;
     margin: 0 3px;
@@ -2828,7 +2828,7 @@ blockquote.text-end {
 }
 
 :focus {
-    outline-color: #ff4c3b
+    outline-color: #f48320
 }
 
 .disabled {
@@ -4946,7 +4946,7 @@ table tr th {
 }
 
 .user-table thead {
-    background-color: #ff4c3b
+    background-color: #f48320
 }
 
 .user-table thead tr th {
@@ -5057,7 +5057,7 @@ table tr th {
 }
 
 .user-table tbody tr td:nth-child(6) a i, .user-table tbody tr td:nth-child(8) a i {
-    color: #ff4c3b
+    color: #f48320
 }
 
 .user-table tbody tr td:nth-child(7) {
@@ -7786,7 +7786,7 @@ label {
     z-index: 1;
     width: 0.75rem;
     height: 0.375rem;
-    border: 2px solid #ff4c3b;
+    border: 2px solid #f48320;
     border-top-style: none;
     border-right-style: none
 }
@@ -7828,7 +7828,7 @@ label {
     z-index: 1;
     width: 0.75rem;
     height: 0.75rem;
-    background: #ff4c3b;
+    background: #f48320;
     border-radius: 50%
 }
 
@@ -7850,7 +7850,7 @@ label {
 }
 
 a:hover {
-    color: #ff4c3b
+    color: #f48320
 }
 
 .btn-popup {
@@ -7911,7 +7911,7 @@ a:hover {
 }
 
 .add-product ul li .box-input-file i {
-    color: #ff4c3b
+    color: #f48320
 }
 
 .add-product ul li .box-input-file .upload {
@@ -8061,20 +8061,20 @@ a:hover {
 }
 
 .datepicker--nav {
-    color: #ff4c3b
+    color: #f48320
 }
 
 .datepicker--nav-action {
-    color: #ff4c3b;
-    background-color: #ff4c3b
+    color: #f48320;
+    background-color: #f48320
 }
 
 .datepicker--nav-action:hover {
-    color: #ff4c3b
+    color: #f48320
 }
 
 .datepicker--nav-title i {
-    color: #ff4c3b
+    color: #f48320
 }
 
 .table thead th {
@@ -8274,7 +8274,7 @@ a:hover {
 }
 
 .product-page-main .product-slider .owl-carousel .owl-stage-outer .owl-stage .owl-item.active.current {
-    border: 1px solid #ff4c3b
+    border: 1px solid #f48320
 }
 
 .product-page-main .owl-stage-outer {
@@ -8282,7 +8282,7 @@ a:hover {
 }
 
 .product-page-main .owl-stage-outer .owl-stage .owl-item.active.current {
-    border: 1px solid #ff4c3b !important
+    border: 1px solid #f48320 !important
 }
 
 .br-theme-fontawesome-stars-o .br-widget a {
@@ -8295,7 +8295,7 @@ a:hover {
 }
 
 .nav-pills .nav-link.active, .nav-pills .nav-link > .nav-link, .nav-pills .show.active, .nav-pills .show > .nav-link {
-    background-color: #ff4c3b
+    background-color: #f48320
 }
 
 .deactivate-account {
@@ -8325,14 +8325,14 @@ a:hover {
 }
 
 .tab2-card .nav-tabs .nav-link.active, .tab2-card .nav-tabs .nav-link:focus, .tab2-card .nav-tabs .nav-link:hover {
-    color: #ff4c3b;
+    color: #f48320;
     border-color: rgba(0, 0, 0, 0);
-    border-bottom: 2px solid #ff4c3b
+    border-bottom: 2px solid #f48320
 }
 
 .tab2-card .nav-tabs .nav-item.show .nav-link {
     border-color: rgba(0, 0, 0, 0);
-    border-bottom: 2px solid #ff4c3b
+    border-bottom: 2px solid #f48320
 }
 
 .profile-details img {
@@ -8442,31 +8442,31 @@ footer.blockquote-footer {
     color: #000;
     border-radius: 5px;
     font-weight: bold;
-    border: 2px solid #ff4c3b
+    border: 2px solid #f48320
 }
 
 .datepicker--cell.-focus- {
-    background: #ff4c3b;
+    background: #f48320;
     color: #fff
 }
 
 .datepicker--cell.-selected- {
-    background: #ff4c3b
+    background: #f48320
 }
 
 .dropzone .dz-preview {
-    -webkit-box-shadow: 0px 0px 3px #ff4c3b;
-    box-shadow: 0px 0px 3px #ff4c3b
+    -webkit-box-shadow: 0px 0px 3px #f48320;
+    box-shadow: 0px 0px 3px #f48320
 }
 
 .dropzone .dz-preview .dz-error-message {
-    color: #ff4c3b !important;
+    color: #f48320 !important;
     background: rgba(0, 0, 0, 0) !important;
-    border: 1px solid #ff4c3b !important
+    border: 1px solid #f48320 !important
 }
 
 .dropzone .dz-preview .dz-error-message:after {
-    border-bottom: 6px solid #ff4c3b !important
+    border-bottom: 6px solid #f48320 !important
 }
 
 .tab-coupon {
@@ -8561,8 +8561,8 @@ footer.blockquote-footer {
 }
 
 .needs-validation .checkbox-primary input[type="checkbox"]:checked + label::before {
-    border-color: #ff4c3b;
-    color: #ff4c3b
+    border-color: #f48320;
+    color: #f48320
 }
 
 .needs-validation .radio-animated label {
@@ -8606,15 +8606,15 @@ div.dataTables_wrapper div.dataTables_paginate {
 }
 
 .dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button:active {
-    background: #ff4c3b;
+    background: #f48320;
     color: #fff !important;
-    border: 1px solid #ff4c3b;
+    border: 1px solid #f48320;
     -webkit-box-shadow: none;
     box-shadow: none
 }
 
 .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
-    border: 1px solid #ff4c3b;
+    border: 1px solid #f48320;
     color: #2a3142 !important;
     background: transparent !important
 }
@@ -8736,7 +8736,7 @@ div.dataTables_wrapper div.dataTables_paginate {
 
 .card.card-load .card-loader i {
     margin: 0 auto;
-    color: #ff4c3b;
+    color: #f48320;
     font-size: 20px
 }
 
@@ -9070,11 +9070,11 @@ footer.footer-starter-kit {
 }
 
 .page-main-header .main-header-right svg {
-    color: #ff4c3b
+    color: #f48320
 }
 
 .page-main-header .main-header-right svg line, .page-main-header .main-header-right svg polyline {
-    color: #ff4c3b
+    color: #f48320
 }
 
 .page-main-header .main-header-right .nav-left i {
@@ -9091,7 +9091,7 @@ footer.footer-starter-kit {
 }
 
 .page-main-header .main-header-right .nav-right ul li .media img {
-    border-radius: 5px;
+    border-radius: 50%;
     -webkit-box-shadow: 0 0 15px rgba(35, 35, 35, 0.15);
     box-shadow: 0 0 15px rgba(35, 35, 35, 0.15)
 }
@@ -9109,7 +9109,7 @@ footer.footer-starter-kit {
     height: 25px;
     width: 25px;
     z-index: 10;
-    border: 5px solid #ff4c3b;
+    border: 5px solid #f48320;
     border-radius: 70px;
     -webkit-animation: heartbit 1s ease-out;
     animation: heartbit 1s ease-out;
@@ -9121,7 +9121,7 @@ footer.footer-starter-kit {
     width: 6px;
     height: 6px;
     border-radius: 30px;
-    background-color: #ff4c3b;
+    background-color: #f48320;
     position: absolute;
     right: 6px;
     top: -10px
@@ -9134,14 +9134,14 @@ footer.footer-starter-kit {
 }
 
 .page-main-header .main-header-right .nav-right ul li svg path {
-    color: #ff4c3b
+    color: #f48320
 }
 
 .page-main-header .main-header-right .nav-right ul li .dot {
     width: 3px;
     height: 3px;
     border-radius: 30px;
-    background-color: #ff4c3b;
+    background-color: #f48320;
     position: absolute;
     right: 17px;
     bottom: 6px;
@@ -9235,7 +9235,7 @@ footer.footer-starter-kit {
 .page-main-header .main-header-right .nav-right > ul > li h6 {
     margin-top: 4px;
     margin-bottom: 4px;
-    color: #ff4c3b
+    color: #f48320
 }
 
 .page-main-header .main-header-right .nav-right > ul > li h6 ul {
@@ -9325,17 +9325,17 @@ footer.footer-starter-kit {
 }
 
 .page-main-header .main-header-right .nav-right .profile-dropdown li:hover a {
-    color: #ff4c3b;
+    color: #f48320;
     -webkit-transition: .3s;
     transition: .3s
 }
 
 .page-main-header .main-header-right .nav-right .profile-dropdown li:hover a svg {
-    color: #ff4c3b !important
+    color: #f48320 !important
 }
 
 .page-main-header .main-header-right .nav-right .profile-dropdown li:hover a svg path, .page-main-header .main-header-right .nav-right .profile-dropdown li:hover a svg line, .page-main-header .main-header-right .nav-right .profile-dropdown li:hover a svg polyline {
-    color: #ff4c3b !important
+    color: #f48320 !important
 }
 
 .page-main-header .main-header-right .nav-right .profile-dropdown li a {
@@ -9411,7 +9411,7 @@ ul.notification-dropdown.onhover-show-div li span svg {
 }
 
 ul.notification-dropdown.onhover-show-div li span .shopping-color path, ul.notification-dropdown.onhover-show-div li span .shopping-color line {
-    color: #ff4c3b
+    color: #f48320
 }
 
 ul.notification-dropdown.onhover-show-div li span .download-color path, ul.notification-dropdown.onhover-show-div li span .download-color line {
@@ -9529,7 +9529,6 @@ ul.notification-dropdown.onhover-show-div li + li:hover {
     display: -ms-inline-flexbox;
     display: inline-flex;
     width: 100%;
-    height: 80px;
     padding: 12px;
     -webkit-box-align: center;
     -ms-flex-align: center;
@@ -9541,7 +9540,6 @@ ul.notification-dropdown.onhover-show-div li + li:hover {
 }
 
 .page-wrapper .page-body-wrapper .page-sidebar .main-header-left .logo-wrapper {
-    padding-left: 10px;
     height: 100%;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -9551,9 +9549,13 @@ ul.notification-dropdown.onhover-show-div li + li:hover {
     align-items: center;
     -webkit-box-pack: center;
     -ms-flex-pack: center;
-    justify-content: center
+    justify-content: flex-start;
 }
-
+.page-wrapper .page-body-wrapper .page-sidebar .main-header-left .logo-wrapper img {
+    width: 10rem;
+    margin: 0.5rem 0;
+    
+}
 .page-wrapper .page-body-wrapper .page-sidebar .sidebar-user {
     padding: 25px 10px;
     -webkit-box-shadow: 3px 2px 7px -1px rgba(127, 151, 249, 0.1);
@@ -9567,11 +9569,11 @@ ul.notification-dropdown.onhover-show-div li + li:hover {
     align-items: center;
     -webkit-box-pack: space-evenly;
     -ms-flex-pack: space-evenly;
-    justify-content: space-evenly
+    justify-content: flex-start;
 }
 
 .page-wrapper .page-body-wrapper .page-sidebar .sidebar-user h6 {
-    color: #ff4c3b;
+    color: #f48320;
     text-transform: uppercase;
     font-weight: 600;
     letter-spacing: 1.5px;
@@ -9589,7 +9591,8 @@ ul.notification-dropdown.onhover-show-div li + li:hover {
 .page-wrapper .page-body-wrapper .page-sidebar .sidebar-user img {
     -webkit-box-shadow: 0 0 15px rgba(35, 35, 35, 0.15);
     box-shadow: 0 0 15px rgba(35, 35, 35, 0.15);
-    border-radius: 7px
+    border-radius: 7px;
+    margin-right: 20px;
 }
 
 .page-wrapper .page-body-wrapper .page-sidebar .sidebar-menu {
@@ -9805,7 +9808,7 @@ ul.notification-dropdown.onhover-show-div li + li:hover {
 }
 
 .page-wrapper .page-body-wrapper .page-sidebar .sidebar-menu .sidebar-submenu > li > a.active {
-    color: #ff4c3b
+    color: #f48320
 }
 
 .page-wrapper .page-body-wrapper .page-sidebar .sidebar-menu .sidebar-submenu > li.active > a {
@@ -10148,7 +10151,7 @@ ul.notification-dropdown.onhover-show-div li + li:hover {
 
 .chat-box .chat-right-aside .chat .chat-message .text-box .input-txt-bx {
     height: 50px;
-    border: 2px solid #ff4c3b;
+    border: 2px solid #f48320;
     padding-left: 18px;
     font-size: 12px;
     letter-spacing: 1px
@@ -10288,7 +10291,7 @@ ul.notification-dropdown.onhover-show-div li + li:hover {
 
 .chat-box .chat-menu .nav-tabs .nav-item .material-border {
     border-width: 1px;
-    border-color: #ff4c3b
+    border-color: #f48320
 }
 
 .chat-box .chat-menu .nav-tabs .nav-item .nav-link.active {
@@ -10528,108 +10531,108 @@ ul.notification-dropdown.onhover-show-div li + li:hover {
 }
 
 .radial-bar-primary.radial-bar-0 {
-    background-image: -webkit-gradient(linear, left top, right top, color-stop(50%, #ff4c3b), color-stop(50%, transparent), to(transparent)), -webkit-gradient(linear, left top, right top, color-stop(50%, #ff4c3b), color-stop(50%, #eff0f1), to(#eff0f1));
-    background-image: linear-gradient(90deg, #ff4c3b 50%, transparent 50%, transparent), linear-gradient(90deg, #ff4c3b 50%, #eff0f1 50%, #eff0f1)
+    background-image: -webkit-gradient(linear, left top, right top, color-stop(50%, #f48320), color-stop(50%, transparent), to(transparent)), -webkit-gradient(linear, left top, right top, color-stop(50%, #f48320), color-stop(50%, #eff0f1), to(#eff0f1));
+    background-image: linear-gradient(90deg, #f48320 50%, transparent 50%, transparent), linear-gradient(90deg, #f48320 50%, #eff0f1 50%, #eff0f1)
 }
 
 .radial-bar-primary.radial-bar-5 {
-    background-image: linear-gradient(90deg, #ff4c3b 50%, transparent 50%, transparent), linear-gradient(108deg, #ff4c3b 50%, #eff0f1 50%, #eff0f1)
+    background-image: linear-gradient(90deg, #f48320 50%, transparent 50%, transparent), linear-gradient(108deg, #f48320 50%, #eff0f1 50%, #eff0f1)
 }
 
 .radial-bar-primary.radial-bar-10 {
-    background-image: linear-gradient(90deg, #ff4c3b 50%, transparent 50%, transparent), linear-gradient(126deg, #ff4c3b 50%, #eff0f1 50%, #eff0f1)
+    background-image: linear-gradient(90deg, #f48320 50%, transparent 50%, transparent), linear-gradient(126deg, #f48320 50%, #eff0f1 50%, #eff0f1)
 }
 
 .radial-bar-primary.radial-bar-15 {
-    background-image: linear-gradient(90deg, #ff4c3b 50%, transparent 50%, transparent), linear-gradient(144deg, #ff4c3b 50%, #eff0f1 50%, #eff0f1)
+    background-image: linear-gradient(90deg, #f48320 50%, transparent 50%, transparent), linear-gradient(144deg, #f48320 50%, #eff0f1 50%, #eff0f1)
 }
 
 .radial-bar-primary.radial-bar-20 {
-    background-image: linear-gradient(90deg, #ff4c3b 50%, transparent 50%, transparent), linear-gradient(162deg, #ff4c3b 50%, #eff0f1 50%, #eff0f1)
+    background-image: linear-gradient(90deg, #f48320 50%, transparent 50%, transparent), linear-gradient(162deg, #f48320 50%, #eff0f1 50%, #eff0f1)
 }
 
 .radial-bar-primary.radial-bar-25 {
-    background-image: -webkit-gradient(linear, left top, right top, color-stop(50%, #ff4c3b), color-stop(50%, transparent), to(transparent)), -webkit-gradient(linear, left top, left bottom, color-stop(50%, #ff4c3b), color-stop(50%, #eff0f1), to(#eff0f1));
-    background-image: linear-gradient(90deg, #ff4c3b 50%, transparent 50%, transparent), linear-gradient(180deg, #ff4c3b 50%, #eff0f1 50%, #eff0f1)
+    background-image: -webkit-gradient(linear, left top, right top, color-stop(50%, #f48320), color-stop(50%, transparent), to(transparent)), -webkit-gradient(linear, left top, left bottom, color-stop(50%, #f48320), color-stop(50%, #eff0f1), to(#eff0f1));
+    background-image: linear-gradient(90deg, #f48320 50%, transparent 50%, transparent), linear-gradient(180deg, #f48320 50%, #eff0f1 50%, #eff0f1)
 }
 
 .radial-bar-primary.radial-bar-30 {
-    background-image: linear-gradient(90deg, #ff4c3b 50%, transparent 50%, transparent), linear-gradient(198deg, #ff4c3b 50%, #eff0f1 50%, #eff0f1)
+    background-image: linear-gradient(90deg, #f48320 50%, transparent 50%, transparent), linear-gradient(198deg, #f48320 50%, #eff0f1 50%, #eff0f1)
 }
 
 .radial-bar-primary.radial-bar-35 {
-    background-image: linear-gradient(90deg, #ff4c3b 50%, transparent 50%, transparent), linear-gradient(216deg, #ff4c3b 50%, #eff0f1 50%, #eff0f1)
+    background-image: linear-gradient(90deg, #f48320 50%, transparent 50%, transparent), linear-gradient(216deg, #f48320 50%, #eff0f1 50%, #eff0f1)
 }
 
 .radial-bar-primary.radial-bar-40 {
-    background-image: linear-gradient(90deg, #ff4c3b 50%, transparent 50%, transparent), linear-gradient(234deg, #ff4c3b 50%, #eff0f1 50%, #eff0f1)
+    background-image: linear-gradient(90deg, #f48320 50%, transparent 50%, transparent), linear-gradient(234deg, #f48320 50%, #eff0f1 50%, #eff0f1)
 }
 
 .radial-bar-primary.radial-bar-45 {
-    background-image: linear-gradient(90deg, #ff4c3b 50%, transparent 50%, transparent), linear-gradient(252deg, #ff4c3b 50%, #eff0f1 50%, #eff0f1)
+    background-image: linear-gradient(90deg, #f48320 50%, transparent 50%, transparent), linear-gradient(252deg, #f48320 50%, #eff0f1 50%, #eff0f1)
 }
 
 .radial-bar-primary.radial-bar-50 {
-    background-image: -webkit-gradient(linear, right top, left top, color-stop(50%, #ff4c3b), color-stop(50%, transparent), to(transparent)), -webkit-gradient(linear, right top, left top, color-stop(50%, #ff4c3b), color-stop(50%, #eff0f1), to(#eff0f1));
-    background-image: linear-gradient(270deg, #ff4c3b 50%, transparent 50%, transparent), linear-gradient(270deg, #ff4c3b 50%, #eff0f1 50%, #eff0f1)
+    background-image: -webkit-gradient(linear, right top, left top, color-stop(50%, #f48320), color-stop(50%, transparent), to(transparent)), -webkit-gradient(linear, right top, left top, color-stop(50%, #f48320), color-stop(50%, #eff0f1), to(#eff0f1));
+    background-image: linear-gradient(270deg, #f48320 50%, transparent 50%, transparent), linear-gradient(270deg, #f48320 50%, #eff0f1 50%, #eff0f1)
 }
 
 .radial-bar-primary.radial-bar-55 {
-    background-image: linear-gradient(288deg, #ff4c3b 50%, transparent 50%, transparent), linear-gradient(270deg, #ff4c3b 50%, #eff0f1 50%, #eff0f1)
+    background-image: linear-gradient(288deg, #f48320 50%, transparent 50%, transparent), linear-gradient(270deg, #f48320 50%, #eff0f1 50%, #eff0f1)
 }
 
 .radial-bar-primary.radial-bar-60 {
-    background-image: linear-gradient(306deg, #ff4c3b 50%, transparent 50%, transparent), linear-gradient(270deg, #ff4c3b 50%, #eff0f1 50%, #eff0f1)
+    background-image: linear-gradient(306deg, #f48320 50%, transparent 50%, transparent), linear-gradient(270deg, #f48320 50%, #eff0f1 50%, #eff0f1)
 }
 
 .radial-bar-primary.radial-bar-65 {
-    background-image: linear-gradient(324deg, #ff4c3b 50%, transparent 50%, transparent), linear-gradient(270deg, #ff4c3b 50%, #eff0f1 50%, #eff0f1)
+    background-image: linear-gradient(324deg, #f48320 50%, transparent 50%, transparent), linear-gradient(270deg, #f48320 50%, #eff0f1 50%, #eff0f1)
 }
 
 .radial-bar-primary.radial-bar-70 {
-    background-image: linear-gradient(342deg, #ff4c3b 50%, transparent 50%, transparent), linear-gradient(270deg, #ff4c3b 50%, #eff0f1 50%, #eff0f1)
+    background-image: linear-gradient(342deg, #f48320 50%, transparent 50%, transparent), linear-gradient(270deg, #f48320 50%, #eff0f1 50%, #eff0f1)
 }
 
 .radial-bar-primary.radial-bar-75 {
-    background-image: -webkit-gradient(linear, left bottom, left top, color-stop(50%, #ff4c3b), color-stop(50%, transparent), to(transparent)), -webkit-gradient(linear, right top, left top, color-stop(50%, #ff4c3b), color-stop(50%, #eff0f1), to(#eff0f1));
-    background-image: linear-gradient(360deg, #ff4c3b 50%, transparent 50%, transparent), linear-gradient(270deg, #ff4c3b 50%, #eff0f1 50%, #eff0f1)
+    background-image: -webkit-gradient(linear, left bottom, left top, color-stop(50%, #f48320), color-stop(50%, transparent), to(transparent)), -webkit-gradient(linear, right top, left top, color-stop(50%, #f48320), color-stop(50%, #eff0f1), to(#eff0f1));
+    background-image: linear-gradient(360deg, #f48320 50%, transparent 50%, transparent), linear-gradient(270deg, #f48320 50%, #eff0f1 50%, #eff0f1)
 }
 
 .radial-bar-primary.radial-bar-80 {
-    background-image: linear-gradient(378deg, #ff4c3b 50%, transparent 50%, transparent), linear-gradient(270deg, #ff4c3b 50%, #eff0f1 50%, #eff0f1)
+    background-image: linear-gradient(378deg, #f48320 50%, transparent 50%, transparent), linear-gradient(270deg, #f48320 50%, #eff0f1 50%, #eff0f1)
 }
 
 .radial-bar-primary.radial-bar-85 {
-    background-image: linear-gradient(396deg, #ff4c3b 50%, transparent 50%, transparent), linear-gradient(270deg, #ff4c3b 50%, #eff0f1 50%, #eff0f1)
+    background-image: linear-gradient(396deg, #f48320 50%, transparent 50%, transparent), linear-gradient(270deg, #f48320 50%, #eff0f1 50%, #eff0f1)
 }
 
 .radial-bar-primary.radial-bar-90 {
-    background-image: linear-gradient(414deg, #ff4c3b 50%, transparent 50%, transparent), linear-gradient(270deg, #ff4c3b 50%, #eff0f1 50%, #eff0f1)
+    background-image: linear-gradient(414deg, #f48320 50%, transparent 50%, transparent), linear-gradient(270deg, #f48320 50%, #eff0f1 50%, #eff0f1)
 }
 
 .radial-bar-primary.radial-bar-95 {
-    background-image: linear-gradient(432deg, #ff4c3b 50%, transparent 50%, transparent), linear-gradient(270deg, #ff4c3b 50%, #eff0f1 50%, #eff0f1)
+    background-image: linear-gradient(432deg, #f48320 50%, transparent 50%, transparent), linear-gradient(270deg, #f48320 50%, #eff0f1 50%, #eff0f1)
 }
 
 .radial-bar-primary.radial-bar-100 {
-    background-image: -webkit-gradient(linear, left top, right top, color-stop(50%, #ff4c3b), color-stop(50%, transparent), to(transparent)), -webkit-gradient(linear, right top, left top, color-stop(50%, #ff4c3b), color-stop(50%, #eff0f1), to(#eff0f1));
-    background-image: linear-gradient(450deg, #ff4c3b 50%, transparent 50%, transparent), linear-gradient(270deg, #ff4c3b 50%, #eff0f1 50%, #eff0f1)
+    background-image: -webkit-gradient(linear, left top, right top, color-stop(50%, #f48320), color-stop(50%, transparent), to(transparent)), -webkit-gradient(linear, right top, left top, color-stop(50%, #f48320), color-stop(50%, #eff0f1), to(#eff0f1));
+    background-image: linear-gradient(450deg, #f48320 50%, transparent 50%, transparent), linear-gradient(270deg, #f48320 50%, #eff0f1 50%, #eff0f1)
 }
 
 .market-chart .ct-series-a .ct-point {
-    stroke: #ff4c3b
+    stroke: #f48320
 }
 
 .market-chart .ct-series-a .ct-line {
-    stroke: #ff4c3b
+    stroke: #f48320
 }
 
 .market-chart .ct-series-a .ct-bar {
-    stroke: #ff4c3b
+    stroke: #f48320
 }
 
 .market-chart .ct-series-a .ct-slice-donut {
-    stroke: #ff4c3b
+    stroke: #f48320
 }
 
 .market-chart .ct-series-b .ct-point {
@@ -10702,16 +10705,16 @@ ul.notification-dropdown.onhover-show-div li + li:hover {
     color: #000;
     border-radius: 5px;
     font-weight: bold;
-    border: 2px solid #ff4c3b
+    border: 2px solid #f48320
 }
 
 .datepicker--cell.-focus- {
-    background: #ff4c3b;
+    background: #f48320;
     color: #fff
 }
 
 .datepicker--cell.-selected- {
-    background: #ff4c3b
+    background: #f48320
 }
 
 .daterangepicker.ltr {
@@ -10733,7 +10736,7 @@ ul.notification-dropdown.onhover-show-div li + li:hover {
 }
 
 .daterangepicker.ltr tr td.active {
-    background-color: #ff4c3b
+    background-color: #f48320
 }
 
 .daterangepicker.ltr .ranges {
@@ -10741,18 +10744,18 @@ ul.notification-dropdown.onhover-show-div li + li:hover {
 }
 
 .daterangepicker.ltr .ranges li {
-    color: #ff4c3b
+    color: #f48320
 }
 
 .daterangepicker.ltr .ranges li:hover {
-    background-color: #ff4c3b;
-    border: 1px solid #ff4c3b;
+    background-color: #f48320;
+    border: 1px solid #f48320;
     color: #fff
 }
 
 .daterangepicker.ltr .ranges li.active {
-    background-color: #ff4c3b;
-    border: 1px solid #ff4c3b;
+    background-color: #f48320;
+    border: 1px solid #f48320;
     color: #fff
 }
 
@@ -10803,7 +10806,7 @@ ul.notification-dropdown.onhover-show-div li + li:hover {
 }
 
 .authentication-box .custom-checkbox .form-check-input:checked ~ .form-check-label::before {
-    background-color: #ff4c3b
+    background-color: #f48320
 }
 
 .authentication-box .back-btn {
@@ -11719,7 +11722,7 @@ ul.notification-dropdown.onhover-show-div li + li:hover {
     }
 
     .page-wrapper .page-main-header .main-header-right .nav-right > .mobile-toggle svg circle {
-        color: #ff4c3b
+        color: #f48320
     }
 
     .page-wrapper .page-main-header .main-header-right .nav-right > ul.open {
@@ -12336,7 +12339,7 @@ ul.notification-dropdown.onhover-show-div li + li:hover {
     }
 
     .page-wrapper .page-main-header .main-header-right .nav-right > ul .search-form .mobile-search svg {
-        color: #ff4c3b
+        color: #f48320
     }
 
     .page-wrapper .search-form .form-group {

@@ -6,9 +6,9 @@
     <div class="main-header-right row">
         <div class="main-header-left d-lg-none w-auto">
             <div class="logo-wrapper">
-                <a href="index.html">
+                <a href="{% url 'home' %}">
                     <img class="blur-up lazyloaded d-block d-lg-none"
-                         src="{% static 'assets/images/dashboard/multikart-logo-black.png' %}" alt="">
+                         src="{% static 'assets/images/logo_colored.svg' %}" alt="">
                 </a>
             </div>
         </div>
@@ -39,65 +39,9 @@
                             <i data-feather="maximize-2"></i>
                         </a>
                     </li>
-
-                    <li class="onhover-dropdown">
-                        <i data-feather="bell"></i>
-                        <span class="badge badge-pill badge-primary pull-right notification-badge">3</span>
-                        <span class="dot"></span>
-                        <ul class="notification-dropdown onhover-show-div p-0">
-                            <li>Notification <span class="badge badge-pill badge-primary pull-right">3</span></li>
-                            <li>
-                                <div class="media">
-                                    <div class="media-body">
-                                        <h6 class="mt-0">
-                                                    <span>
-                                                        <i class="shopping-color" data-feather="shopping-bag"></i>
-                                                    </span>Your order ready for Ship..!
-                                        </h6>
-                                        <p class="mb-0">Lorem ipsum dolor sit amet, consectetuer.</p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="media">
-                                    <div class="media-body">
-                                        <h6 class="mt-0 txt-success">
-                                                    <span>
-                                                        <i class="download-color font-success" data-feather="download"></i>
-                                                    </span>Download Complete
-                                        </h6>
-                                        <p class="mb-0">Lorem ipsum dolor sit amet, consectetuer.</p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="media">
-                                    <div class="media-body">
-                                        <h6 class="mt-0 txt-danger">
-                                                    <span>
-                                                        <i class="alert-color font-danger" data-feather="alert-circle"></i>
-                                                    </span>250 MB trash files
-                                        </h6>
-                                        <p class="mb-0">Lorem ipsum dolor sit amet, consectetuer.</p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="txt-dark"><a href="javascript:void(0)">All</a> notification</li>
-                        </ul>
-                    </li>
-
                     <li class="onhover-dropdown">
                         <div class="media align-items-center">
-                            {% if user.avatar %}
-                                {% thumbnail user.avatar "100" crop="50px 50px" format="PNG" as avatar %}
-                                    <img class="align-self-center pull-right img-50 blur-up lazyloaded"
-                                     src="{{ avatar.url }}" alt="header-user">
-                                {% endthumbnail %}
-
-                            {% else %}
-                                <img class="align-self-center pull-right img-50 blur-up lazyloaded"
-                                     src="{% static 'assets/images/dashboard/user3.jpg' %}" alt="header-user">
-                            {% endif %}
+                            {% include 'employees/employee_avatar.html' with size=50 obj=user %}
                             <div class="dotted-animation">
                                 <span class="animate-circle"></span>
                                 <span class="main-circle"></span>

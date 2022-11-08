@@ -1,3 +1,8 @@
+
+.row.blog-media {
+    margin-bottom: 15px;
+}
+
 .blog-page .blog-sidebar .theme-card {
     padding: 30px;
 }
@@ -87,10 +92,12 @@
 
 .blog-detail-page .comment-section .media {
     padding: 10px;
-        margin-top: 1rem;
+    margin-top: 1rem;
     margin-bottom: 1rem;
     align-items: center;
-    box-shadow: 0 0 50px rgb(0 0 0 / 10%);
+    -webkit-box-shadow: 0px 0px 10px 0 rgb(34 41 47 / 10%);
+    box-shadow: 0px 0px 10px 0 rgb(34 41 47 / 10%);
+    border-radius: 8px;
 }
 
 .blog-detail-page .comment-section ul ul:not(:first-child) {
@@ -100,18 +107,18 @@
 }
 
 .blog-detail-page .comment-section ul ul:last-child::before {
-  content: "";
-  background-color: rgb(170, 170, 170);
-  position: absolute;
-  min-height: 100%;
-  width: 1px;
-  left: -45px;
+    content: "";
+    background-color: rgb(170, 170, 170);
+    position: absolute;
+    min-height: 100%;
+    width: 1px;
+    left: -45px;
 }
 
 .blog-detail-page .comment-section ul ul:not(:last-child)::before {
-  content: "";
+    content: "";
 
-  left: -10px;
+    left: -10px;
 }
 
 .blog-page .blog-media .blog-right ul {

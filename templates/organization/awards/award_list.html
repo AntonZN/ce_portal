@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load thumbnail %}
+{% load view_breadcrumbs %}
+
+{% block content %}
+    <div class="page-body">
+        <!-- Container-fluid starts-->
+        <div class="container-fluid">
+            <div class="page-header">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="page-header-left">
+                            <h3>Список наград</h3>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        {% render_breadcrumbs "breadcrumbs.html" %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid">
+            <div class="row products-admin ratio_asos">
+                {% for award in award_list %}
+                    <div class="col-xl-3 col-sm-6">
+                        <div class="card">
+                            <div class="card-body product-box">
+                                <div class="img-wrapper">
+                                    <div class="front">
+                                        <a href="{% url 'employees:awards_detail' award.id %}">
+                                            {% if award.image %}
+                                                {% thumbnail award.image "x400" as image %}
+                                                    <img
+                                                            src="{{ image.url }}"
+                                                            class="img-fluid lazyload"
+                                                    >
+                                                {% endthumbnail %}
+
+                                            {% else %}
+                                                <img class="img-fluid lazyload"
+                                                     src="{% static 'assets/images/dashboard/user3.jpg' %}"
+                                                     alt="header-user">
+                                            {% endif %}
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="product-detail">
+                                    <a href="{% url 'employees:awards_detail' award.id %}">
+                                        <h6>{{ award.name }}</h6>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            {% include 'pagination.html' %}
+        </div>
+    </div>
+{% endblock %}
