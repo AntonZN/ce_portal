@@ -1,5 +1,9 @@
+from datetime import timedelta
+
 from django.db import models
 from django.urls import reverse
+from django.utils import timezone
+from model_utils.managers import QueryManager
 from mptt.models import MPTTModel, TreeForeignKey
 
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, AbstractUser
@@ -123,6 +127,9 @@ class Employee(AbstractUser, MPTTModel):
     avatar = ImageField("Аватар", upload_to="avatars", null=True, blank=True)
     manager = EmployeeManager()
 
+    new = QueryManager(
+        date_joined__gte=timezone.now() - timedelta(days=7)
+    ).order_by("-date_joined")
 
 
 class EmployeeLikes(models.Model):

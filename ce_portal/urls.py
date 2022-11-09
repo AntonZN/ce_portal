@@ -28,6 +28,10 @@ urlpatterns = [
         "organization/employees/",
         include("organization.employees.urls"),
     ),
+    path(
+        "feedback/",
+        include("feedback.urls"),
+    ),
     path("blog/", include("blog.urls")),
     path("editorjs/", include("django_editorjs_fields.urls")),
     path("comments/", include("django_comments.urls")),

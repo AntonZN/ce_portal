@@ -1,4 +1,239 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load solo_tags %}
+{% load editorjs %}
+{% load thumbnail %}
 
+{% block head %}
 
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/vendors/slick.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/vendors/slick-theme.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/blog.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/full-banner.css' %}">
+    <script src="{% static 'assets/js/htmx.min.js' %}"></script>
+
+{% endblock %}
+
+{% block content %}
+    {% get_solo 'organization.OrganizationConfig' as org_config %}
+    <div class="page-body">
+        <div class="container-fluid">
+            <div class="page-header">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="page-header-left">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid">
+            {% if phrases %}
+                <div class="row">
+                    <div class="col">
+                        <div class="title ">
+                            <h4>Подборка</h4>
+                            <h2 class="title-inner">Фразы дня</h2>
+                        </div>
+                        <div class="slider no-arrow">
+                            {% for phrase in phrases %}
+                                <div class="card">
+                                    <div class="card-body">
+                                        <p>{{ phrase.phrase.name }}</p>
+                                        <div class="mt-3">
+                                            {% include 'other/phrase_like.html' with phrase=phrase.phrase %}
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+
+            <div class="row">
+                <div class="col">
+                    <div class="title section-t-space">
+                        <h4>Информация</h4>
+                        <h2 class="title-inner">О компании</h2>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <h5>{{ org_config.description | editorjs }}</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {% if main_news %}
+                <div class="title section-t-space">
+                    <h4>Важные</h4>
+                    <h2 class="title-inner">Новости</h2>
+                </div>
+                <div class="row card blog-page">
+                    <div class="col card-body">
+
+                        <div class="slider card-body no-arrow">
+                            {% for news in main_news %}
+                                <div>
+                                    {% include 'blog/news/news_list_item.html' with bottom_postion=True %}
+                                </div>
+
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+
+            {% if latest_news %}
+                <div class="row blog-page">
+                    <div class="col">
+                        <div class="title section-t-space">
+                            <h4>Последние новости</h4>
+                            <h2 class="title-inner">Новости</h2>
+                        </div>
+                        <div class="slider no-arrow">
+                            {% for news in latest_news %}
+                                <div>
+                                    {% include 'blog/news/news_list_item.html' with bottom_postion=True %}
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+
+            {% if birthdays_today %}
+                <div class="row">
+                    <div class="col">
+                        <div class="title section-t-space">
+                            <h4>Сегодня</h4>
+                            <h2 class="title-inner">Именинники</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    {% for employee in birthdays_today %}
+                        <div class="col-xxl-4 col-md-6 xl-50">
+                            <a href="{% url 'employees:employee_detail' employee.pk %}">
+                                <div class="card o-hidden widget-cards">
+                                    <div class="warning-box card-body">
+                                        <div class="media static-top-widget align-items-center">
+                                            <div class="icons-widgets">
+                                                <div class="align-self-center text-center">
+                                                    {% include 'employees/employee_avatar.html' with obj=employee size=90 %}
+                                                </div>
+                                            </div>
+                                            <div class="media-body media-doller">
+                                                <h3 class="mb-0">{{ employee.fio }} </h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            {% if new_employees %}
+                <div class="row">
+                    <div class="col">
+                        <div class="title section-t-space">
+                            <h4>За последние 7 дней</h4>
+                            <h2 class="title-inner">Новые сотрудники</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    {% for employee in new_employees %}
+                        <div class="col-xxl-4 col-md-6 xl-50">
+                            <a href="{% url 'employees:employee_detail' employee.pk %}">
+                                <div class="card o-hidden widget-cards">
+                                    <div class="secondary-box card-body">
+                                        <div class="media static-top-widget align-items-center">
+                                            <div class="icons-widgets">
+                                                <div class="align-self-center text-center">
+                                                    {% include 'employees/employee_avatar.html' with obj=employee size=90 %}
+                                                </div>
+                                            </div>
+                                            <div class="media-body media-doller">
+
+                                                <h3>{{ employee.fio }} </h3>
+                                                <h4>Добавлен: {{ employee.date_joined | date }}</h4>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    {% endfor %}
+                </div>
+
+                <div class="row mb-5 mt-5">
+                    <div class="col">
+                        <div class="full-banner small-banner text-center p-center">
+                            <img src="{% static 'assets/images/idea.jpg' %}" alt="" class="bg-img blur-up lazyload">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col">
+                                        <a href="{% url 'feedback:org_feedback' %}?idea=1">
+                                            <div class="banner-contain app-detail white-bg  d-inline-block">
+                                                <h3>Банк идей</h3>
+                                                <h4>Предложите идею</h4>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        $('.slider').slick({
+            dots: true,
+            infinite: false,
+            speed: 600,
+            slidesToShow: 3,
+            slidesToScroll: 3,
+            responsive: [{
+                breakpoint: 1367,
+                settings: {
+                    slidesToShow: 4,
+                    slidesToScroll: 4
+                }
+            },
+                {
+                    breakpoint: 1024,
+                    settings: {
+                        slidesToShow: 3,
+                        slidesToScroll: 3,
+                        infinite: true
+                    }
+                },
+                {
+                    breakpoint: 600,
+                    settings: {
+                        slidesToShow: 3,
+                        slidesToScroll: 3
+                    }
+                },
+                {
+                    breakpoint: 576,
+                    settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 2
+                    }
+                }
+            ]
+        });
+    </script>
+{% endblock %}

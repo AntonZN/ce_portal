@@ -1,8 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-{% load thumbnail %}
 {% load view_breadcrumbs %}
-{% load comments %}
 
 {% block head %}
     <link rel="stylesheet" type="text/css" href="{% static 'assets/css/blog.css' %}">
@@ -31,44 +29,7 @@
                         <div class="card">
                             <div class="card-body">
                                 {% for news in news_list %}
-                                    <div class="row blog-media">
-                                        <div class="col-xl-4">
-                                            <div class="blog-left">
-                                                <a href="{% url 'blog:news_detail' news.slug %}">
-                                                    {% if news.main_image %}
-                                                        {% thumbnail news.main_image "x400" as news_image %}
-                                                            <img
-                                                                    src="{{ news_image.url }}"
-                                                                    class="img-fluid lazyload"
-                                                            >
-                                                        {% endthumbnail %}
-                                                    {% else %}
-                                                        <img class="align-self-center pull-right img-50 blur-up lazyloaded"
-                                                             src="{% static 'assets/images/dashboard/user3.jpg' %}"
-                                                             alt="header-user">
-                                                    {% endif %}
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-6">
-                                            <div class="blog-right">
-                                                <div>
-                                                    <h6>{{ news.date_published }}</h6> <a
-                                                        href="{% url 'blog:news_detail' news.slug %}">
-                                                    <h4>{{ news.title }}</h4>
-                                                </a>
-                                                    <ul class="post-social">
-                                                        <li>Автор : {{ news.author }}</li>
-                                                        {% get_comment_count for news as comment_count %}
-                                                        <li><i class="fa fa-comments"></i>
-                                                            Комментариев: {{ comment_count }}
-                                                        </li>
-                                                    </ul>
-                                                    <p>{{ news.description }}</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    {% include 'blog/news/news_list_item.html' %}
                                 {% endfor %}
                             </div>
                         </div>

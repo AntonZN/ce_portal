@@ -1,0 +1,91 @@
+{% load static %}
+{% load thumbnail %}
+{% load comments %}
+
+{% load solo_tags %}
+
+{% get_solo 'organization.OrganizationConfig' as org_config %}
+
+{% if not bottom_postion %}
+    <div class="row blog-media">
+        <div class="col-xl-4">
+            <div class="blog-left">
+                <a href="{% url 'blog:news_detail' news.slug %}">
+                    {% if news.main_image %}
+                        {% thumbnail news.main_image "x400" as news_image %}
+                            <img
+                                    src="{{ news_image.url }}"
+                                    class="img-fluid lazyload"
+                            >
+                        {% endthumbnail %}
+                    {% else %}
+                        {% thumbnail org_config.default_img "x400" as news_image %}
+                            <img
+                                    src="{{ news_image.url }}"
+                                    class="img-fluid lazyload"
+                            >
+                        {% endthumbnail %}
+                    {% endif %}
+                </a>
+            </div>
+        </div>
+        <div class="col-xl-6">
+            <div class="blog-right">
+                <div>
+                    <h6>{{ news.date_published }}</h6> <a
+                        href="{% url 'blog:news_detail' news.slug %}">
+                    <h4>{{ news.title }}</h4>
+                </a>
+                    <ul class="post-social">
+                        <li>Автор : {{ news.author }}</li>
+                        {% get_comment_count for news as comment_count %}
+                        <li><i class="fa fa-comments"></i>
+                            Комментариев: {{ comment_count }}
+                        </li>
+                    </ul>
+                    <p>{{ news.description }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% else %}
+    <div class="blog-media">
+        <div class="blog-left">
+            <a href="{% url 'blog:news_detail' news.slug %}">
+                {% if news.main_image %}
+                    {% thumbnail news.main_image "600x300" crop="center" as news_image %}
+                        <img
+                                src="{{ news_image.url }}"
+                                class="img-fluid lazyload"
+                        >
+                    {% endthumbnail %}
+                {% else %}
+                    {% thumbnail org_config.default_img "600x300" crop="center" as news_image %}
+                        <img
+                                src="{{ news_image.url }}"
+                                class="img-fluid lazyload"
+                        >
+                    {% endthumbnail %}
+                {% endif %}
+            </a>
+        </div>
+
+        <div class="blog-right mt-3">
+            <div>
+                <a href="{% url 'blog:news_detail' news.slug %}">
+                    <h4>{{ news.title }}</h4>
+                </a>
+
+                <ul class="post-social">
+                    <li>{{ news.date_published | date }}</li>
+                    <li>Автор : {{ news.author }}</li>
+                    {% get_comment_count for news as comment_count %}
+                    <li><i class="fa fa-comments"></i>
+                        Комментариев: {{ comment_count }}
+                    </li>
+                </ul>
+                <p>{{ news.description }}</p>
+            </div>
+        </div>
+    </div>
+{% endif %}

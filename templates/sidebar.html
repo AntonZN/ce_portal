@@ -97,6 +97,28 @@
                     </ul>
                 </li>
                 <li>
+                    <a class="sidebar-header" href="javascript:void(0)">
+                        <i data-feather="align-left"></i>
+                        <span>Обратная связь</span>
+                        <i class="fa fa-angle-right pull-right"></i>
+                    </a>
+                    <ul class="sidebar-submenu">
+                        <li>
+                            <a href="{% url 'feedback:org_feedback' %}">
+                                <i class="fa fa-circle"></i>
+                                Создать обращение
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'feedback:director_feedback' %}">
+                                <i class="fa fa-circle"></i>
+                                Вопрос директору
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li>
                     <a class="sidebar-header" href="/logout/">
                         <i data-feather="log-in"></i>
                         <span>Выйти</span>

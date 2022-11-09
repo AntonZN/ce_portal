@@ -1,5 +1,8 @@
 {% load thumbnail %}
 {% load static %}
+{% load solo_tags %}
+
+{% get_solo 'organization.OrganizationConfig' as org_config %}
 
 {% if obj.avatar %}
     {% thumbnail obj.avatar "150x150" crop="30%" as avatar %}
@@ -8,6 +11,8 @@
     {% endthumbnail %}
 
 {% else %}
-    <img class="img-fluid img-{{ size }} rounded-circle blur-up lazyloaded"
-         src="{% static 'assets/images/dashboard/user3.jpg' %}">
+    {% thumbnail org_config.default_img "150x150" crop="30%" as avatar %}
+        <img class="img-fluid img-{{ size }} rounded-circle blur-up lazyloaded"
+             src="{{ avatar.url }}">
+    {% endthumbnail %}
 {% endif %}

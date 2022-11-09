@@ -1,0 +1,167 @@
+
+.full-banner {
+    position: relative;
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding-top: 120px;
+    padding-bottom: 120px;
+    background-position: center
+}
+
+.full-banner.parallax-layout {
+    padding-top: 350px;
+    padding-bottom: 350px
+}
+
+.full-banner.parallax-layout .banner-contain h4 {
+    color: #7f786d
+}
+
+.full-banner.banner-layout-3 .banner-contain h4 {
+    color: #fff
+}
+
+.full-banner.banner-layout-3 .banner-contain h3 {
+    color: #fff;
+    margin-top: 10px
+}
+
+.full-banner.banner-layout-3 .banner-contain .color {
+    color: var(--theme-color);
+    line-height: 1
+}
+
+.full-banner.parallax {
+    background-attachment: fixed
+}
+
+.full-banner.p-left .banner-contain {
+    float: left
+}
+
+.full-banner.p-right .banner-contain {
+    float: right
+}
+
+.full-banner.p-center .banner-contain {
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    padding: 3rem 15rem;
+}
+
+.full-banner.feature-banner {
+    padding: 50px 0
+}
+
+.full-banner.feature-banner h2 {
+    text-align: center;
+    color: #fff;
+    margin-bottom: 180px;
+    margin-top: -7px
+}
+
+.full-banner.feature-banner .feature-object, .full-banner.feature-banner .feature-object-right {
+    text-align: right;
+    margin-bottom: -5px
+}
+
+.full-banner.feature-banner .feature-object li, .full-banner.feature-banner .feature-object-right li {
+    margin-bottom: 55px;
+    margin-right: 50px
+}
+
+.full-banner.feature-banner .feature-object li .media img, .full-banner.feature-banner .feature-object-right li .media img {
+    border-radius: 100%;
+    border: 1px solid white;
+    margin-left: 15px;
+    -webkit-transition: all 0.5s ease;
+    transition: all 0.5s ease
+}
+
+.full-banner.feature-banner .feature-object li .media .media-body, .full-banner.feature-banner .feature-object-right li .media .media-body {
+    text-align: right;
+    margin-top: 18px
+}
+
+.full-banner.feature-banner .feature-object li .media .media-body h4, .full-banner.feature-banner .feature-object li .media .media-body p, .full-banner.feature-banner .feature-object-right li .media .media-body h4, .full-banner.feature-banner .feature-object-right li .media .media-body p {
+    color: white
+}
+
+.full-banner.feature-banner .feature-object li .media .media-body h4, .full-banner.feature-banner .feature-object-right li .media .media-body h4 {
+    font-size: 20px
+}
+
+.full-banner.feature-banner .feature-object li .media .media-body p, .full-banner.feature-banner .feature-object-right li .media .media-body p {
+    margin-bottom: 0
+}
+
+.full-banner.feature-banner .feature-object li:hover .media img, .full-banner.feature-banner .feature-object-right li:hover .media img {
+    background-color: white;
+    -webkit-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+    -webkit-transform: scale(1.05);
+    transform: scale(1.05)
+}
+
+.full-banner.feature-banner .feature-object li:nth-child(2), .full-banner.feature-banner .feature-object-right li:nth-child(2) {
+    padding-right: 30px
+}
+
+.full-banner.feature-banner .feature-object li:nth-child(3), .full-banner.feature-banner .feature-object-right li:nth-child(3) {
+    padding-right: 60px;
+    margin-bottom: 0
+}
+
+.full-banner.feature-banner .feature-object-right {
+    text-align: left;
+    margin-left: 50px
+}
+
+.full-banner.feature-banner .feature-object-right li .media img {
+    margin-left: 0;
+    margin-right: 15px
+}
+
+.full-banner.feature-banner .feature-object-right li .media .media-body {
+    text-align: left
+}
+
+.full-banner.feature-banner .feature-object-right li:nth-child(2) {
+    padding-right: 0;
+    padding-left: 30px
+}
+
+.full-banner.feature-banner .feature-object-right li:nth-child(3) {
+    padding-right: 0;
+    padding-left: 60px
+}
+
+.full-banner.feature-banner .center-img {
+    position: absolute;
+    bottom: -112px;
+    left: 50%;
+    margin: 0 auto;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%)
+}
+
+.full-banner.feature-banner .banner-decor .left-img {
+    left: 50px;
+    position: absolute;
+    top: 0;
+    -webkit-animation: movebounce 4.9s linear infinite;
+    animation: movebounce 4.9s linear infinite
+}
+
+.full-banner.feature-banner .banner-decor .right-img {
+    right: 50px;
+    position: absolute;
+    top: 0;
+    -webkit-animation: movebounce 4.9s linear infinite;
+    animation: movebounce 4.9s linear infinite
+}
+
+.white-bg {
+    background-color: #fff !important
+}

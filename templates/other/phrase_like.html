@@ -1,8 +1,8 @@
-<div hx-post="{% url 'organization:employee_like' employee.pk %}"
+<div hx-post="{% url 'organization:phrase_like' phrase.pk %}"
      hx-swap="outerHTML"
      hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
     <div class="block-like">
-        <div>Кол-во оценок: {{ employee.all_likes.count }}</div>
+        <div>Кол-во оценок: {{ phrase.likes.count }}</div>
         <div class="vote">
             <i class="fa fa-heart"></i>
             <div>Оценить</div>

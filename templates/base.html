@@ -40,6 +40,8 @@
     <!-- App css-->
     <link rel="stylesheet" type="text/css" href="{% static 'assets/css/style.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'assets/css/custom.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/likes.css' %}">
+
 
     {% block head %}
     {% endblock %}
@@ -51,17 +53,17 @@
 
     <div class="page-body-wrapper">
         {% if messages %}
-        <div id="djangoMessages">
-            <div class="notificationsBox">
-                <ul class="messagelist">{% for message in messages %}
-                    <li>{{ message }}</li>
+            <div id="djangoMessages">
+                <div class="notificationsBox">
+                    <ul class="messagelist">{% for message in messages %}
+                        <li>{{ message }}</li>
                     {% endfor %}
-                </ul>
+                    </ul>
+                </div>
             </div>
-        </div>
-        <script>
-            setTimeout("document.getElementById('djangoMessages').remove()", 3000);
-        </script>
+            <script>
+                setTimeout("document.getElementById('djangoMessages').remove()", 3000);
+            </script>
         {% endif %}
         {% include "sidebar.html" %}
         {% block content %}
@@ -119,6 +121,7 @@
 
     <!--script admin-->
     <script src="{% static 'assets/js/admin-script.js' %}"></script>
+    <script src="{% static 'assets/js/slick.js' %}"></script>
     {% block scripts %}
     {% endblock %}
 </div>

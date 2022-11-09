@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     "organization.employees.apps.EmployeesConfig",
     "blog.apps.BlogConfig",
     "polls.apps.PollsConfig",
+    "feedback.apps.FeedbackConfig",
     "view_breadcrumbs",
     "sorl.thumbnail",
     "mptt",

@@ -1,4 +1,6 @@
+from django.conf import settings
 from django.db import models
+from django_editorjs_fields import EditorJsJSONField
 from mptt.fields import TreeForeignKey
 from mptt.models import MPTTModel
 from solo.models import SingletonModel
@@ -10,7 +12,29 @@ class OrganizationConfig(SingletonModel):
         "Название организации", max_length=255, default="Название организации"
     )
     logo = ImageField(upload_to="org", verbose_name="Логотип", blank=True, null=True)
-    description = models.TextField("Описание", null=True)
+    description = EditorJsJSONField(
+        hideToolbar=False,
+        inlineToolbar=False,
+        autofocus=True,
+        i18n=settings.EDITOR_I18N,
+        placeholder="Напишите что-нибудь...",
+        verbose_name="О компании",
+        null=True,
+        blank=True,
+    )
+    default_img = ImageField(
+        upload_to="org",
+        verbose_name="Заглушка",
+        help_text="Изображение которое используется если у объекта оно не установлено",
+        blank=True,
+        null=True,
+    )
+    feedback_email = models.EmailField(
+        "Почта на которую отправлять обращения", null=True, blank=True
+    )
+    director_feedback_email = models.EmailField(
+        "Почта на которую отправлять обращения директору", null=True, blank=True
+    )
 
     def __str__(self):
         return "Настройка Организации"
@@ -80,13 +104,21 @@ class PhraseDay(models.Model):
 
 
 class PhraseDayLikes(models.Model):
-    employee = models.ForeignKey("employees.Employee", on_delete=models.CASCADE, related_name="+")
-    phrase = models.ForeignKey(PhraseDay, on_delete=models.CASCADE, related_name="likes")
+    employee = models.ForeignKey(
+        "employees.Employee", on_delete=models.CASCADE, related_name="+"
+    )
+    phrase = models.ForeignKey(
+        PhraseDay, on_delete=models.CASCADE, related_name="likes"
+    )
 
 
 class PhraseForHomePage(models.Model):
-    phrase = models.ForeignKey(PhraseDay, verbose_name="Фраза дня", on_delete=models.CASCADE, related_name="+")
-    conf = models.ForeignKey(OrganizationConfig, on_delete=models.CASCADE, related_name="phrases")
+    phrase = models.ForeignKey(
+        PhraseDay, verbose_name="Фраза дня", on_delete=models.CASCADE, related_name="+"
+    )
+    conf = models.ForeignKey(
+        OrganizationConfig, on_delete=models.CASCADE, related_name="phrases"
+    )
 
     class Meta:
         verbose_name = "Фраза дня"

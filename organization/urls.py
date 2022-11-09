@@ -7,4 +7,8 @@ urlpatterns = [
         "api/v1/emloyees/",
         include("organization.employees.api.urls"),
     ),
+    path(
+        "api/v1/ogranization/",
+        include("organization.api.urls"),
+    ),
 ]

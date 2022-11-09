@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load view_breadcrumbs %}
+{% load widget_tweaks %}
+
+{% block content %}
+    <div class="page-body">
+        <div class="container-fluid">
+            <div class="page-header">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="page-header-left">
+                            <h3>Обратная связь
+                                <small>Задайте вопрос, обращение или предложите идею</small>
+                            </h3>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row product-adding">
+                <div class="col-xl-6">
+                    <form method="POST" action="{% url 'feedback:org_feedback' %}">
+                        {% csrf_token %}
+                        <div class="card">
+                            {% for hidden in form.hidden_fields %}
+                                {{ hidden }}
+                            {% endfor %}
+                            <div class="card-body">
+                                <div class="digital-add">
+                                    {% for field in form.visible_fields %}
+                                        <div class="form-group">
+                                            <label for="{{ field.auto_id }}" class="col-form-label pt-0">
+                                                <span>*</span>
+                                                {{ field.label }}</label>
+                                            {% render_field field class+="form-control minimal" %}
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                                <div class="form-group mb-0 mt-5">
+                                    <div class="product-buttons">
+                                        <button type="submit" class="btn btn-primary">Отправить</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        {% if employee_contacts_form.errors %}
+            setTimeout("document.querySelectorAll(\".errorlist\").forEach(el => el.remove());", 3000);
+        {% endif %}
+    </script>
+{% endblock %}

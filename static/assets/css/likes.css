@@ -1,0 +1,19 @@
+.block-like{
+    display: flex;
+        justify-content: space-between;
+}
+
+.block-like .vote{
+    display: flex;
+}
+
+.block-like .vote:hover {
+    color: #ff0000;
+    cursor: pointer;
+}
+
+.block-like i {
+    font-size: 1.2rem;
+    margin-left: 10px;
+    margin-right: 10px;
+}

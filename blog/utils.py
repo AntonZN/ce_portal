@@ -1,18 +1,14 @@
-# Standard Python library imports.
 import math
 import re
 
-# Core Django imports.
 from django.utils.html import strip_tags
 
 
 def count_words(html_string):
-    # html_string = """
-    # <h1>This is a title</h1>
-    # """
+
     word_string = strip_tags(html_string)
     matching_words = re.findall(r"\w+", word_string)
-    count = len(matching_words)  # joincfe.com/projects/
+    count = len(matching_words)
     return count
 
 
