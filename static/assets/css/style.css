@@ -8777,15 +8777,7 @@ div.dataTables_wrapper div.dataTables_paginate {
     border-bottom: 1px solid #f8f8f9;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    -webkit-box-pack: justify;
-    -ms-flex-pack: justify;
-    justify-content: space-between
+
 }
 
 .card .card-header.b-header {
@@ -9461,11 +9453,12 @@ ul.notification-dropdown.onhover-show-div li + li:hover {
 }
 
 .search-form.search-box {
-    width: 25%
+    width: 100%;
 }
 
 .search-form.search-box input {
-    background-color: #f8f8f9
+    background-color: #f8f8f9;
+    width: 100%;
 }
 
 .search-form .form-group {
@@ -11608,6 +11601,7 @@ ul.notification-dropdown.onhover-show-div li + li:hover {
     .xl-space {
         margin-top: 20px
     }
+
 
     .card .card-body, .card .card-header {
         padding: 20px

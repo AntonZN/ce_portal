@@ -129,3 +129,12 @@ class News(Post):
             "blog:news_detail",
             kwargs={"slug": self.slug},
         )
+
+
+class NewsLikes(models.Model):
+    employee = models.ForeignKey(
+        "employees.Employee", on_delete=models.CASCADE, related_name="+"
+    )
+    news = models.ForeignKey(
+        News, on_delete=models.CASCADE, related_name="likes"
+    )

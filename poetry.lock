@@ -326,6 +326,27 @@ python-versions = "*"
 django-taggit = ">=0.17.0"
 
 [[package]]
+name = "django-taggit-templatetags"
+version = "0.2.5"
+description = "Templatetags for django-taggit."
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+django = ">=1.1"
+django-taggit = ">=0.8"
+django-templatetag-sugar = ">=0.1"
+
+[[package]]
+name = "django-templatetag-sugar"
+version = "1.0"
+description = "A library to make Django's template tags sweet."
+category = "main"
+optional = false
+python-versions = "*"
+
+[[package]]
 name = "django-threadedcomments"
 version = "2.0"
 description = "A simple yet flexible threaded commenting system."
@@ -608,7 +629,7 @@ socks = ["PySocks (>=1.5.6,!=1.5.7,<2.0)"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "06d7be79554d4c73c6abd5ab8baf17befd27b835b134b817989e37f115226365"
+content-hash = "e94bd9d7002614b298eea911e2853ee451557ed445dd98b1f8020b0a6fcf9bd4"
 
 [metadata.files]
 arrow = [
@@ -724,6 +745,14 @@ django-taggit-helpers = [
 django-taggit-labels = [
     {file = "django-taggit-labels-0.7.0.tar.gz", hash = "sha256:130f2e7769aecee1310039675a360cd1a4eb93232db720876cb86d4a8b782347"},
     {file = "django_taggit_labels-0.7.0-py2.py3-none-any.whl", hash = "sha256:45fcbd9c52e2d1a2fa7b0704ef93bb361c7aa6b58a473b3b1d18bb83a3041802"},
+]
+django-taggit-templatetags = [
+    {file = "django-taggit-templatetags-0.2.5.tar.gz", hash = "sha256:9c5eea1d6e4f350176cdc86e6cbdbb26b6efd64b22b43ca89cae6357a9af829e"},
+    {file = "django-taggit-templatetags-0.2.5.zip", hash = "sha256:20441941d1316a4347e21f2aabef177d982f2d5394e4deefefde219bdd7c4a77"},
+]
+django-templatetag-sugar = [
+    {file = "django-templatetag-sugar-1.0.tar.gz", hash = "sha256:e9f630549f6c174cf328b385190e18bfe308f74dc7eca13458163d316ed29a5e"},
+    {file = "django_templatetag_sugar-1.0-py2.py3-none-any.whl", hash = "sha256:90beafe5bc84686c328dcf685ce9f59f814104efd9a1fb5fb826e3ee3b7c2626"},
 ]
 django-threadedcomments = [
     {file = "django-threadedcomments-2.0.tar.gz", hash = "sha256:f8d5bd087a24bde867cf5e3e4a62ca55ac60432fd47ee2ac6f35f350317deec9"},

@@ -8,9 +8,7 @@
 
 {% block head %}
     <link rel="stylesheet" type="text/css" href="{% static 'assets/css/blog.css' %}">
-    <script src="//cdn.jsdelivr.net/npm/@editorjs/header"></script>
-    <script src="//cdn.jsdelivr.net/npm/@editorjs/delimiter"></script>
-
+    <script src="{% static 'assets/js/htmx.min.js' %}"></script>
 {% endblock %}
 
 {% block content %}
@@ -51,6 +49,7 @@
                             <li>Автор : {{ news.author }}</li>
                             {% get_comment_count for news as comment_count %}
                             <li><i class="fa fa-comments"></i> Комментариев: {{ comment_count }}</li>
+                            <li>{% include 'other/news_like.html' %}</li>
                         </ul>
                         {{ news.body | editorjs }}
                     </div>

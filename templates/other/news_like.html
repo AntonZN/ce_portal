@@ -1,0 +1,22 @@
+<div hx-post="{% url 'blog:news_like' news.slug %}"
+     hx-swap="outerHTML"
+     hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
+    <div class="block-like">
+        <div>Лайков: {{ news.likes.count }}</div>
+        <div class="vote">
+            <i class="fa fa-heart"></i>
+            <div>Оценить</div>
+            {% if htmx_message %}
+                <div id="htmxResponseMessage">{{ htmx_message }}</div>
+            {% endif %}
+        </div>
+    </div>
+
+    <script>
+        if (document.getElementById('htmxResponseMessage')) {
+            setTimeout(function () {
+                document.getElementById('htmxResponseMessage').remove();
+            }, 3000);
+        }
+    </script>
+</div>

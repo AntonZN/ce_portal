@@ -21,16 +21,32 @@ class EmployeeList(LoginRequiredMixin, ListBreadcrumbMixin, ListView):
     def get_queryset(self):
         params = self.request.GET
         queryset = Employee.objects.all()
-
         query = params.get("query", None)
+        tag = params.get("tag", None)
 
-        if query:
+        if query and not tag:
             query = query.strip()
             queryset = queryset.filter(
                 Q(fio__icontains=query)
                 | Q(username__icontains=query)
                 | Q(position__name__icontains=query)
                 | Q(department__name__icontains=query)
+                | Q(tags__name__in=[query])
+            )
+
+        if tag and not query:
+            queryset = queryset.filter(tags__name__in=[tag])
+
+        if tag and query:
+            query = query.strip()
+            queryset = queryset.filter(
+                Q(tags__name__in=[tag])
+                & (
+                    Q(fio__icontains=query)
+                    | Q(username__icontains=query)
+                    | Q(position__name__icontains=query)
+                    | Q(department__name__icontains=query)
+                )
             )
 
         if params.get("department_id", None):
@@ -64,7 +80,9 @@ class EmployeeList(LoginRequiredMixin, ListBreadcrumbMixin, ListView):
             return JsonResponse(data=data_dict, safe=False)
 
         if request.htmx:
-            return render(request, "employees/employees_results_partial.html", context=context)
+            return render(
+                request, "employees/employees_results_partial.html", context=context
+            )
 
         return render(request, "employees/employee_list.html", context=context)
 

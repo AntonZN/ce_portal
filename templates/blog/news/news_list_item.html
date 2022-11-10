@@ -42,6 +42,9 @@
                         <li><i class="fa fa-comments"></i>
                             Комментариев: {{ comment_count }}
                         </li>
+                        <li><i class="fa fa-heart"></i>
+                            Лайков: {{ news.likes.count }}
+                        </li>
                     </ul>
                     <p>{{ news.description }}</p>
                 </div>
@@ -78,11 +81,13 @@
 
                 <ul class="post-social">
                     <li>{{ news.date_published | date }}</li>
-                    <li>Автор : {{ news.author }}</li>
                     {% get_comment_count for news as comment_count %}
                     <li><i class="fa fa-comments"></i>
-                        Комментариев: {{ comment_count }}
+                        {{ comment_count }}
                     </li>
+                     <li><i class="fa fa-heart"></i>
+                            {{ news.likes.count }}
+                        </li>
                 </ul>
                 <p>{{ news.description }}</p>
             </div>
