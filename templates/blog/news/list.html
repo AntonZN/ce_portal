@@ -40,10 +40,10 @@
                             <div class="theme-card">
                                 <h3>Категории</h3>
                                 <br>
-                                <h4><a href="{% url 'blog:news_list' %}">Все</a></h4>
+                                <h4 class="{% if not active_cat %}active{% endif %}" ><a href="{% url 'blog:news_list' %}">Все</a></h4>
                                 {% for category in categories %}
                                     <br>
-                                    <h4><a href="#">{{ category.name }}</a></h4>
+                                    <h4 class="{% if active_cat == category.slug %}active{% endif %}"><a href="{% url 'blog:news_list'  category.slug %}">{{ category.name }}</a></h4>
                                 {% endfor %}
                                 </ul>
                             </div>

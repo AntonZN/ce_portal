@@ -10,7 +10,7 @@
     <div class="row blog-media">
         <div class="col-xl-4">
             <div class="blog-left">
-                <a href="{% url 'blog:news_detail' news.slug %}">
+                <a href="{{ news.get_absolute_url }}">
                     {% if news.main_image %}
                         {% thumbnail news.main_image "x400" as news_image %}
                             <img
@@ -32,8 +32,8 @@
         <div class="col-xl-6">
             <div class="blog-right">
                 <div>
-                    <h6>{{ news.date_published }}</h6> <a
-                        href="{% url 'blog:news_detail' news.slug %}">
+                    <h6>{{ news.date_published }}</h6>
+                    <a href="{{ news.get_absolute_url }}">
                     <h4>{{ news.title }}</h4>
                 </a>
                     <ul class="post-social">
@@ -54,7 +54,7 @@
 {% else %}
     <div class="blog-media">
         <div class="blog-left">
-            <a href="{% url 'blog:news_detail' news.slug %}">
+            <a href="{{ news.get_absolute_url }}">
                 {% if news.main_image %}
                     {% thumbnail news.main_image "600x300" crop="center" as news_image %}
                         <img
@@ -75,7 +75,7 @@
 
         <div class="blog-right mt-3">
             <div>
-                <a href="{% url 'blog:news_detail' news.slug %}">
+                <a href="{{ news.get_absolute_url }}">
                     <h4>{{ news.title }}</h4>
                 </a>
 

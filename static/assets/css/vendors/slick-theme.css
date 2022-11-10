@@ -39,21 +39,21 @@
 }
 
 .slick-prev.slick-disabled:before, .slick-next.slick-disabled:before {
-    opacity: .25
+    opacity: .75
 }
 
 .slick-prev:before, .slick-next:before {
     font-family: "slick";
     font-size: 20px;
     line-height: 1;
-    color: #fff;
+    color: #3dae2b;
     opacity: .75;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale
 }
 
 .slick-prev {
-    left: -25px
+    left: -10px
 }
 
 [dir="rtl"] .slick-prev {
@@ -70,7 +70,7 @@
 }
 
 .slick-next {
-    right: -25px
+    right: -10px
 }
 
 [dir="rtl"] .slick-next {

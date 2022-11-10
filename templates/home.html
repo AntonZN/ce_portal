@@ -29,10 +29,30 @@
         </div>
 
         <div class="container-fluid">
+            {% if main_news %}
+                <div class="title">
+                    <h4>Важные</h4>
+                    <h2 class="title-inner">Новости</h2>
+                </div>
+                <div class="row card blog-page">
+                    <div class="col card-body">
+
+                        <div class="slider card-body">
+                            {% for news in main_news %}
+                                <div>
+                                    {% include 'blog/news/news_list_item.html' with bottom_postion=True %}
+                                </div>
+
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+
             {% if phrases %}
                 <div class="row">
                     <div class="col">
-                        <div class="title ">
+                        <div class="title section-t-space">
                             <h4>Подборка</h4>
                             <h2 class="title-inner">Фразы дня</h2>
                         </div>
@@ -51,7 +71,7 @@
                     </div>
                 </div>
             {% endif %}
-
+            <!--
             <div class="row">
                 <div class="col">
                     <div class="title section-t-space">
@@ -65,26 +85,8 @@
                     </div>
                 </div>
             </div>
+            -->
 
-            {% if main_news %}
-                <div class="title section-t-space">
-                    <h4>Важные</h4>
-                    <h2 class="title-inner">Новости</h2>
-                </div>
-                <div class="row card blog-page">
-                    <div class="col card-body">
-
-                        <div class="slider card-body no-arrow">
-                            {% for news in main_news %}
-                                <div>
-                                    {% include 'blog/news/news_list_item.html' with bottom_postion=True %}
-                                </div>
-
-                            {% endfor %}
-                        </div>
-                    </div>
-                </div>
-            {% endif %}
 
             {% if latest_news %}
                 <div class="row blog-page">
@@ -93,13 +95,7 @@
                             <h4>Последние новости</h4>
                             <h2 class="title-inner">Новости</h2>
                         </div>
-                        <div class="slider no-arrow">
-                            {% for news in latest_news %}
-                                <div>
-                                    {% include 'blog/news/news_list_item.html' with bottom_postion=True %}
-                                </div>
-                            {% endfor %}
-                        </div>
+                        {% include 'blog/news/news_col.html' %}
                     </div>
                 </div>
             {% endif %}

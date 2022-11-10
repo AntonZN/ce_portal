@@ -127,7 +127,7 @@ class News(Post):
     def get_absolute_url(self):
         return reverse(
             "blog:news_detail",
-            kwargs={"slug": self.slug},
+            kwargs={"slug": self.slug, "cat_slug": self.category.slug},
         )
 
 

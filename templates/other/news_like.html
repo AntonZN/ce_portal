@@ -1,4 +1,4 @@
-<div hx-post="{% url 'blog:news_like' news.slug %}"
+<div hx-post="{{ news.get_absolute_url }}like/"
      hx-swap="outerHTML"
      hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
     <div class="block-like">

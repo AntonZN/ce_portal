@@ -7,6 +7,18 @@
     padding: 30px;
 }
 
+.blog-sidebar h4 a {
+        color: #777;
+}
+
+.blog-sidebar h4.active a {
+        color: var(--theme-color);
+}
+
+.blog-sidebar h3 {
+        color: #000;
+}
+
 .blog-detail-page .blog-detail img {
     margin-bottom: 40px;
 }

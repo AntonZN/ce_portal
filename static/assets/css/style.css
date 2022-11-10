@@ -2845,7 +2845,7 @@ input:focus {
 }
 
 section, .section-t-space {
-    padding-top: 70px
+    padding-top: 50px
 }
 
 .section-b-space {
@@ -11406,7 +11406,7 @@ ul.notification-dropdown.onhover-show-div li + li:hover {
     }
 
     section, .section-t-space {
-        padding-top: 60px
+        padding-top: 50px
     }
 
     .section-b-space {

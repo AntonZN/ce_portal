@@ -21,7 +21,7 @@
             <input type="hidden" name="name" value="Не заполено" id="id_name">
         {% endif %}
 
-        <input type="hidden" name="next" value="{% url 'blog:news_detail' news.slug %}" />
+        <input type="hidden" name="next" value="{{ news.get_absolute_url }}" />
 
         <div class="form-row row">
             <div class="col-md-12">

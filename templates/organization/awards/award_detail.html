@@ -5,7 +5,6 @@
 
 {% block content %}
     <div class="page-body">
-        <!-- Container-fluid starts-->
         <div class="container-fluid">
             <div class="page-header">
                 <div class="row">
@@ -20,40 +19,26 @@
                 </div>
             </div>
         </div>
-        <!-- Container-fluid Ends-->
-
-        <!-- Container-fluid starts-->
         <div class="container-fluid">
             <div class="card">
                 <div class="row product-page-main card-body">
                     <div class="col-xl-4">
-                        <div class="product-slider owl-carousel owl-theme owl-loaded owl-drag" id="sync1">
-                            <div class="owl-stage-outer">
-                                <div class="owl-stage">
-                                    <div class="owl-item cloned" style="width: 473.328px;">
-                                        <div class="item">
-                                            {% if award.image %}
-                                                {% thumbnail award.image "x600" as image %}
-                                                    <img
-                                                            src="{{ image.url }}"
-                                                            class="img-fluid lazyload"
-                                                    >
-                                                {% endthumbnail %}
-                                            {% else %}
-                                                <img class="img-fluid lazyload"
-                                                     src="{% static 'assets/images/dashboard/user3.jpg' %}">
-                                            {% endif %}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        {% if award.image %}
+                            {% thumbnail award.image "x600" as image %}
+                                <img
+                                        src="{{ image.url }}"
+                                        class="img-fluid lazyload"
+                                >
+                            {% endthumbnail %}
+                        {% else %}
+                            <img class="img-fluid lazyload"
+                                 src="{% static 'assets/images/dashboard/user3.jpg' %}">
+                        {% endif %}
                     </div>
 
                     <div class="col-xl-8">
                         <div class="product-page-details product-right mb-0">
                             <h2>{{ award.name }}</h2>
-
                             <hr>
                             <p>{{ award.description }}</p>
                             <hr>
@@ -69,10 +54,6 @@
                                     {% endfor %}
                                 </ul>
                             </div>
-
-
-
-
                         </div>
                     </div>
                 </div>

@@ -1,24 +1,23 @@
 select.minimal {
-  background-image:
-    linear-gradient(45deg, transparent 50%, gray 50%),
+    background-image: linear-gradient(45deg, transparent 50%, gray 50%),
     linear-gradient(135deg, gray 50%, transparent 50%),
     linear-gradient(to right, #ccc, #ccc);
-  background-position:
-    calc(100% - 20px) calc(1em + 2px),
+    background-position: calc(100% - 20px) calc(1em + 2px),
     calc(100% - 15px) calc(1em + 2px),
     calc(100% - 2.5em) 0.5em;
-  background-size:
-    5px 5px,
+    background-size: 5px 5px,
     5px 5px,
     1px 1.5em;
-  background-repeat: no-repeat;
+    background-repeat: no-repeat;
 }
-.require-star{
+
+.require-star {
     color: red;
 }
+
 select:-moz-focusring {
-  color: transparent;
-  text-shadow: 0 0 0 #000;
+    color: transparent;
+    text-shadow: 0 0 0 #000;
 }
 
 
@@ -49,7 +48,7 @@ form .errorlist {
 }
 
 .product-pagination {
-  background-color: #fff;
+    background-color: #fff;
     -webkit-box-shadow: 0px 0px 10px 0 rgb(34 41 47 / 10%);
     box-shadow: 0px 0px 10px 0 rgb(34 41 47 / 10%);
     border-radius: 8px;
@@ -108,12 +107,14 @@ form .errorlist {
     padding: 5px 0;
 }
 
-.slick-initialized .slick-slide{
+.slick-initialized .slick-slide {
     margin-right: 15px;
 }
+
 .no-arrow .slick-next, .no-arrow .slick-prev {
     display: none !important;
 }
+
 .title {
     text-align: center;
 }
@@ -124,6 +125,7 @@ form .errorlist {
     position: relative;
     font-size: 26px;
 }
+
 .title .title-inner:after {
     position: absolute;
     height: 5px;
@@ -136,6 +138,12 @@ form .errorlist {
     bottom: 0;
 }
 
-.card-body .slick-dots{
+.card-body .slick-dots {
     width: 95%;
+}
+
+.main-title {
+    margin: 0;
+    margin-left: 25px;
+    margin-top: 3px;
 }

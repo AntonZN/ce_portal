@@ -1,0 +1,7 @@
+<div class="slider no-arrow">
+    {% for news in latest_news %}
+        <div>
+            {% include 'blog/news/news_list_item.html' with bottom_postion=True %}
+        </div>
+    {% endfor %}
+</div>
