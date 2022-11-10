@@ -21,7 +21,7 @@
                 <div class="form-list">
                     <p class="forms-label">Your forms:</p>
                     {% for i in forms %}
-                        <a href="{% url 'edit_form' i.code %}" class="form-list-link">
+                        <a href="{% url 'polls:edit_form' i.code %}" class="form-list-link">
                             <div class="form-box">
                                 <div class="form-list-title"><h5 class="form-list-title-text">{{ i.title }}</h5></div>
                                 {% if i.created_at == i.updated_at %}

@@ -18,7 +18,7 @@
                 {% if form.is_quiz %}
                 <h4 class="score-title">Score: {{score}} / {{total_score}}</h4>
                 {% endif %}
-                <p class="required-info">* Required</p>
+                <p class="required-info">* Обязательно</p>
             </div>
             <div class="form-description txtClr">{{form.description|linebreaksbr}}</div>
         </div>
@@ -69,7 +69,7 @@
         {% endfor %}
     </div>
     {% if user == form.creator %}
-        <a href="{% url 'edit_form' form.code %}">
+        <a href="{% url 'polls:edit_form' form.code %}">
             <img src="{% static 'Icon/question.png' %}" alt="Edit Question" title="Edit this form" class="edit-form-link">
         </a>
     {% endif %}

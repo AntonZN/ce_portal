@@ -3,6 +3,8 @@ from sorl.thumbnail.admin import AdminImageMixin
 
 from blog.models import News, Category
 from utils.admin import copy_action
+from utils.forms import TagsAdminForm
+
 admin.site.register(Category)
 
 
@@ -19,7 +21,6 @@ class NewsAdmin(AdminImageMixin, admin.ModelAdmin):
                     "description",
                     "main_image",
                     "body",
-                    "tags",
                 )
             },
         ),
@@ -74,6 +75,7 @@ class NewsAdmin(AdminImageMixin, admin.ModelAdmin):
     list_max_show_all = 100
     list_select_related = True
     actions = (copy_action,)
+    form = TagsAdminForm
 
     def save_model(self, request, obj, form, change):
         if not obj.pk:

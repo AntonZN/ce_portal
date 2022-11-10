@@ -29,7 +29,7 @@ class ContactsInline(AdminImageMixin, TabularInline):
 @admin.register(Employee)
 class EmployeeAdmin(AdminImageMixin, UserAdmin, DraggableMPTTAdmin):
     mptt_indent_field = "username"
-    form = TagsAdminForm
+
     fieldsets = (
         (None, {"fields": ("username", "password")}),
         ("Персональная информация", {"fields": ("fio", "email", "birthday", "avatar")}),
@@ -64,6 +64,7 @@ class EmployeeAdmin(AdminImageMixin, UserAdmin, DraggableMPTTAdmin):
     list_filter = ("is_staff", "is_superuser", "is_active", "department", "position")
     inlines = (ContactsInline,)
     actions = (copy_user_action,)
+    form = TagsAdminForm
 
     def get_readonly_fields(self, request, obj=None):
         if obj and not request.user.is_superuser:

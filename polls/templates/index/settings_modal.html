@@ -1,0 +1,39 @@
+<div class="modal" id="setting">
+    <div class="modal-content txt-clr">
+        <form id="setting-form">
+            <span class="modal-close-btn" id="close-setting">&times;</span>
+            <h1 class="modal-title">Настройки</h1>
+            <h4 class="setting-preview-form small-screen"><a href="{% url 'polls:view_form' form.code %}">Предпросмотр
+                формы</a></h4>
+            <div class="modal-division">
+                <div class="form-group">
+                    <h3 class="modal-subtitle">Сообщеине после прохождения:</h3>
+                    <textarea rows="1" class="confirmation-msg-input edit-on-click textarea-adjust"
+                              spellcheck="false"
+                              id="comfirmation_message">{{ form.confirmation_message }}</textarea>
+                </div>
+            </div>
+            <div class="modal-division">
+                <div class="form-group">
+                    <h3 class="modal-subtitle">Сотрудники могут:</h3>
+
+                </div>
+                <div class="form-group">
+                    <input type="checkbox" id="allow_view_score"
+                           {% if form.allow_view_score %}checked{% endif %}>
+                    <label for="allow_view_score" class="setting-form-label">Видеть результаты</label>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Сохранить" class="form-control btn btn-save-setting">
+                </div>
+            </div>
+        </form>
+        <form id="delete-form" class="modal-division">
+            <fieldset class="form-group">
+                <h3 class="delete-form-title">Удалить эту форму?</h3>
+                <p class="delete-form-description">Эта форма будет удалена навсегда.</p>
+                <input type="submit" value="Удалить" class="form-control delete-form-btn">
+            </fieldset>
+        </form>
+    </div>
+</div>

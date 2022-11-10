@@ -97,7 +97,6 @@ class News(Post):
         related_name="news",
     )
 
-    tags = TaggableManager(blank=True)
     date_published = models.DateTimeField(
         "Дата публикации",
         help_text="Дата и время после которой публикация станет доступной для чтения",

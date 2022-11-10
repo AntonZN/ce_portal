@@ -11,11 +11,11 @@
         <h1 class="form-title txtClr">{{form.title}}</h1>
         <p class="text-label margin-left-right" style="margin-left: 10px;">{{form.confirmation_message}}</p>
         {% if form.edit_after_submit %}
-        <a href="{% url 'edit_response' form.code code %}" class="edit-response-link">Edit response</a>
+        <a href="{% url 'polls:edit_response' form.code code %}" class="edit-response-link">Редактировать ответ</a>
         {% endif %}
         {% if form.is_quiz and form.allow_view_score %}
         <div class="modal-division">
-            <a href="{% url 'response' form.code code %}" class="btn view-score-btn">View Score</a>
+            <a href="{% url 'polls:response' form.code code %}" class="btn view-score-btn">View Score</a>
         </div>
         {% endif %}
     </div>

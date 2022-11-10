@@ -1,23 +1,10 @@
 from django.urls import path
 from . import views
 
+app_name = "polls"
 
 urlpatterns = [
-    path('', views.index, name="index"),
     path("form/create", views.create_form, name="create_form"),
-    path(
-        "form/create/contact", views.contact_form_template, name="contact_form_template"
-    ),
-    path(
-        "form/create/feedback",
-        views.customer_feedback_template,
-        name="customer_feedback_template",
-    ),
-    path(
-        "form/create/event",
-        views.event_registration_template,
-        name="event_registration_template",
-    ),
     path("form/<str:code>/edit", views.edit_form, name="edit_form"),
     path("form/<str:code>/edit_title", views.edit_title, name="edit_title"),
     path(
@@ -68,6 +55,4 @@ urlpatterns = [
         views.delete_responses,
         name="delete_responses",
     ),
-    path("403", views.FourZeroThree, name="403"),
-    path("404", views.FourZeroFour, name="404"),
 ]

@@ -13,7 +13,9 @@ select.minimal {
     1px 1.5em;
   background-repeat: no-repeat;
 }
-
+.require-star{
+    color: red;
+}
 select:-moz-focusring {
   color: transparent;
   text-shadow: 0 0 0 #000;

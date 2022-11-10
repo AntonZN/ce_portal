@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django.contrib.sites",
+    "django.forms",
     "organization.apps.OrgConfig",
     "organization.employees.apps.EmployeesConfig",
     "blog.apps.BlogConfig",
@@ -51,7 +52,6 @@ INSTALLED_APPS = [
     "rest_framework",
     "taggit",
     "taggit_helpers",
-    "taggit_labels",
     "taggit_anywhere",
     "vote",
     "django_editorjs_fields",
@@ -60,7 +60,7 @@ INSTALLED_APPS = [
     "drf_yasg",
     "widget_tweaks",
     "django_htmx",
-    "solo"
+    "solo",
 ]
 
 MIDDLEWARE = [
@@ -159,6 +159,7 @@ MEDIA_ROOT = BASE_DIR / "../media"
 
 BREADCRUMBS_HOME_LABEL = "Главная"
 COMMENTS_APP = 'threadedcomments'
+FORM_RENDERER = 'django.forms.renderers.TemplatesSetting'
 
 from .taggit import *  # noqa
 from .editor_conf import *  # noqa

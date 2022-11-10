@@ -104,58 +104,17 @@ document.addEventListener("DOMContentLoaded", () => {
             method: "POST",
             headers: {'X-CSRFToken': csrf},
             body: JSON.stringify({
-                "collect_email": document.querySelector("#collect_email").checked,
-                "is_quiz": document.querySelector("#is_quiz").checked,
-                "authenticated_responder": document.querySelector("#authenticated_responder").checked,
+                "collect_email": false,
+                "is_quiz": false,
+                "authenticated_responder": true,
                 "confirmation_message": document.querySelector("#comfirmation_message").value,
-                "edit_after_submit": document.querySelector("#edit_after_submit").checked,
+                "edit_after_submit": false,
                 "allow_view_score": document.querySelector("#allow_view_score").checked,
             })
         })
         document.querySelector("#setting").style.display = "none";
-        if (!document.querySelector("#collect_email").checked) {
-            if (document.querySelector(".collect-email")) document.querySelector(".collect-email").parentNode.removeChild(document.querySelector(".collect-email"))
-        } else {
-            if (!document.querySelector(".collect-email")) {
-                let collect_email = document.createElement("div");
-                collect_email.classList.add("collect-email")
-                collect_email.innerHTML = `<h3 class="question-title">Email address <span class="require-star">*</span></h3>
-                <input type="text" autoComplete="off" aria-label="Valid email address" disabled dir = "auto" class="require-email-edit"
-                placeholder = "Valid email address" />
-                <p class="collect-email-desc">This form is collecting email addresses. <span class="open-setting">Change settings</span></p>`
-                document.querySelector("#form-head").appendChild(collect_email)
-            }
-        }
-        if (document.querySelector("#is_quiz").checked) {
-            if (!document.querySelector("#add-score")) {
-                let is_quiz = document.createElement('a')
-                is_quiz.setAttribute("href", "score");
-                is_quiz.setAttribute("id", "add-score");
-                is_quiz.innerHTML = `<img src = "/static/Icon/score.png" id="add-score" class = "form-option-icon" title = "Add score" alt = "Score icon" />`;
-                document.querySelector(".question-options").appendChild(is_quiz)
-            }
-            if (!document.querySelector(".score")) {
-                let quiz_nav = document.createElement("span");
-                quiz_nav.classList.add("col-4");
-                quiz_nav.classList.add("navigation");
-                quiz_nav.classList.add('score');
-                quiz_nav.innerHTML = `<a href = "score" class="link">Scores</a>`;
-                [...document.querySelector(".form-navigation").children].forEach(element => {
-                    element.classList.remove("col-6")
-                    element.classList.add('col-4')
-                })
-                document.querySelector(".form-navigation").insertBefore(quiz_nav, document.querySelector(".form-navigation").childNodes[2])
-            }
-        } else {
-            if (document.querySelector("#add-score")) document.querySelector("#add-score").parentNode.removeChild(document.querySelector("#add-score"))
-            if (document.querySelector(".score")) {
-                [...document.querySelector(".form-navigation").children].forEach(element => {
-                    element.classList.remove("col-4")
-                    element.classList.add('col-6')
-                })
-                document.querySelector(".score").parentNode.removeChild(document.querySelector(".score"))
-            }
-        }
+
+
     })
     document.querySelector("#delete-form").addEventListener("submit", e => {
         e.preventDefault();
@@ -385,14 +344,14 @@ document.addEventListener("DOMContentLoaded", () => {
                                     choicesElement.parentNode.removeChild(choicesElement)
                                     let ele = document.createElement("div");
                                     ele.innerHTML = `<div class="answers" data-id="${this.dataset.id}">
-                                    <input type ="text" class="short-answer" disabled placeholder="Short answer text" />
+                                    <input type ="text" class="short-answer" disabled placeholder="Краткий ответ" />
                                 </div>`
                                     this.parentNode.insertBefore(ele, this.parentNode.childNodes[4])
                                 } else if (this.value === "paragraph") {
                                     choicesElement.parentNode.removeChild(choicesElement)
                                     let ele = document.createElement("div");
                                     ele.innerHTML = `<div class="answers" data-id="${this.dataset.id}">
-                                    <textarea class="long-answer" disabled placeholder="Long answer text" ></textarea>
+                                    <textarea class="long-answer" disabled placeholder="Развернутый ответ" ></textarea>
                                 </div>`
                                     this.parentNode.insertBefore(ele, this.parentNode.childNodes[4])
                                 }
@@ -458,13 +417,13 @@ document.addEventListener("DOMContentLoaded", () => {
                             if (this.value === "short") {
                                 let ele = document.createElement("div");
                                 ele.innerHTML = `<div class="answers" data-id="${this.dataset.id}">
-                                <input type ="text" class="short-answer" disabled placeholder="Short answer text" />
+                                <input type ="text" class="short-answer" disabled placeholder="Краткий ответ" />
                             </div>`
                                 this.parentNode.insertBefore(ele, this.parentNode.childNodes[4])
                             } else if (this.value === "paragraph") {
                                 let ele = document.createElement("div");
                                 ele.innerHTML = `<div class="answers" data-id="${this.dataset.id}">
-                                <textarea class="long-answer" disabled placeholder="Long answer text" ></textarea>
+                                <textarea class="long-answer" disabled placeholder="Развернутый ответ" ></textarea>
                             </div>`
                                 this.parentNode.insertBefore(ele, this.parentNode.childNodes[4])
                             }
@@ -493,10 +452,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 ele.innerHTML = `
             <input type="text" data-id="${result["question"].id}" class="question-title edit-on-click input-question" value="${result["question"].question}">
             <select class="question-type-select input-question-type" data-id="${result["question"].id}" data-origin_type = "${result["question"].question_type}">
-                <option value="short">Short answer</option>
-                <option value="paragraph">Paragraph</option>
-                <option value="multiple choice" selected>Multiple choice</option>
-                <option value="checkbox">Checkbox</option>
+                <option value="short">Текст (Строка)</option>
+                <option value="paragraph">Текст (Абзац)</option>
+                <option value="multiple choice" selected>Один из списка</option>
+                <option value="checkbox">Несколько из списка</option>
             </select>
             <div class="choices" data-id="${result["question"].id}">
                 <div class="choice">
@@ -514,7 +473,7 @@ document.addEventListener("DOMContentLoaded", () => {
             </div>
             <div class="choice-option">
                 <input type="checkbox" class="required-checkbox" id="${result["question"].id}" data-id="${result["question"].id}">
-                <label for="${result["question"].id}" class="required">Required</label>
+                <label for="${result["question"].id}" class="required">Обязательно</label>
                 <div class="float-right">
                     <img src="/static/Icon/dustbin.png" class="question-option-icon delete-question" title="Удалить вопрос"
                     data-id="${result["question"].id}">

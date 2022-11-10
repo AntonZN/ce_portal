@@ -1,10 +1,11 @@
 from django import forms
 
-from taggit.forms import TagWidget
+from utils.tagify.widgets import TagInput
 
 
 class TagsAdminForm(forms.ModelForm):
+
     class Meta:
         widgets = {
-            "tags": TagWidget(),
+            "tags": TagInput(),
         }

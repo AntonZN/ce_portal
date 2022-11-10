@@ -608,7 +608,7 @@ socks = ["PySocks (>=1.5.6,!=1.5.7,<2.0)"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "89fc15860c8b370426d42f14fe67c2d77726b13d921d91c77e402e256d6257e7"
+content-hash = "06d7be79554d4c73c6abd5ab8baf17befd27b835b134b817989e37f115226365"
 
 [metadata.files]
 arrow = [

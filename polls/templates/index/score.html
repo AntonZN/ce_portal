@@ -14,7 +14,7 @@
         <span class="nav-text nav-form-title input-form-title">{{form.title}}</span>
         <div class="float-right">
             <img src="{% static 'Icon/theme.png' %}" alt="Theme icon" id="customize-theme-btn" title = "Customize theme" class="nav-form-menu-icon" />
-            <a href="{% url 'view_form' form.code %}">
+            <a href="{% url 'polls:view_form' form.code %}">
             <img src="{% static 'Icon/eye.png' %}" alt="Preview icon" title = "Preview" class="nav-form-menu-icon big-screen" />
             </a>
             <img src="{% static 'Icon/send.png' %}" alt ="Send icon" title = "Send" class="nav-form-menu-icon small-screen" id="send-form-btn" />
@@ -24,9 +24,9 @@
     </div>
     <div class="form-topnav">
         <div class="form-navigation center">
-            <span class="col-4 navigation"><a href = "{% url 'edit_form' form.code %}" class="link">Questions</a></span>
+            <span class="col-4 navigation"><a href = "{% url 'polls:edit_form' form.code %}" class="link">Questions</a></span>
             <span class="col-4 navigation active">Scores</span>
-            <span class="col-4 navigation"><a href = "{% url 'responses' form.code %}" class="link">Responses</a></span>
+            <span class="col-4 navigation"><a href = "{% url 'polls:responses' form.code %}" class="link">Responses</a></span>
         </div>
     </div>
     <div class="container">
@@ -92,18 +92,18 @@
         {% endfor %}
     </div>
     <div class="question-options">
-        <a href="{% url 'view_form' form.code %}">
+        <a href="{% url 'polls:view_form' form.code %}">
             <img src = "{% static 'Icon/eye.png' %}" class = "form-option-icon" title = "Preview" alt = "Preview icon" />
         </a>
-        <a href="{% url 'edit_form' form.code %}">
+        <a href="{% url 'polls:edit_form' form.code %}">
             <img src = "{% static 'Icon/question.png' %}" class = "form-option-icon" title = "Questions" alt = "Question icon" />
         </a>
     </div>
     <div class="modal" id="customize-theme">
         <div class="modal-content">
             <span class="modal-close-btn" id="close-customize-theme">&times;</span>
-            <h1 class="modal-title">Theme options</h1>
-            <h3 class="modal-subtitle">Background Color:</h3>
+            <h1 class="modal-title">Настройки темы</h1>
+            <h3 class="modal-subtitle">Цвет фона:</h3>
             <input type="color"  value = "{{form.background_color}}" list="bgColors" class="form-control" id="input-bg-color" />
             <datalist id="bgColors">
                 <option value="#03a9f4"></option>
@@ -136,7 +136,7 @@
             <form id="setting-form">
                 <span class="modal-close-btn" id="close-setting">&times;</span>
                 <h1 class = "modal-title">Setting</h1>
-                <h4 class="setting-preview-form small-screen"><a href="{% url 'view_form' form.code %}">Preview form here</a></h4>
+                <h4 class="setting-preview-form small-screen"><a href="{% url 'polls:view_form' form.code %}">Preview form here</a></h4>
                 <div class="modal-division">
                     <div class="form-group">
                         <h3 class="modal-subtitle">General</h3>
@@ -170,7 +170,7 @@
                         <label for="allow_view_score" class="setting-form-label">View score</label>
                     </div>
                     <div class="form-group">
-                        <input type="submit" value="Save" class="form-control btn btn-save-setting">
+                        <input type="submit" value="Сохранить" class="form-control btn btn-save-setting">
                     </div>
                 </div>
             </form>
@@ -179,7 +179,7 @@
                     <legend class="modal-subtitle text-danger danger-zone">Danger Zone</legend>
                     <h3 class="delete-form-title">Delete this form</h3>
                     <p class="delete-form-description">Once you delete a form, there is no going back. Please be certain.</p>
-                    <input type="submit" value="Delete" class="form-control delete-form-btn">
+                    <input type="submit" value="Удалить" class="form-control delete-form-btn">
                 </fieldset>
             </form>
         </div>

@@ -1,16 +1,40 @@
-from django.contrib.auth import get_user_model
 from django.conf import settings
 from django.db import models
+from colorfield.fields import ColorField
 
 
 class Choices(models.Model):
-    choice = models.CharField(max_length=5000)
+    choice = models.CharField("Ответ", max_length=5000)
     is_answer = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.choice
+
+    class Meta:
+        verbose_name = "Вариант ответа"
+        verbose_name_plural = "3. Варианты ответа"
 
 
 class Questions(models.Model):
+    NO_MULTIPLE = "multiple choice"
+    CHECKBOX = "checkbox"
+    SHORT = "short"
+    PARAGRAPH = "paragraph"
+
+    QUESTIONS_TYPE_CHOICES = (
+        (NO_MULTIPLE, "Один из списка"),
+        (CHECKBOX, "Несколько из списка"),
+        (SHORT, "Крактий ответ"),
+        (PARAGRAPH, "Развернутый ответ"),
+    )
+
     question = models.CharField(max_length=10000, verbose_name="Вопрос")
-    question_type = models.CharField(max_length=20, verbose_name="Тип вопроса")
+    question_type = models.CharField(
+        max_length=20,
+        choices=QUESTIONS_TYPE_CHOICES,
+        default=NO_MULTIPLE,
+        verbose_name="Тип вопроса",
+    )
     required = models.BooleanField(default=False, verbose_name="Обязательный")
     answer_key = models.CharField(
         max_length=5000, blank=True, verbose_name="Ключ ответа"
@@ -23,6 +47,13 @@ class Questions(models.Model):
         Choices, related_name="choices", verbose_name="Варианты ответа"
     )
 
+    def __str__(self):
+        return self.question
+
+    class Meta:
+        verbose_name = "Вопрос"
+        verbose_name_plural = "2. Вопросы"
+
 
 class Answer(models.Model):
     answer = models.CharField(max_length=5000, verbose_name="Ответ")
@@ -33,11 +64,18 @@ class Answer(models.Model):
         verbose_name="Вопрос",
     )
 
+    def __str__(self):
+        return self.answer
+
+    class Meta:
+        verbose_name = "Ответ"
+        verbose_name_plural = "Ответы"
+
 
 class Form(models.Model):
     code = models.CharField(max_length=30, verbose_name="Код формы")
     title = models.CharField("Заголовок", max_length=200)
-    description = models.CharField(
+    description = models.TextField(
         verbose_name="Описание", max_length=10000, blank=True
     )
     creator = models.ForeignKey(
@@ -46,11 +84,11 @@ class Form(models.Model):
         on_delete=models.CASCADE,
         related_name="creator",
     )
-    background_color = models.CharField(
-        max_length=20, default="#d9efed", verbose_name="Цвет фона"
+    background_color = ColorField(
+        default="#f9f8f9", verbose_name="Цвет фона"
     )
-    text_color = models.CharField(
-        max_length=20, default="#272124", verbose_name="Цвет текста"
+    text_color = ColorField(
+        default="#222", verbose_name="Цвет текста"
     )
     collect_email = models.BooleanField(default=False, verbose_name="Сбор почты")
     authenticated_responder = models.BooleanField(
@@ -62,17 +100,24 @@ class Form(models.Model):
     confirmation_message = models.CharField(
         max_length=10000,
         default="Спасибо за участие!",
-        verbose_name="Сообщение после отправки",
+        verbose_name="Сообщение после прохождения",
     )
-    is_quiz = models.BooleanField(default=False, verbose_name="Тест")
+    is_quiz = models.BooleanField(default=False, verbose_name="Квиз")
     allow_view_score = models.BooleanField(
         default=True, verbose_name="Показывать результаты"
     )
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")
     updated_at = models.DateTimeField(auto_now=True, verbose_name="Дата изменения")
     questions = models.ManyToManyField(
-        Questions, related_name="questions", verbose_name="Вопросы"
+        Questions, related_name="questions", verbose_name="Вопросы",
     )
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = "Форма опроса"
+        verbose_name_plural = "1. Формы"
 
 
 class Responses(models.Model):
