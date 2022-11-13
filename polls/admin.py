@@ -56,7 +56,7 @@ class ChoicesInline(admin.TabularInline):
 
 @admin.register(Form)
 class FormAdmin(admin.ModelAdmin):
-    list_display = ("title", "creator", "created_at", )
+    list_display = ("title", "creator", "created_at", "get_edit_url", "get_result_url")
     fieldsets = (
         ("Основное", {"fields": ("title", "description", "confirmation_message")}),
         ("Оформление", {"fields": ("background_color", "text_color")}),
