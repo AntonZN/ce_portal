@@ -1,7 +1,9 @@
+import string
+import random
+
 from django.contrib import admin
 from django.contrib.admin import display
-from django.forms import BaseInlineFormSet, ModelForm
-from django import forms
+from django.forms import ModelForm
 from django.urls import reverse
 from django.utils.html import format_html
 
@@ -82,6 +84,10 @@ class FormAdmin(admin.ModelAdmin):
     def save_model(self, request, obj, form, change):
         if not obj.pk:
             obj.creator = request.user
+        code = "".join(
+            random.choice(string.ascii_letters + string.digits) for x in range(30)
+        )
+        obj.code = code
         super().save_model(request, obj, form, change)
 
 
