@@ -84,10 +84,10 @@ class FormAdmin(admin.ModelAdmin):
     def save_model(self, request, obj, form, change):
         if not obj.pk:
             obj.creator = request.user
-        code = "".join(
-            random.choice(string.ascii_letters + string.digits) for x in range(30)
-        )
-        obj.code = code
+            code = "".join(
+                random.choice(string.ascii_letters + string.digits) for x in range(30)
+            )
+            obj.code = code
         super().save_model(request, obj, form, change)
 
 
