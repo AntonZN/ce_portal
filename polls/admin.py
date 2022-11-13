@@ -79,6 +79,12 @@ class FormAdmin(admin.ModelAdmin):
     verbose_name = "Форма"
     verbose_name_plural = "Формы"
 
+    def save_model(self, request, obj, form, change):
+        if not obj.pk:
+            obj.creator = request.user
+        super().save_model(request, obj, form, change)
+
+
 
 @admin.register(Questions)
 class QuestionsAdmin(admin.ModelAdmin):
