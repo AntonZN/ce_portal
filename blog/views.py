@@ -18,13 +18,12 @@ class NewsList(LoginRequiredMixin, ListBreadcrumbMixin, ListView):
     model = News
     paginate_by = 10
     context_object_name = "news_list"
-    ordering = ["-date_published"]
 
     def get_queryset(self):
         cat_slug = self.kwargs.get("cat_slug", None)
         if cat_slug:
-            return News.objects.filter(category__slug=cat_slug)
-        return News.objects.all()
+            return News.public.filter(category__slug=cat_slug)
+        return News.public.all()
 
     def get_context_data(self, *, object_list=None, **kwargs):
 

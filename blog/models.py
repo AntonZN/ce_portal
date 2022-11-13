@@ -116,10 +116,10 @@ class News(Post):
     objects = models.Manager()
     public = QueryManager(
         status=Post.PUBLISHED, date_published__lte=timezone.now()
-    ).order_by("date_published")
+    ).order_by("-date_published")
     main = QueryManager(
         status=Post.PUBLISHED, date_published__lte=timezone.now(), home_view=True
-    ).order_by("date_published")
+    ).order_by("-date_published")
 
     def __str__(self):
         return self.title
