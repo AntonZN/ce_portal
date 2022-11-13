@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load easy_thumb %}
+{% load view_breadcrumbs %}
+{% block head %}
+    <link rel="stylesheet" href="{% static '/assets/css/vendors/magnific-popup.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="page-body">
+        <div class="container-fluid">
+            <div class="page-header">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="page-header-left">
+                            <h3>{{ folder.name }}
+                            </h3>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        {% render_breadcrumbs "breadcrumbs.html" %}
+                    </div>
+                </div>
+            </div>
+            <div class="portfolio-section portfolio-padding pt-0 port-col zoom-gallery">
+                <div class="container">
+                    <div class="isotopeContainer row">
+                        {% for photo in photos %}
+
+                            <div class="col-lg-3 col-sm-6 isotopeSelector">
+                                <div class="overlay">
+                                    <div class="border-portfolio">
+                                        <a href="{{ photo.url }}">
+                                            <div class="overlay-background">
+                                                <i class="fa fa-plus" aria-hidden="true"></i>
+                                            </div>
+                                            {% thumbnail_mf photo 400x400 quality=70 as thumb %}
+                                            <img src="{{ thumb.url }}" alt="{{ photo.file.name }}"
+                                                 class="img-fluid blur-up lazyload">
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+
+{% block scripts %}
+    <script src="{% static '/assets/js/isotope.min.js' %}"></script>
+    <script src="{% static '/assets/js/main.js' %}"></script>
+    <script src="{% static '/assets/js/jquery.magnific-popup.js' %}"></script>
+    <script src="{% static '/assets/js/zoom-gallery.js' %}"></script>
+{% endblock %}

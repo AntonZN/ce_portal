@@ -1,0 +1,51 @@
+
+
+{% extends 'base.html' %}
+{% load static %}
+{% load view_breadcrumbs %}
+
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/blog.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="page-body">
+        <div class="container-fluid">
+            <div class="page-header">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="page-header-left">
+                            <h3>Фотоальбомы
+                            </h3>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        {% render_breadcrumbs "breadcrumbs.html" %}
+                    </div>
+                </div>
+            </div>
+            <div class="blog-page">
+                <div class="row folderBlock">
+                    {% for folder in folders %}
+                        <div class="col-lg-4 col-sm-6">
+                            <div class="overlay">
+                                <div class="border-portfolio">
+                                    <a href="{% url 'album_detail' folder.pk %}" class="bg-size overlay-block">
+                                        <div class="overlay-background">
+                                            <i class="" aria-hidden="true">Смотреть</i>
+                                        </div>
+                                        <div class="folderTitle">
+                                            {{ folder.name }}
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% include 'pagination.html' %}
+        </div>
+    </div>
+
+{% endblock %}

@@ -84,14 +84,18 @@
                                     <div class="table-responsive profile-table">
                                         <table class="table table-borderless">
                                             <tbody>
-                                            <tr>
-                                                <td>Департамент</td>
-                                                <td>{{ employee.department }}</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Должность:</td>
-                                                <td>{{ employee.position }}</td>
-                                            </tr>
+                                            {% if employee.department %}
+                                                <tr>
+                                                    <td>Департамент</td>
+                                                    <td>{{ employee.department }}</td>
+                                                </tr>
+                                            {% endif %}
+                                            {% if employee.position %}
+                                                <tr>
+                                                    <td>Должность:</td>
+                                                    <td>{{ employee.position }}</td>
+                                                </tr>
+                                            {% endif %}
                                             {% if employee.birthday %}
                                                 <tr>
                                                     <td>Дата рождения:</td>

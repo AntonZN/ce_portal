@@ -1,13 +1,18 @@
+from functools import cached_property
+
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect
+from django.urls import reverse
 from django.views import View
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, ListView, DetailView
 from django.contrib import messages
+from view_breadcrumbs import ListBreadcrumbMixin, DetailBreadcrumbMixin
 
 from blog.models import News
 from organization.employees.froms import EmployeeForm, EmployeeContactsFormSet
 from organization.employees.models import Employee
-from organization.models import OrganizationConfig
+from organization.models import OrganizationConfig, Banner
+from filer.models import Folder, File
 
 
 class HomeView(LoginRequiredMixin, TemplateView):
@@ -16,13 +21,14 @@ class HomeView(LoginRequiredMixin, TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         config = OrganizationConfig.objects.get()
-
         context["phrases"] = config.phrases.all()
         context["birthdays_today"] = Employee.manager.get_birthdays()
         # context["birthdays_upcoming"] = Employee.manager.get_upcoming_birthdays(include_day=False, days=14)
         context["main_news"] = News.main.all()
         context["latest_news"] = News.public.exclude(home_view=True)[:6]
         context["new_employees"] = Employee.new.all()[:9]
+        context["banners"] = Banner.objects.filter(is_view=True).order_by("order")
+        context["folders"] = Folder.objects.all()
 
         return context
 
@@ -80,3 +86,46 @@ def manage_employee_contacts(request):
             context_object["employee_form"] = employee_form
             context_object["employee_contacts_form"] = formset
             return render(request, "profile.html", context_object)
+
+
+class AlbumList(LoginRequiredMixin, ListBreadcrumbMixin, ListView):
+    template_name = "albums/list.html"
+    model = News
+    paginate_by = 15
+    context_object_name = "folders"
+    ordering = ["-date_published"]
+
+    @cached_property
+    def crumbs(self):
+        return [
+            (
+                "Фотоальбомы",
+                reverse("album_list", kwargs={}),
+            ),
+        ]
+    def get_queryset(self):
+        config = OrganizationConfig.objects.get()
+        return Folder.objects.filter(parent=config.albums_folder)
+
+
+class AlbumDetail(LoginRequiredMixin, DetailBreadcrumbMixin, DetailView):
+    model = Folder
+    template_name = "albums/detail.html"
+    context_object_name = "folder"
+    breadcrumb_use_pk = True
+
+    @cached_property
+    def crumbs(self):
+        return [
+            (
+                "Фотоальбомы",
+                reverse("album_list", kwargs={}),
+            ),
+            (self.object.name, ""),
+        ]
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        files = File.objects.filter(folder=self.object)
+        context["photos"] = files
+        return context

@@ -16,18 +16,9 @@
 
 {% block content %}
     {% get_solo 'organization.OrganizationConfig' as org_config %}
-    <div class="page-body">
-        <div class="container-fluid">
-            <div class="page-header">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="page-header-left">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
 
+    <div class="page-body">
+        {% include 'other/banners/banner_block.html' %}
         <div class="container-fluid">
             {% if main_news %}
                 <div class="title">
@@ -42,7 +33,6 @@
                                 <div>
                                     {% include 'blog/news/news_list_item.html' with bottom_postion=True %}
                                 </div>
-
                             {% endfor %}
                         </div>
                     </div>
@@ -194,6 +184,7 @@
 
 {% block scripts %}
     <script>
+        $('.slide-1').slick({});
         $('.slider').slick({
             dots: true,
             infinite: false,
@@ -203,30 +194,30 @@
             responsive: [{
                 breakpoint: 1367,
                 settings: {
-                    slidesToShow: 4,
-                    slidesToScroll: 4
+                    slidesToShow: 3,
+                    slidesToScroll: 3
                 }
             },
                 {
                     breakpoint: 1024,
                     settings: {
-                        slidesToShow: 3,
-                        slidesToScroll: 3,
+                        slidesToShow: 2,
+                        slidesToScroll: 2,
                         infinite: true
                     }
                 },
                 {
                     breakpoint: 600,
                     settings: {
-                        slidesToShow: 3,
-                        slidesToScroll: 3
+                        slidesToShow: 1,
+                        slidesToScroll: 1
                     }
                 },
                 {
                     breakpoint: 576,
                     settings: {
-                        slidesToShow: 2,
-                        slidesToScroll: 2
+                        slidesToShow: 0,
+                        slidesToScroll: 1
                     }
                 }
             ]

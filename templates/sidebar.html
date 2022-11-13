@@ -1,6 +1,7 @@
 {% load static %}
 {% load thumbnail %}
-
+{% load solo_tags %}
+{% get_solo 'organization.OrganizationConfig' as org_config %}
 <div class="page-sidebar">
     <div class="main-header-left d-none d-lg-block">
         <div class="logo-wrapper">
@@ -39,14 +40,12 @@
             {% if user.is_authenticated %}
                 <li>
                     <a class="sidebar-header" href="{% url 'home' %}">
-                        <i data-feather="home"></i>
                         <span>Главная</span>
                     </a>
                 </li>
 
                 <li>
                     <a class="sidebar-header" href="{% url 'blog:news_list' %}">
-                        <i data-feather="box"></i>
                         <span>Новости</span>
                         <i class="fa fa-angle-right pull-right"></i>
                     </a>
@@ -55,7 +54,6 @@
 
                 <li>
                     <a class="sidebar-header" href="#">
-                        <i data-feather="archive"></i>
                         <span>Подразделения</span>
                         <i class="fa fa-angle-right pull-right"></i>
                     </a>
@@ -63,7 +61,6 @@
 
                 <li>
                     <a class="sidebar-header" href="{% url 'employees:employee_list' %}">
-                        <i data-feather="dollar-sign"></i>
                         <span>Сотрудники</span>
                         <i class="fa fa-angle-right pull-right"></i>
                     </a>
@@ -71,15 +68,20 @@
 
                 <li>
                     <a class="sidebar-header" href="{% url 'employees:awards_list' %}">
-                        <i data-feather="dollar-sign"></i>
                         <span>Награды</span>
                         <i class="fa fa-angle-right pull-right"></i>
                     </a>
                 </li>
-
+                {% if org_config.albums_folder %}
+                    <li>
+                        <a class="sidebar-header" href="{% url 'album_list' %}">
+                            <span>Альбомы</span>
+                            <i class="fa fa-angle-right pull-right"></i>
+                        </a>
+                    </li>
+                {% endif %}
                 <li>
                     <a class="sidebar-header" href="javascript:void(0)">
-                        <i data-feather="align-left"></i>
                         <span>Корп. Обучение</span>
                         <i class="fa fa-angle-right pull-right"></i>
                     </a>
@@ -98,7 +100,6 @@
                 </li>
                 <li>
                     <a class="sidebar-header" href="javascript:void(0)">
-                        <i data-feather="align-left"></i>
                         <span>Обратная связь</span>
                         <i class="fa fa-angle-right pull-right"></i>
                     </a>
@@ -120,20 +121,17 @@
 
                 <li>
                     <a class="sidebar-header" href="/logout/">
-                        <i data-feather="log-in"></i>
                         <span>Выйти</span>
                     </a>
                 </li>
             {% else %}
                 <li>
                     <a class="sidebar-header" href="/login/">
-                        <i data-feather="log-in"></i>
                         <span>Войти</span>
                     </a>
                 </li>
                 <li>
                     <a class="sidebar-header" href="#">
-                        <i data-feather="key"></i>
                         <span>Забыл пароль</span>
                     </a>
                 </li>

@@ -1,7 +1,8 @@
 from django.contrib import admin
 from django.contrib.admin import display
+from sorl.thumbnail.admin import AdminImageMixin
 
-from .models import Department, Filial, OrganizationConfig, PhraseForHomePage, PhraseDay
+from .models import Department, Filial, OrganizationConfig, PhraseForHomePage, PhraseDay, Banner
 from solo.admin import SingletonModelAdmin
 
 
@@ -15,9 +16,14 @@ class PhraseForHomeInline(admin.TabularInline):
     model = PhraseForHomePage
 
 
+class BannerAdminInline(AdminImageMixin, admin.StackedInline):
+    extra = 0
+    model = Banner
+
+
 @admin.register(OrganizationConfig)
-class OrganizationConfigAdmin(SingletonModelAdmin):
-    inlines = (PhraseForHomeInline,)
+class OrganizationConfigAdmin(AdminImageMixin, SingletonModelAdmin):
+    inlines = (PhraseForHomeInline, BannerAdminInline)
 
 
 @admin.register(PhraseDay)

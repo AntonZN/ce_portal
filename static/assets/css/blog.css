@@ -8,19 +8,19 @@
 }
 
 .blog-sidebar h4 a {
-        color: #777;
+    color: #777;
 }
 
 .blog-sidebar h4.active a {
-        color: var(--theme-color);
+    color: var(--theme-color);
 }
 
 .blog-sidebar h3 {
-        color: #000;
+    color: #000;
 }
 
-.blog-detail-page .blog-detail img {
-    margin-bottom: 40px;
+.blog-detail-page .blog-detail .main-blog-image {
+  margin-bottom: 40px;
 }
 
 .blog-detail-page .blog-detail h3 {
@@ -80,7 +80,7 @@
 }
 
 .btn-solid {
-    padding: 13px 29px;
+    padding: 6px 25px;
     color: #fff;
     letter-spacing: 0.05em;
     border: 2px solid var(--theme-color);
@@ -94,6 +94,7 @@
 
 .blog-detail-page .comment-section li {
     display: block;
+    background: #fff;
 }
 
 .blog-detail-page .comment-section li img {

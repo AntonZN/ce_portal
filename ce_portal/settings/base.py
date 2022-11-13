@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     "polls.apps.PollsConfig",
     "feedback.apps.FeedbackConfig",
     "view_breadcrumbs",
+    "easy_thumbnails",
     "sorl.thumbnail",
     "mptt",
     "django_filters",
@@ -61,6 +62,8 @@ INSTALLED_APPS = [
     "widget_tweaks",
     "django_htmx",
     "solo",
+    "filer",
+    "compressor",
 ]
 
 MIDDLEWARE = [
@@ -73,7 +76,6 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "django_htmx.middleware.HtmxMiddleware",
-
 ]
 
 ROOT_URLCONF = "ce_portal.urls"
@@ -149,17 +151,24 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "../polls/static"),
 )
 
+COMPRESS_ROOT = "../static"
 STATICFILES_FINDERS = [
     "django.contrib.staticfiles.finders.FileSystemFinder",
     "django.contrib.staticfiles.finders.AppDirectoriesFinder",
+    "compressor.finders.CompressorFinder",
 ]
+
+COMPRESS_PRECOMPILERS = (
+    ('text/x-scss', 'django_libsass.SassCompiler'),
+)
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "../media"
 
 BREADCRUMBS_HOME_LABEL = "Главная"
-COMMENTS_APP = 'threadedcomments'
-FORM_RENDERER = 'django.forms.renderers.TemplatesSetting'
+COMMENTS_APP = "threadedcomments"
+FORM_RENDERER = "django.forms.renderers.TemplatesSetting"
 
 from .taggit import *  # noqa
 from .editor_conf import *  # noqa
+from .filer import *  # noqa

@@ -7,21 +7,21 @@ from drf_yasg import openapi
 from drf_yasg.views import get_schema_view as get_schema_view_yasg
 from rest_framework import permissions
 
-from ce_portal.views import HomeView, ProfileView, manage_employee_contacts
+from ce_portal.views import HomeView, ProfileView, manage_employee_contacts, AlbumList, AlbumDetail
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("home/", HomeView.as_view(), name="home"),
     path("", include("django.contrib.auth.urls")),
-    path("", RedirectView.as_view(url='home/', permanent=False)),
+    path("", RedirectView.as_view(url="home/", permanent=False)),
     path(
-        route="profile/",
-        view=ProfileView.as_view(),
+        "profile/",
+        ProfileView.as_view(),
         name="profile",
     ),
     path(
-        route="profile/contacts/update/",
-        view=manage_employee_contacts,
+        "profile/contacts/update/",
+        manage_employee_contacts,
         name="contacts_update",
     ),
     path("polls/", include("polls.urls")),
@@ -37,7 +37,12 @@ urlpatterns = [
     path("blog/", include("blog.urls")),
     path("editorjs/", include("django_editorjs_fields.urls")),
     path("comments/", include("django_comments.urls")),
+
+    path("albums/", AlbumList.as_view(), name="album_list"),
+    path("albums/<int:pk>/", AlbumDetail.as_view(), name="album_detail"),
+
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
@@ -72,4 +77,5 @@ urlpatterns += [
         schema_view_yasg.with_ui("redoc", cache_timeout=0),
         name="schema-redoc",
     ),
+    path("filer/", include("filer.urls")),
 ]

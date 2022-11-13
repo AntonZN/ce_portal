@@ -1,0 +1,37 @@
+{% load static %}
+{% load thumbnail %}
+
+<div>
+    <div
+            class="home text-center p-center"
+            {% if banner.type == "TEXT" %}
+            style="background-color: {{ banner.background_color }}"
+            {% endif %}
+            {% if banner.type == "IMAGE" and banner.link %}
+            style="cursor: pointer"
+            onclick="window.location = '{{ banner.link }}'"
+            {% endif %}
+    >
+        {% thumbnail banner.image "1920x718" crop="30%" as img %}
+            <img class="bg-img blur-up lazyload"
+                 src="{{ img.url }}">
+        {% endthumbnail %}
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="slider-contain">
+                        {% if banner.type != "IMAGE" %}
+                            <div class="white-bg px-5 py-3 w-50">
+                                <h1>{{ banner.title }}</h1>
+                                <h4>{{ banner.description }}</h4>
+                                {% if banner.link %}
+                                    <a href="{{ banner.link }}" class="btn btn-solid" target="_blank"> подробнее</a>
+                                {% endif %}
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
