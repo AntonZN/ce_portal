@@ -7,13 +7,19 @@ from drf_yasg import openapi
 from drf_yasg.views import get_schema_view as get_schema_view_yasg
 from rest_framework import permissions
 
-from ce_portal.views import HomeView, ProfileView, manage_employee_contacts, AlbumList, AlbumDetail
+from ce_portal.views import (
+    HomeView,
+    ProfileView,
+    manage_employee_contacts,
+    AlbumList,
+    AlbumDetail, AboutDetail,
+)
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("home/", HomeView.as_view(), name="home"),
-    path("", include("django.contrib.auth.urls")),
     path("", RedirectView.as_view(url="home/", permanent=False)),
+    path("home/", HomeView.as_view(), name="home"),
+    path("about/", AboutDetail.as_view(), name="about"),
     path(
         "profile/",
         ProfileView.as_view(),
@@ -24,23 +30,19 @@ urlpatterns = [
         manage_employee_contacts,
         name="contacts_update",
     ),
-    path("polls/", include("polls.urls")),
-    path("organization/", include("organization.urls")),
-    path(
-        "organization/employees/",
-        include("organization.employees.urls"),
-    ),
-    path(
-        "feedback/",
-        include("feedback.urls"),
-    ),
-    path("blog/", include("blog.urls")),
-    path("editorjs/", include("django_editorjs_fields.urls")),
-    path("comments/", include("django_comments.urls")),
-
     path("albums/", AlbumList.as_view(), name="album_list"),
     path("albums/<int:pk>/", AlbumDetail.as_view(), name="album_detail"),
+]
 
+urlpatterns += [
+    path("", include("django.contrib.auth.urls")),
+    path("blog/", include("blog.urls")),
+    path("polls/", include("polls.urls")),
+    path("organization/", include("organization.urls")),
+    path("organization/employees/", include("organization.employees.urls")),
+    path("feedback/", include("feedback.urls")),
+    path("editorjs/", include("django_editorjs_fields.urls")),
+    path("comments/", include("django_comments.urls")),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 

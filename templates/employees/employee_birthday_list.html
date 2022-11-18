@@ -16,7 +16,7 @@
                     <div class="col-lg-6">
                         <div class="page-header-left">
                             <h3>Сотрудники
-                                <small>Список всех сотрудников компании</small>
+                                <small>Список дней рождений</small>
                             </h3>
                         </div>
                     </div>
@@ -52,15 +52,13 @@
                             <tr>
                                 <th>Фото</th>
                                 <th>ФИО</th>
-                                <th>Email</th>
-                                <th>Департамент</th>
-                                <th>Должность</th>
+                                <th>Дата рождения</th>
                                 <th></th>
                             </tr>
                             </thead>
 
                             <tbody id="replaceableContent">
-                            {% include "employees/employees_results_partial.html" %}
+                            {% include "employees/employees_birthday_results_partial.html" %}
                             </tbody>
                         </table>
                     </div>
@@ -75,7 +73,7 @@
         const user_input = $("#employeeSearch")
         const tags = $(".tag-button")
         const table = $('#replaceableContent')
-        const endpoint = '{% url 'employees:employee_list' %}'
+        const endpoint = '{% url 'employees:employee_birthdays' %}'
         const delay_by_in_ms = 600
         let scheduled_function = false
         const urlSearchParams = new URLSearchParams(window.location.search);

@@ -45,12 +45,17 @@
                 </li>
 
                 <li>
+                    <a class="sidebar-header" href="{% url 'about' %}">
+                        <span>О компании</span>
+                    </a>
+                </li>
+
+                <li>
                     <a class="sidebar-header" href="{% url 'blog:news_list' %}">
                         <span>Новости</span>
                         <i class="fa fa-angle-right pull-right"></i>
                     </a>
                 </li>
-
 
                 <li>
                     <a class="sidebar-header" href="#">
@@ -64,18 +69,35 @@
                         <span>Сотрудники</span>
                         <i class="fa fa-angle-right pull-right"></i>
                     </a>
+                    <ul class="sidebar-submenu">
+                        <li>
+                            <a href="{% url 'employees:employee_list' %}">
+                                <i class="fa fa-circle"></i>Все сотрудники
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'employees:employee_new_list' %}?&new=1">
+                                <i class="fa fa-circle"></i>Новые сотрудники
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'employees:employee_birthdays' %}">
+                                <i class="fa fa-circle"></i>Дни рождения
+                            </a>
+                        </li>
+                    </ul>
                 </li>
 
                 <li>
                     <a class="sidebar-header" href="{% url 'employees:awards_list' %}">
-                        <span>Награды</span>
+                        <span>Корп. награды</span>
                         <i class="fa fa-angle-right pull-right"></i>
                     </a>
                 </li>
                 {% if org_config.albums_folder %}
                     <li>
                         <a class="sidebar-header" href="{% url 'album_list' %}">
-                            <span>Альбомы</span>
+                            <span>Фотогалерея</span>
                             <i class="fa fa-angle-right pull-right"></i>
                         </a>
                     </li>
@@ -111,14 +133,25 @@
                             </a>
                         </li>
                         <li>
+                            <a href="{% url 'feedback:org_feedback' %}">
+                                <i class="fa fa-circle"></i>
+                                Опросы
+                            </a>
+                        </li>
+                        <li>
                             <a href="{% url 'feedback:director_feedback' %}">
                                 <i class="fa fa-circle"></i>
-                                Вопрос директору
+                                Обращение к Генеральному директору
                             </a>
                         </li>
                     </ul>
                 </li>
-
+                <li>
+                    <a class="sidebar-header" href="#">
+                        <span>Банк идей</span>
+                        <i class="fa fa-angle-right pull-right"></i>
+                    </a>
+                </li>
                 <li>
                     <a class="sidebar-header" href="/logout/">
                         <span>Выйти</span>

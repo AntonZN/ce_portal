@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load view_breadcrumbs %}
+{% load solo_tags %}
+{% load editorjs %}
+{% load compress %}
+
+{% block head %}
+    {% compress css %}
+        <link type="text/x-scss" href="{% static 'assets/css/content/content.scss' %}" rel="stylesheet" media="screen">
+    {% endcompress %}
+{% endblock %}
+
+{% block content %}
+    {% get_solo 'organization.OrganizationConfig' as org_config %}
+    <div class="page-body">
+        <div class="container-fluid">
+            <div class="page-header">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="page-header-left">
+                            <h3>О компании</h3>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        {% render_breadcrumbs "breadcrumbs.html" %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="editor-content">
+                                {{ org_config.description | editorjs }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

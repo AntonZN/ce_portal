@@ -1,8 +1,7 @@
 <div>
-    <button class="tag-button active" value="">Все</button>
+    <button class="tag-button active" onclick="window.location='{% url 'employees:employee_list' %}'">Все</button>
     {% for tag in tags %}
         <button class="tag-button" value="{{ tag.name }}">#{{ tag.name }}</button>
-
     {% endfor %}
 </div>
 

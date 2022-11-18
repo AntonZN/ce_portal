@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load view_breadcrumbs %}
+
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/blog.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="page-body">
+        <div class="container-fluid">
+            <div class="page-header">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="page-header-left">
+                            <h3>Опросы
+                            </h3>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        {% render_breadcrumbs "breadcrumbs.html" %}
+                    </div>
+                </div>
+            </div>
+            <div class="blog-page">
+                <div class="row">
+                    <div class="col-xl-12 col-lg-12 col-md-12">
+                        <div class="card">
+                            <div class="card-body">
+                                {% for poll in polls %}
+                                    <div class="row blog-media">
+                                        <div class="col-xl-4">
+                                            <div class="blog-left">
+                                                <a href="{% url 'polls:view_form' poll.code %}">
+                                                    {% if poll.main_image %}
+                                                        {% thumbnail poll.main_image "x400" as poll_image %}
+                                                            <img
+                                                                    src="{{ poll_image.url }}"
+                                                                    class="img-fluid lazyload"
+                                                            >
+                                                        {% endthumbnail %}
+                                                    {% else %}
+                                                        {% thumbnail org_config.default_img "x400" as poll_image %}
+                                                            <img
+                                                                    src="{{ poll_image.url }}"
+                                                                    class="img-fluid lazyload"
+                                                            >
+                                                        {% endthumbnail %}
+                                                    {% endif %}
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-6">
+                                            <div class="blog-right">
+                                                <div>
+                                                    <h6>{{ poll.created_at }}</h6>
+
+                                                    <a href="{% url 'polls:view_form' poll.code %}">
+                                                        <h4>{{ poll.title }}</h4>
+                                                    </a>
+                                                    <p>{{ poll.description }}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% include 'pagination.html' %}
+        </div>
+    </div>
+
+{% endblock %}

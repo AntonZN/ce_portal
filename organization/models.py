@@ -16,7 +16,7 @@ class OrganizationConfig(SingletonModel):
     logo = ImageField(upload_to="org", verbose_name="Логотип", blank=True, null=True)
     description = EditorJsJSONField(
         hideToolbar=False,
-        inlineToolbar=False,
+        inlineToolbar=True,
         autofocus=True,
         i18n=settings.EDITOR_I18N,
         placeholder="Напишите что-нибудь...",

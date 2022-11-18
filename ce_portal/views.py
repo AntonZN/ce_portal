@@ -129,3 +129,16 @@ class AlbumDetail(LoginRequiredMixin, DetailBreadcrumbMixin, DetailView):
         files = File.objects.filter(folder=self.object)
         context["photos"] = files
         return context
+
+
+class AboutDetail(LoginRequiredMixin, DetailBreadcrumbMixin, TemplateView):
+    template_name = "about.html"
+
+    @cached_property
+    def crumbs(self):
+        return [
+            (
+                "О компании",
+                reverse("about", kwargs={}),
+            ),
+        ]
