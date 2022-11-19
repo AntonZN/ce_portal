@@ -1,0 +1,28 @@
+{% load comments %}
+
+<div class="modal fade" id="phrase-{{ phrase.id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
+     style="display: none;" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Комментарии фразы
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">×</span></button>
+            </div>
+            <div class="modal-body">
+                <div class="row section-b-space">
+                    <div class="col-sm-12 mt-2">
+                        {% render_comment_list for phrase %}
+                    </div>
+                </div>
+
+                <div class="row blog-contact mb-5">
+                    <div class="col-sm-12">
+                        {% render_comment_form for phrase %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

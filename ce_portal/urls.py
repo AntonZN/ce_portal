@@ -12,7 +12,7 @@ from ce_portal.views import (
     ProfileView,
     manage_employee_contacts,
     AlbumList,
-    AlbumDetail, AboutDetail,
+    AlbumDetail, AboutDetail, BankIdeas
 )
 
 urlpatterns = [
@@ -20,6 +20,7 @@ urlpatterns = [
     path("", RedirectView.as_view(url="home/", permanent=False)),
     path("home/", HomeView.as_view(), name="home"),
     path("about/", AboutDetail.as_view(), name="about"),
+    path("ideas/", BankIdeas.as_view(), name="ideas"),
     path(
         "profile/",
         ProfileView.as_view(),

@@ -1,5 +1,5 @@
 from django import forms
-from .models import Feedback
+from .models import Feedback, FeedbackForDirector, IdeaFeedback
 
 
 class FeedbackForm(forms.ModelForm):
@@ -12,5 +12,12 @@ class FeedbackForm(forms.ModelForm):
 class DirectorFeedbackForm(forms.ModelForm):
 
     class Meta:
-        model = Feedback
+        model = FeedbackForDirector
+        fields = ("topic", "text")
+
+
+class IdeaFeedbackForm(forms.ModelForm):
+
+    class Meta:
+        model = IdeaFeedback
         fields = ("topic", "text")

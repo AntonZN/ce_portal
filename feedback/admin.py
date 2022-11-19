@@ -1,4 +1,5 @@
 from django.contrib import admin
+from solo.admin import SingletonModelAdmin
 
 # Register your models here.
 from .models import *
@@ -10,4 +11,11 @@ class FeedbackAdmin(admin.ModelAdmin):
     list_filter = ("status",)
 
 
-admin.site.register(FeedbackCategory)
+@admin.register(IdeaPage)
+class IdeaPageAdmin(SingletonModelAdmin):
+    pass
+
+
+admin.site.register(IdeaFeedback)
+admin.site.register(FeedbackForDirector)
+

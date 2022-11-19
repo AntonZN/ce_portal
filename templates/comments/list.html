@@ -12,11 +12,7 @@
         <div class="media">
             <a href="#"
                class="">
-                <img src="
-
-
-                        {% if comment.user.avatar %}{{ comment.user.avatar.url }}{% else %}{% static '/assets/images/smlogo.jpg' %}{% endif %}"
-                     class="" alt="">
+                 {% include 'employees/employee_avatar.html' with size=50 obj=comment.user %}
             </a>
             <div class="media-body">
                 <h6>{{ comment.user.fio }}
@@ -28,10 +24,7 @@
                 <p>{{ comment.comment }}</p>
             </div>
         </div>
-
-
         {% for close in comment.close %}</li></ul>{% endfor %}
-
     {% endfor %}
 </ul>
 

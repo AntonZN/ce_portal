@@ -1,6 +1,7 @@
 from colorfield.fields import ColorField
 from django.conf import settings
 from django.db import models
+from django.urls import reverse
 from django_editorjs_fields import EditorJsJSONField
 from mptt.fields import TreeForeignKey
 from mptt.models import MPTTModel

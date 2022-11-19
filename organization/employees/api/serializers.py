@@ -3,6 +3,13 @@ from abc import ABC
 from rest_framework import serializers
 
 from organization.employees.models import Employee
+from organization.models import Filial
+
+
+class FilialSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Filial
+        fields = ["id", "name"]
 
 
 class EmployeeLikesSerializer(serializers.Serializer):
@@ -22,4 +29,4 @@ class EmployeeSearchSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Employee
-        fields = ("pk", "avatar", "fio", "position")
+        fields = ("pk", "name", "avatar", "fio", "position")

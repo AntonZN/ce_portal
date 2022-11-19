@@ -64,11 +64,13 @@ INSTALLED_APPS = [
     "solo",
     "filer",
     "compressor",
+    "corsheaders",
 ]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -172,3 +174,11 @@ FORM_RENDERER = "django.forms.renderers.TemplatesSetting"
 from .taggit import *  # noqa
 from .editor_conf import *  # noqa
 from .filer import *  # noqa
+
+
+CORS_ALLOWED_ORIGINS = [
+    "https://example.com",
+    "https://sub.example.com",
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+]

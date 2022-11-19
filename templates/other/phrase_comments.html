@@ -1,0 +1,12 @@
+{% load comments %}
+
+{% get_comment_count for phrase as phrase_comment_count %}
+
+<div class="block-like">
+    <a href="" data-bs-toggle="modal" data-bs-target="#phrase-{{ phrase.id }}">
+        <div class="vote">
+            <i class="fa fa-comments"></i>
+            {{ phrase_comment_count }}
+        </div>
+    </a>
+</div>

@@ -21,16 +21,20 @@
             <input type="hidden" name="name" value="Не заполено" id="id_name">
         {% endif %}
 
-        <input type="hidden" name="next" value="{{ news.get_absolute_url }}" />
+        <input type="hidden" name="next" class="nextRedirect" value="" />
 
         <div class="form-row row">
             <div class="col-md-12">
                 <textarea name="comment" class="form-control" placeholder="Введите комментарий"
                           id="id_comment" rows="6" required></textarea>
             </div>
-            <div class="col-md-12">
+            <div class="col-md-12 mt-4">
                 <button class="btn btn-solid" type="submit">Отправить</button>
             </div>
         </div>
     </form>
 </div>
+
+<script>
+    document.querySelectorAll('.nextRedirect').forEach( (x) => { x.value = document.URL } )
+</script>

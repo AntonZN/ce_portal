@@ -20,7 +20,7 @@
 }
 
 .blog-detail-page .blog-detail .main-blog-image {
-  margin-bottom: 40px;
+    margin-bottom: 40px;
 }
 
 .blog-detail-page .blog-detail h3 {
@@ -69,15 +69,8 @@
     border-color: #ddd;
     font-size: 14px;
     padding: 17px 25px;
-    margin-bottom: 30px;
 }
 
-.blog-detail-page .blog-contact .theme-form input, .blog-detail-page .blog-contact .theme-form textarea {
-    border-color: #ddd;
-    font-size: 14px;
-    padding: 17px 25px;
-    margin-bottom: 30px;
-}
 
 .btn-solid {
     padding: 6px 25px;
@@ -92,18 +85,18 @@
     transition: background 300ms ease-in-out;
 }
 
-.blog-detail-page .comment-section li {
+.comment-section li {
     display: block;
-    background: #fff;
 }
 
-.blog-detail-page .comment-section li img {
+.comment-section li img {
     height: auto;
     width: 80px;
     margin-right: 20px;
 }
 
-.blog-detail-page .comment-section .media {
+.comment-section .media {
+    background: #fff;
     padding: 10px;
     margin-top: 1rem;
     margin-bottom: 1rem;
@@ -113,13 +106,13 @@
     border-radius: 8px;
 }
 
-.blog-detail-page .comment-section ul ul:not(:first-child) {
+.comment-section ul ul:not(:first-child) {
     margin-left: 3rem;
 
     position: relative;
 }
 
-.blog-detail-page .comment-section ul ul:last-child::before {
+.comment-section ul ul:last-child::before {
     content: "";
     background-color: rgb(170, 170, 170);
     position: absolute;
@@ -128,7 +121,7 @@
     left: -45px;
 }
 
-.blog-detail-page .comment-section ul ul:not(:last-child)::before {
+.comment-section ul ul:not(:last-child)::before {
     content: "";
 
     left: -10px;

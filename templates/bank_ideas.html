@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load view_breadcrumbs %}
+{% load solo_tags %}
+{% load editorjs %}
+{% load compress %}
+{% load widget_tweaks %}
+
+{% block head %}
+    {% compress css %}
+        <link type="text/x-scss" href="{% static 'assets/css/content/content.scss' %}" rel="stylesheet" media="screen">
+    {% endcompress %}
+{% endblock %}
+
+{% block content %}
+    {% get_solo 'feedback.IdeaPage' as ideas_config %}
+    <div class="page-body">
+        <div class="container-fluid">
+            <div class="page-header">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="page-header-left">
+                            <h3>Банк идей</h3>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        {% render_breadcrumbs "breadcrumbs.html" %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="editor-content">
+                                {{ ideas_config.description | editorjs }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5>Предложите идею </h5>
+                        </div>
+                        <div class="card-body">
+                            <form method="POST" action="{% url 'feedback:idea_feedback' %}">
+                                {% csrf_token %}
+                                {% for hidden in form.hidden_fields %}
+                                    {{ hidden }}
+                                {% endfor %}
+                                <div class="card-body">
+                                    <div class="digital-add">
+                                        {% for field in form.visible_fields %}
+                                            <div class="form-group">
+                                                <label for="{{ field.auto_id }}" class="col-form-label pt-0">
+                                                    <span>*</span>
+                                                    {{ field.label }}</label>
+                                                {% render_field field class+="form-control minimal" %}
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                    <div class="form-group mb-0 mt-5">
+                                        <div class="product-buttons">
+                                            <button type="submit" class="btn btn-primary">Отправить</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+

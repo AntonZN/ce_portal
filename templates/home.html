@@ -19,8 +19,37 @@
     <div class="page-body">
         {% include 'other/banners/banner_block.html' %}
         <div class="container-fluid">
+            {% if phrases %}
+                <div class="row">
+                    <div class="col">
+                        <div class="title">
+                            <h4>Подборка</h4>
+                            <h2 class="title-inner">Фразы дня</h2>
+                        </div>
+                        <div class="slider no-arrow">
+                            {% for phrase in phrases %}
+                                <div style="margin-bottom: 0" class="card">
+                                    <div class="card-body">
+                                        <p>{{ phrase.phrase.name }}</p>
+                                        <div class="d-flex justify-content-end">
+                                            <div>
+                                                {% include 'other/phrase_like.html' with phrase=phrase.phrase %}
+                                            </div>
+                                            {% include 'other/phrase_comments.html' with phrase=phrase.phrase %}
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                {% for phrase in phrases %}
+                     {% include 'other/phrase_comments_modal.html' with phrase=phrase.phrase %}
+                {% endfor %}
+            {% endif %}
+
             {% if main_news %}
-                <div class="title">
+                <div class="title section-t-space">
                     <h4>Важные</h4>
                     <h2 class="title-inner">Новости</h2>
                 </div>
@@ -38,28 +67,7 @@
                 </div>
             {% endif %}
 
-            {% if phrases %}
-                <div class="row">
-                    <div class="col">
-                        <div class="title section-t-space">
-                            <h4>Подборка</h4>
-                            <h2 class="title-inner">Фразы дня</h2>
-                        </div>
-                        <div class="slider no-arrow">
-                            {% for phrase in phrases %}
-                                <div class="card">
-                                    <div class="card-body">
-                                        <p>{{ phrase.phrase.name }}</p>
-                                        <div class="mt-3">
-                                            {% include 'other/phrase_like.html' with phrase=phrase.phrase %}
-                                        </div>
-                                    </div>
-                                </div>
-                            {% endfor %}
-                        </div>
-                    </div>
-                </div>
-            {% endif %}
+
 
             {% if latest_news %}
                 <div class="row blog-page">
@@ -106,6 +114,44 @@
                 </div>
             {% endif %}
 
+            {% if birthdays_cur_month %}
+                <div class="row">
+                    <div class="col">
+                        <div class="title section-t-space">
+                            <h4>В этом месяце</h4>
+                            <h2 class="title-inner">Именинники</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="slider no-arrow">
+                            {% for employee in birthdays_cur_month %}
+                                <div>
+                                    <a href="{% url 'employees:employee_detail' employee.pk %}">
+                                        <div class="card o-hidden widget-cards">
+                                            <div class="secondary-box card-body">
+                                                <div class="media static-top-widget align-items-center">
+                                                    <div class="icons-widgets">
+                                                        <div class="align-self-center text-center">
+                                                            {% include 'employees/employee_avatar.html' with obj=employee size=90 %}
+                                                        </div>
+                                                    </div>
+                                                    <div class="media-body media-doller">
+                                                        <h3>{{ employee.fio }} </h3>
+                                                        <h4>{{ employee.birthday | date }}</h4>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+
             {% if new_employees %}
                 <div class="row">
                     <div class="col">
@@ -140,27 +186,26 @@
                         </div>
                     {% endfor %}
                 </div>
-
-                <div class="row mb-5 mt-5">
-                    <div class="col">
-                        <div class="full-banner small-banner text-center p-center">
-                            <img src="{% static 'assets/images/idea.jpg' %}" alt="" class="bg-img blur-up lazyload">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col">
-                                        <a href="{% url 'feedback:org_feedback' %}?idea=1">
-                                            <div class="banner-contain app-detail white-bg  d-inline-block">
-                                                <h3>Банк идей</h3>
-                                                <h4>Предложите идею</h4>
-                                            </div>
-                                        </a>
-                                    </div>
+            {% endif %}
+            <div class="row mb-5 mt-5">
+                <div class="col">
+                    <div class="full-banner small-banner text-center p-center">
+                        <img src="{% static 'assets/images/idea.jpg' %}" alt="" class="bg-img blur-up lazyload">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col">
+                                    <a href="{% url 'ideas' %}?idea=1">
+                                        <div class="banner-contain app-detail white-bg  d-inline-block">
+                                            <h3>Банк идей</h3>
+                                            <h4>Предложите идею</h4>
+                                        </div>
+                                    </a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            {% endif %}
+            </div>
         </div>
     </div>
 {% endblock %}

@@ -1,3 +1,4 @@
+from datetime import datetime
 from functools import cached_property
 
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -9,6 +10,7 @@ from django.contrib import messages
 from view_breadcrumbs import ListBreadcrumbMixin, DetailBreadcrumbMixin
 
 from blog.models import News
+from feedback.forms import IdeaFeedbackForm
 from organization.employees.froms import EmployeeForm, EmployeeContactsFormSet
 from organization.employees.models import Employee
 from organization.models import OrganizationConfig, Banner
@@ -23,6 +25,7 @@ class HomeView(LoginRequiredMixin, TemplateView):
         config = OrganizationConfig.objects.get()
         context["phrases"] = config.phrases.all()
         context["birthdays_today"] = Employee.manager.get_birthdays()
+        context["birthdays_cur_month"] = Employee.objects.filter(birthday__month=datetime.now().month).order_by("birthday__day")
         # context["birthdays_upcoming"] = Employee.manager.get_upcoming_birthdays(include_day=False, days=14)
         context["main_news"] = News.main.all()
         context["latest_news"] = News.public.exclude(home_view=True)[:6]
@@ -142,3 +145,23 @@ class AboutDetail(LoginRequiredMixin, DetailBreadcrumbMixin, TemplateView):
                 reverse("about", kwargs={}),
             ),
         ]
+
+
+class BankIdeas(LoginRequiredMixin, DetailBreadcrumbMixin, TemplateView):
+    template_name = "bank_ideas.html"
+
+    @cached_property
+    def crumbs(self):
+        return [
+            (
+                "Банк идей",
+                reverse("ideas", kwargs={}),
+            ),
+        ]
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["form"] = IdeaFeedbackForm()
+
+        return context
+
