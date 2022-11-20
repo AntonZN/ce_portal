@@ -78,7 +78,7 @@ class DepartmentTreeAPI(APIView):
         departments = department.get_children()
         children = []
         config = OrganizationConfig.objects.get()
-        avatar = get_thumbnail(config.logo, '100x100', crop='center', quality=99)
+        avatar = get_thumbnail(config.logo, '200x200', crop='center', quality=99)
 
         for department in departments:
             employee_data = {

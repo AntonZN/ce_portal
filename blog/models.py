@@ -48,6 +48,8 @@ class Post(models.Model):
 
     description = models.TextField("Краткое описание", null=False, blank=False)
     body = EditorJsJSONField(
+        plugins=settings.PLUGINS,
+        tools=settings.EDITORJS_CONFIG_TOOLS,
         hideToolbar=False,
         inlineToolbar=True,
         autofocus=True,
