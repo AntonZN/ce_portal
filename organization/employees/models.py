@@ -118,6 +118,7 @@ class Employee(AbstractUser, MPTTModel):
         "organization.Department",
         verbose_name="Департамент",
         on_delete=models.SET_NULL,
+        related_name="employees",
         max_length=150,
         null=True,
         blank=True,

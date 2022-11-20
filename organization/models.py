@@ -70,6 +70,18 @@ class Department(MPTTModel):
         verbose_name_plural = "3. Департаменты"
 
     name = models.CharField("Название", max_length=128)
+    description = EditorJsJSONField(
+        plugins=settings.PLUGINS,
+        tools=settings.EDITORJS_CONFIG_TOOLS,
+        hideToolbar=False,
+        inlineToolbar=True,
+        autofocus=True,
+        i18n=settings.EDITOR_I18N,
+        placeholder="Напишите что-нибудь...",
+        verbose_name="Описание",
+        null=True,
+        blank=True,
+    )
     parent = TreeForeignKey(
         "self",
         verbose_name="Вышестоящий департамент",

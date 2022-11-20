@@ -27,8 +27,7 @@ class ContactsInline(AdminImageMixin, TabularInline):
 
 
 @admin.register(Employee)
-class EmployeeAdmin(AdminImageMixin, UserAdmin, DraggableMPTTAdmin):
-    mptt_indent_field = "username"
+class EmployeeAdmin(AdminImageMixin, UserAdmin):
 
     fieldsets = (
         (None, {"fields": ("username", "password")}),
@@ -56,7 +55,7 @@ class EmployeeAdmin(AdminImageMixin, UserAdmin, DraggableMPTTAdmin):
             },
         ),
     )
-    list_display = ("tree_actions", "username", "fio", "email", "is_staff")
+    list_display = ("username", "fio", "email", "parent", "is_staff")
     list_display_links = ("username",)
     search_fields = ("fio", "username", "email")
     autocomplete_fields = ("parent", "department")

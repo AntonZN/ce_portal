@@ -1,5 +1,6 @@
 from django.contrib import admin
 from django.contrib.admin import display
+from mptt.admin import DraggableMPTTAdmin
 from sorl.thumbnail.admin import AdminImageMixin
 
 from .models import Department, Filial, OrganizationConfig, PhraseForHomePage, PhraseDay, Banner
@@ -7,7 +8,7 @@ from solo.admin import SingletonModelAdmin
 
 
 @admin.register(Department)
-class DepartmentAdmin(admin.ModelAdmin):
+class DepartmentAdmin(DraggableMPTTAdmin):
     search_fields = ("name",)
 
 

@@ -13,7 +13,10 @@ from ce_portal.views import (
     ProfileView,
     manage_employee_contacts,
     AlbumList,
-    AlbumDetail, AboutDetail, BankIdeas, ImageUploadView
+    AlbumDetail,
+    AboutDetail,
+    BankIdeas,
+    ImageUploadView,
 )
 
 urlpatterns = [
@@ -37,15 +40,15 @@ urlpatterns = [
 ]
 
 urlpatterns += [
-                   path("", include("django.contrib.auth.urls")),
-                   path("blog/", include("blog.urls")),
-                   path("polls/", include("polls.urls")),
-                   path("organization/", include("organization.urls")),
-                   path("organization/employees/", include("organization.employees.urls")),
-                   path("feedback/", include("feedback.urls")),
-                   path("editorjs/", include("django_editorjs_fields.urls")),
-                   path("comments/", include("django_comments.urls")),
-               ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    path("", include("django.contrib.auth.urls")),
+    path("blog/", include("blog.urls")),
+    path("polls/", include("polls.urls")),
+    path("organization/", include("organization.urls")),
+    path("organization/employees/", include("organization.employees.urls")),
+    path("feedback/", include("feedback.urls")),
+    path("editorjs/", include("django_editorjs_fields.urls")),
+    path("comments/", include("django_comments.urls")),
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
@@ -81,8 +84,8 @@ urlpatterns += [
     ),
     path("filer/", include("filer.urls")),
     path(
-        'another_file_upload/',
+        "another_file_upload/",
         staff_member_required(ImageUploadView.as_view()),
-        name='editorjs_file_upload',
+        name="editorjs_file_upload",
     ),
 ]

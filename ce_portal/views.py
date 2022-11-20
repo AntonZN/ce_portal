@@ -23,7 +23,7 @@ from blog.models import News
 from feedback.forms import IdeaFeedbackForm
 from organization.employees.froms import EmployeeForm, EmployeeContactsFormSet
 from organization.employees.models import Employee
-from organization.models import OrganizationConfig, Banner
+from organization.models import OrganizationConfig, Banner, Department
 from filer.models import Folder, File
 
 
@@ -216,3 +216,19 @@ class ImageUploadView(View):
                 }
             )
         return JsonResponse({"success": 0})
+
+
+class DepartmentDetail(LoginRequiredMixin, DetailBreadcrumbMixin, DetailView):
+    template_name = "organization/departments/detail.html"
+    context_object_name = "department"
+    breadcrumb_use_pk = True
+    model = Department
+
+    @cached_property
+    def crumbs(self):
+        return [
+            (
+                self.object.name,
+                reverse("about", kwargs={}),
+            ),
+        ]

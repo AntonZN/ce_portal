@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load view_breadcrumbs %}
+{% load solo_tags %}
+{% load editorjs %}
+{% load compress %}
+
+{% block head %}
+    {% compress css %}
+        <link type="text/x-scss" href="{% static 'assets/css/content/content.scss' %}" rel="stylesheet" media="screen">
+    {% endcompress %}
+{% endblock %}
+
+{% block content %}
+    {% get_solo 'organization.OrganizationConfig' as org_config %}
+    <div class="page-body">
+        <div class="container-fluid">
+            <div class="page-header">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="page-header-left">
+                            <h3>{{ department.name }}</h3>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        {% render_breadcrumbs "breadcrumbs.html" %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col">
+                    <div class="card tab2-card">
+                        <div class="card-body">
+                            <ul class="nav nav-tabs nav-material" id="top-tab" role="tablist">
+                                <li class="nav-item"><a class="nav-link active" id="top-profile-tab"
+                                                        data-bs-toggle="tab" href="#top-profile" role="tab"
+                                                        aria-controls="top-profile" aria-selected="true">
+                                    Информация</a>
+                                </li>
+
+                            </ul>
+                            <div class="tab-content" id="top-tabContent">
+                                <div class="tab-pane fade active show" id="top-profile" role="tabpanel"
+                                     aria-labelledby="top-profile-tab">
+                                    <div class="table-responsive profile-table">
+                                        <table class="table table-borderless">
+                                            <tbody>
+                                            {% if department.supervisor %}
+                                                <tr>
+                                                    <td>Руководитель</td>
+                                                    <td>{{ department.supervisor.fio }}</td>
+                                                </tr>
+                                            {% endif %}
+
+                                            <tr>
+                                                <td>Филиал:</td>
+                                                <td>{{ department.filial }}</td>
+                                            </tr>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% if department.description %}
+                        <div class="card mt-3">
+                            <div class="card-header"><h3>О подразделении</h3></div>
+                            <div class="card-body">
+                                <div class="editor-content">
+                                    {{ department.description | editorjs }}
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                    {% if department.employees.all %}
+                        <div class="card mt-3">
+                            <div class="card-header"><h3>Сотрудники подразделения</h3></div>
+                            <div class="card-body">
+                                <div class="table-responsive table-desi">
+                                    <table class="all-package coupon-table table table-striped">
+                                        <thead>
+                                        <tr>
+                                            <th>Фото</th>
+                                            <th>ФИО</th>
+                                            <th>Email</th>
+                                            <th>Департамент</th>
+                                            <th>Должность</th>
+                                            <th></th>
+                                        </tr>
+                                        </thead>
+
+                                        <tbody id="replaceableContent">
+                                        {% include "employees/employees_results_partial.html" with employees=department.employees.all %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

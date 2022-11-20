@@ -90,8 +90,7 @@ class DepartmentTreeAPI(APIView):
                     "name": department.name,
                     "title": department.filial.name,
                     "totalReports": department.get_descendant_count(),
-                    # "link": reverse("organization:department_detail", args=[department.id]),
-                    "link": "#"
+                    "link": reverse("organization:department_detail", args=[department.id]),
                 },
                 "hasChild": not department.is_leaf_node(),
                 "hasParent": department.is_child_node(),
@@ -127,8 +126,7 @@ class DepartmentTreeAPI(APIView):
                     "name": department.name,
                     "title": department.filial.name,
                     "totalReports": department.get_descendant_count(),
-                    # "link": reverse("organization:department_detail", args=[department.id]),
-                    "link": "#"
+                    "link": reverse("organization:department_detail", args=[department.id]),
                 },
                 "hasChild": not department.is_leaf_node(),
                 "hasParent": department.is_child_node(),
