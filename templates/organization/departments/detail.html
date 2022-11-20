@@ -51,7 +51,9 @@
                                             {% if department.supervisor %}
                                                 <tr>
                                                     <td>Руководитель</td>
-                                                    <td>{{ department.supervisor.fio }}</td>
+                                                    <td>
+                                                        <a href="{% url 'employees:employee_detail' department.supervisor.pk %}">{{ department.supervisor.fio }}</a>
+                                                    </td>
                                                 </tr>
                                             {% endif %}
 
