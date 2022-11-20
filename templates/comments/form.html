@@ -4,7 +4,6 @@
     <h3>Оставьте Комментарий</h3>
     <br>
     <form class="theme-form" action="{% comment_form_target %}" method="post">{% csrf_token %}
-
         {% for field in form.hidden_fields %}
             {{ field }}
         {% endfor %}

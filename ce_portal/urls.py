@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
+from django.contrib.admin.views.decorators import staff_member_required
 from django.urls import path, include, re_path
 from django.views.generic import TemplateView, RedirectView
 from drf_yasg import openapi
@@ -12,7 +13,7 @@ from ce_portal.views import (
     ProfileView,
     manage_employee_contacts,
     AlbumList,
-    AlbumDetail, AboutDetail, BankIdeas
+    AlbumDetail, AboutDetail, BankIdeas, ImageUploadView
 )
 
 urlpatterns = [
@@ -36,19 +37,17 @@ urlpatterns = [
 ]
 
 urlpatterns += [
-    path("", include("django.contrib.auth.urls")),
-    path("blog/", include("blog.urls")),
-    path("polls/", include("polls.urls")),
-    path("organization/", include("organization.urls")),
-    path("organization/employees/", include("organization.employees.urls")),
-    path("feedback/", include("feedback.urls")),
-    path("editorjs/", include("django_editorjs_fields.urls")),
-    path("comments/", include("django_comments.urls")),
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+                   path("", include("django.contrib.auth.urls")),
+                   path("blog/", include("blog.urls")),
+                   path("polls/", include("polls.urls")),
+                   path("organization/", include("organization.urls")),
+                   path("organization/employees/", include("organization.employees.urls")),
+                   path("feedback/", include("feedback.urls")),
+                   path("editorjs/", include("django_editorjs_fields.urls")),
+                   path("comments/", include("django_comments.urls")),
+               ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
-
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 schema_url_patterns = [
     path("organization/", include("organization.urls", namespace="organization")),
@@ -81,4 +80,9 @@ urlpatterns += [
         name="schema-redoc",
     ),
     path("filer/", include("filer.urls")),
+    path(
+        'another_file_upload/',
+        staff_member_required(ImageUploadView.as_view()),
+        name='editorjs_file_upload',
+    ),
 ]

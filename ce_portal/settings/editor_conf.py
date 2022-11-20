@@ -1,3 +1,5 @@
+from django.urls import reverse_lazy
+
 EDITOR_I18N = {
     "messages": {
         "ui": {
@@ -61,4 +63,64 @@ EDITOR_I18N = {
             "Unordered": "Маркированный",
         },
     },
+}
+
+PLUGINS = [
+    "@editorjs/paragraph",
+    "@editorjs/image",
+    "@editorjs/header",
+    "@editorjs/list",
+    "@editorjs/quote",
+    "@editorjs/embed",
+    "@editorjs/delimiter",
+    "@editorjs/warning",
+    "@editorjs/link",
+    "@editorjs/marker",
+    "@editorjs/table",
+    "@calumk/editorjs-columns",
+    "@editorjs/attaches",
+    # '@editorjs/checklist',
+    # '@editorjs/raw',
+    "@weekwood/editorjs-video",
+]
+
+EDITORJS_CONFIG_TOOLS = {
+    "Image": {
+        "class": "ImageTool",
+        "inlineToolbar": True,
+        "config": {
+            "endpoints": {
+                "byFile": reverse_lazy("editorjs_image_upload"),
+                "byUrl": reverse_lazy("editorjs_image_by_url"),
+            }
+        },
+    },
+    "Attaches": {
+        "class": "AttachesTool",
+        "inlineToolbar": True,
+        "buttonText": "Загрузить файл",
+        "config": {"endpoint": reverse_lazy("editorjs_file_upload")},
+    },
+    "Header": {
+        "class": "Header",
+        "inlineToolbar": True,
+        "config": {
+            "placeholder": "Enter a header",
+            "levels": [2, 3, 4],
+            "defaultLevel": 2,
+        },
+    },
+    "List": {"class": "List", "inlineToolbar": True},
+    "Quote": {"class": "Quote", "inlineToolbar": True},
+    "Embed": {"class": "Embed"},
+    "Delimiter": {"class": "Delimiter"},
+    "Warning": {"class": "Warning", "inlineToolbar": True},
+    "LinkTool": {
+        "class": "LinkTool",
+        "config": {
+            "endpoint": reverse_lazy("editorjs_linktool"),
+        },
+    },
+    "Marker": {"class": "Marker", "inlineToolbar": True},
+    "Table": {"class": "Table", "inlineToolbar": True},
 }

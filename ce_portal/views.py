@@ -1,12 +1,22 @@
+import os
 from datetime import datetime
 from functools import cached_property
 
+from ckeditor_uploader.utils import storage
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse
+from django.utils.decorators import method_decorator
 from django.views import View
+from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import TemplateView, ListView, DetailView
 from django.contrib import messages
+from django_editorjs_fields.config import (
+    IMAGE_NAME,
+    IMAGE_UPLOAD_PATH,
+    IMAGE_UPLOAD_PATH_DATE,
+)
 from view_breadcrumbs import ListBreadcrumbMixin, DetailBreadcrumbMixin
 
 from blog.models import News
@@ -25,7 +35,9 @@ class HomeView(LoginRequiredMixin, TemplateView):
         config = OrganizationConfig.objects.get()
         context["phrases"] = config.phrases.all()
         context["birthdays_today"] = Employee.manager.get_birthdays()
-        context["birthdays_cur_month"] = Employee.objects.filter(birthday__month=datetime.now().month).order_by("birthday__day")
+        context["birthdays_cur_month"] = Employee.objects.filter(
+            birthday__month=datetime.now().month
+        ).order_by("birthday__day")
         # context["birthdays_upcoming"] = Employee.manager.get_upcoming_birthdays(include_day=False, days=14)
         context["main_news"] = News.main.all()
         context["latest_news"] = News.public.exclude(home_view=True)[:6]
@@ -106,6 +118,7 @@ class AlbumList(LoginRequiredMixin, ListBreadcrumbMixin, ListView):
                 reverse("album_list", kwargs={}),
             ),
         ]
+
     def get_queryset(self):
         config = OrganizationConfig.objects.get()
         return Folder.objects.filter(parent=config.albums_folder)
@@ -165,3 +178,41 @@ class BankIdeas(LoginRequiredMixin, DetailBreadcrumbMixin, TemplateView):
 
         return context
 
+
+class ImageUploadView(View):
+    http_method_names = ["post"]
+    # http_method_names = ["post", "delete"]
+
+    @method_decorator(csrf_exempt)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+
+    def post(self, request):
+        if "file" in request.FILES:
+            the_file = request.FILES["file"]
+
+            filename, extension = os.path.splitext(the_file.name)
+
+            filename = IMAGE_NAME(filename=filename, file=the_file)
+
+            filename += extension
+
+            upload_path = IMAGE_UPLOAD_PATH
+
+            if IMAGE_UPLOAD_PATH_DATE:
+                upload_path += datetime.now().strftime(IMAGE_UPLOAD_PATH_DATE)
+
+            path = storage.save(os.path.join(upload_path, filename), the_file)
+            link = storage.url(path)
+            return JsonResponse(
+                {
+                    "success": 1,
+                    "file": {
+                        "url": link,
+                        "size": "1",
+                        "name": filename,
+                        "extension": extension,
+                    },
+                }
+            )
+        return JsonResponse({"success": 0})
