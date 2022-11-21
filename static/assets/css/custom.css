@@ -476,3 +476,10 @@ form .errorlist {
 .fa-plus:before {
     content: "";
 }
+
+img.scaled:hover {
+    -webkit-transform: scale(1.7);
+    transform: scale(1.7);
+    -webkit-transition: all 0.4s ease;
+    transition: all 0.4s ease;
+}
