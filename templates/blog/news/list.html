@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load view_breadcrumbs %}
+{% load taggit_extras %}
 
 {% block head %}
     <link rel="stylesheet" type="text/css" href="{% static 'assets/css/blog.css' %}">
@@ -40,12 +41,23 @@
                             <div class="theme-card">
                                 <h3>Категории</h3>
                                 <br>
-                                <h4 class="{% if not active_cat %}active{% endif %}" ><a href="{% url 'blog:news_list' %}">Все</a></h4>
+                                <h4 class="{% if not active_cat %}active{% endif %}"><a
+                                        href="{% url 'blog:news_list' %}">Все</a></h4>
                                 {% for category in categories %}
                                     <br>
-                                    <h4 class="{% if active_cat == category.slug %}active{% endif %}"><a href="{% url 'blog:news_list'  category.slug %}">{{ category.name }}</a></h4>
+                                    <h4 class="{% if active_cat == category.slug %}active{% endif %}"><a
+                                            href="{% url 'blog:news_list'  category.slug %}">{{ category.name }}</a>
+                                    </h4>
                                 {% endfor %}
                                 </ul>
+                            </div>
+                        </div>
+                        <div class="blog-sidebar card o-hidden widget-cards">
+                            <div class="theme-card">
+                                <h3>Теги</h3>
+                                <div class="tags mt-4">
+                                    {% get_tag_list_for_news  request %}
+                                </div>
                             </div>
                         </div>
                     </div>

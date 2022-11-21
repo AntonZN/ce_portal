@@ -1,0 +1,28 @@
+<div>
+    <button class="tag-button {% if not active_tag %}active{% endif %}"
+            onclick="window.location='{% url 'blog:news_list' %}'">Все
+    </button>
+    {% for tag in tags %}
+        <button class="tag-button {% if active_tag == tag.slug %}active{% endif %}"
+                onclick="window.location='{% if cat_slug %}{% url 'blog:news_list' cat_slug %}?tag={{ tag.slug }}{% else %}{% url 'blog:news_list' %}?tag={{ tag.slug }}{% endif %}'">
+            #{{ tag.name }}</button>
+    {% endfor %}
+</div>
+
+<style>
+    .tag-button {
+        padding: 0 14px;
+        font-size: 14px;
+        line-height: 25px;
+        margin-bottom: 8px;
+        border: 0;
+        border-radius: 15px;
+        background-color: #f2f2f2;
+        color: #2f2f2f;
+    }
+
+    .tag-button.active {
+        background-color: var(--theme-color);
+        color: white;
+    }
+</style>

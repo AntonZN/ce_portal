@@ -21,15 +21,25 @@ class NewsList(LoginRequiredMixin, ListBreadcrumbMixin, ListView):
 
     def get_queryset(self):
         cat_slug = self.kwargs.get("cat_slug", None)
+        tag_slug = self.request.GET.get("tag", None)
+        query = News.public.all()
+
         if cat_slug:
-            return News.public.filter(category__slug=cat_slug)
-        return News.public.all()
+            query = query.filter(category__slug=cat_slug)
+
+        if tag_slug:
+            query = query.filter(tags__slug=tag_slug)
+
+        return query
 
     def get_context_data(self, *, object_list=None, **kwargs):
-
         context = super().get_context_data(**kwargs)
         context.update(
-            dict(categories=Category.objects.all(), active_cat=self.kwargs.get("cat_slug"))
+            dict(
+                categories=Category.objects.all(),
+                active_cat=self.kwargs.get("cat_slug"),
+                active_tag=self.request.GET.get("tag"),
+            )
         )
         return context
 
@@ -68,14 +78,10 @@ class LikeNews(APIView):
         context["news"] = news
         context["csrf_token"] = get_token(request)
 
-        if NewsLikes.objects.filter(
-                employee=request.user, news=news
-        ).exists():
+        if NewsLikes.objects.filter(employee=request.user, news=news).exists():
             context["htmx_message"] = "Вы уже голосовали за эту новость"
         else:
-            NewsLikes.objects.create(
-                employee=request.user, news=news
-            )
+            NewsLikes.objects.create(employee=request.user, news=news)
             context["htmx_message"] = "Голос успешно засчитан"
 
         html = render_to_string(
