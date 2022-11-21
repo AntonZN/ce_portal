@@ -1,10 +1,14 @@
+
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponseRedirect, JsonResponse
 from django.urls import reverse
 from django.contrib.auth import get_user_model
 from django.contrib.admin.views.decorators import staff_member_required
+from django.views.generic import ListView
+from view_breadcrumbs import ListBreadcrumbMixin
 
 from .models import Choices, Questions, Answer, Form, Responses
 import json
@@ -12,6 +16,14 @@ import random
 import string
 
 User = get_user_model()
+
+
+class PollList(LoginRequiredMixin, ListBreadcrumbMixin, ListView):
+    template_name = "index/list.html"
+    model = Form
+    paginate_by = 30
+    context_object_name = "poll_list"
+    queryset = Form.objects.all()
 
 
 @staff_member_required

@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load view_breadcrumbs %}
+{% load thumbnail %}
 
 {% block head %}
     <link rel="stylesheet" type="text/css" href="{% static 'assets/css/blog.css' %}">
@@ -23,50 +24,26 @@
                 </div>
             </div>
             <div class="blog-page">
-                <div class="row">
-                    <div class="col-xl-12 col-lg-12 col-md-12">
-                        <div class="card">
-                            <div class="card-body">
-                                {% for poll in polls %}
-                                    <div class="row blog-media">
-                                        <div class="col-xl-4">
-                                            <div class="blog-left">
-                                                <a href="{% url 'polls:view_form' poll.code %}">
-                                                    {% if poll.main_image %}
-                                                        {% thumbnail poll.main_image "x400" as poll_image %}
-                                                            <img
-                                                                    src="{{ poll_image.url }}"
-                                                                    class="img-fluid lazyload"
-                                                            >
-                                                        {% endthumbnail %}
-                                                    {% else %}
-                                                        {% thumbnail org_config.default_img "x400" as poll_image %}
-                                                            <img
-                                                                    src="{{ poll_image.url }}"
-                                                                    class="img-fluid lazyload"
-                                                            >
-                                                        {% endthumbnail %}
-                                                    {% endif %}
-                                                </a>
-                                            </div>
+                <div class="row folderBlock">
+                    {% for poll in poll_list %}
+                        <div class="col-lg-4 col-sm-6">
+                            <div class="overlay">
+                                <div class="border-portfolio">
+                                    <a href="{% url 'polls:view_form' poll.code %}" class="bg-size overlay-block">
+                                        <div class="overlay-background">
+                                            <i class="" aria-hidden="true">Пройти</i>
                                         </div>
-                                        <div class="col-xl-6">
-                                            <div class="blog-right">
-                                                <div>
-                                                    <h6>{{ poll.created_at }}</h6>
-
-                                                    <a href="{% url 'polls:view_form' poll.code %}">
-                                                        <h4>{{ poll.title }}</h4>
-                                                    </a>
-                                                    <p>{{ poll.description }}</p>
-                                                </div>
-                                            </div>
+                                        <div class="folderTitle">
+                                            {{ poll.title }}
+                                            {% if poll.description %}
+                                                <p>{{ poll.description }}</p>
+                                            {% endif %}
                                         </div>
-                                    </div>
-                                {% endfor %}
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    {% endfor %}
                 </div>
             </div>
             {% include 'pagination.html' %}

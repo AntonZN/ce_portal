@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.db import models
 from colorfield.fields import ColorField
+from sorl.thumbnail import ImageField
 
 
 class Choices(models.Model):
