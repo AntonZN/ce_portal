@@ -57,7 +57,12 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="javascript:void(0)">
+                                <a href="{% url 'password_change' %}">
+                                    <i data-feather="log-out"></i>Сменить пароль
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{% url 'logout' %}">
                                     <i data-feather="log-out"></i>Выйти
                                 </a>
                             </li>

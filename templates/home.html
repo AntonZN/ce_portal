@@ -67,8 +67,6 @@
                 </div>
             {% endif %}
 
-
-
             {% if latest_news %}
                 <div class="row blog-page">
                     <div class="col">
@@ -134,7 +132,7 @@
                                                 <div class="media static-top-widget align-items-center">
                                                     <div class="icons-widgets">
                                                         <div class="align-self-center text-center">
-                                                            {% include 'employees/employee_avatar.html' with obj=employee size=90 %}
+                                                            {% include 'employees/employee_avatar.html' with obj=employee size=90 no_scaled=1 %}
                                                         </div>
                                                     </div>
                                                     <div class="media-body media-doller">

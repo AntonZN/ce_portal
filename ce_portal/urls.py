@@ -1,3 +1,4 @@
+import mptt_urls
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
@@ -16,7 +17,7 @@ from ce_portal.views import (
     AlbumDetail,
     AboutDetail,
     BankIdeas,
-    ImageUploadView,
+    ImageUploadView, Documents,
 )
 
 urlpatterns = [
@@ -37,6 +38,9 @@ urlpatterns = [
     ),
     path("albums/", AlbumList.as_view(), name="album_list"),
     path("albums/<int:pk>/", AlbumDetail.as_view(), name="album_detail"),
+    path("documents/", Documents.as_view(), name="documents"),
+    path("documents/<int:pk>/", Documents.as_view(), name="documents"),
+
 ]
 
 urlpatterns += [

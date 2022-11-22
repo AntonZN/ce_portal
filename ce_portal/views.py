@@ -6,6 +6,7 @@ from ckeditor_uploader.utils import storage
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
+from django.template.loader import render_to_string
 from django.urls import reverse
 from django.utils.decorators import method_decorator
 from django.views import View
@@ -105,7 +106,6 @@ def manage_employee_contacts(request):
 
 class AlbumList(LoginRequiredMixin, ListBreadcrumbMixin, ListView):
     template_name = "albums/list.html"
-    model = News
     paginate_by = 15
     context_object_name = "folders"
     ordering = ["-date_published"]
@@ -232,3 +232,61 @@ class DepartmentDetail(LoginRequiredMixin, DetailBreadcrumbMixin, DetailView):
                 reverse("about", kwargs={}),
             ),
         ]
+
+
+class Documents(LoginRequiredMixin, ListBreadcrumbMixin, ListView):
+    template_name = "documents/list.html"
+    paginate_by = 100
+    context_object_name = "folders"
+    ordering = ["-date_published"]
+
+    @cached_property
+    def crumbs(self):
+        crumbs_list = [
+
+        ]
+
+        def append_folder(folder):
+            if folder.parent:
+                crumbs_list.append(
+                    (
+                        folder.parent.name,
+                        reverse("documents", kwargs={"pk": folder.parent.pk}),
+                    )
+                )
+                append_folder(folder.parent)
+
+        if self.kwargs.get("pk"):
+            folder = Folder.objects.get(pk=self.kwargs.get("pk"))
+            crumbs_list.append((folder.name, ""))
+            append_folder(folder)
+        if not crumbs_list:
+            crumbs_list.append(("База знаний", ""))
+        return crumbs_list[::-1]
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        try:
+            current_folder = Folder.objects.get(pk=self.kwargs.get("pk"))
+        except Folder.DoesNotExist:
+            current_folder = None
+            pass
+
+        folders = self.get_queryset()
+        files = None
+
+        if not folders:
+            files = File.objects.filter(folder=self.kwargs.get("pk"))
+        context.update(
+            {"folders": folders, "files": files, "current_folder": current_folder}
+        )
+        return context
+
+    def get_queryset(self):
+        if self.kwargs.get("pk"):
+
+            return Folder.objects.filter(parent=self.kwargs.get("pk"))
+
+        config = OrganizationConfig.objects.get()
+        return Folder.objects.filter(parent=config.knowledge_base)

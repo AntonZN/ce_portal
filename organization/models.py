@@ -44,6 +44,15 @@ class OrganizationConfig(SingletonModel):
         null=True,
         blank=True,
         on_delete=models.SET_NULL,
+        related_name="+",
+    )
+    knowledge_base = models.OneToOneField(
+        Folder,
+        verbose_name="Папка для базы знаний",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+",
     )
 
     def __str__(self):

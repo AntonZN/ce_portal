@@ -108,11 +108,13 @@
                         <i class="fa fa-angle-right pull-right"></i>
                     </a>
                     <ul class="sidebar-submenu">
-                        <li>
-                            <a href="#">
-                                <i class="fa fa-circle"></i>База знаний
-                            </a>
-                        </li>
+                        {% if org_config.knowledge_base %}
+                            <li>
+                                <a href="{% url 'documents' %}">
+                                    <i class="fa fa-circle"></i>База знаний
+                                </a>
+                            </li>
+                        {% endif %}
                         <li>
                             <a href="#">
                                 <i class="fa fa-circle"></i>Библиотека
@@ -152,20 +154,15 @@
                         <i class="fa fa-angle-right pull-right"></i>
                     </a>
                 </li>
-                <li>
-                    <a class="sidebar-header" href="/logout/">
-                        <span>Выйти</span>
-                    </a>
-                </li>
             {% else %}
                 <li>
-                    <a class="sidebar-header" href="/login/">
+                    <a class="sidebar-header" href="{% url 'login' %}">
                         <span>Войти</span>
                     </a>
                 </li>
                 <li>
-                    <a class="sidebar-header" href="#">
-                        <span>Забыл пароль</span>
+                    <a class="sidebar-header" href="{% url 'password_reset' %}">
+                        <span>Восстановить пароль</span>
                     </a>
                 </li>
             {% endif %}

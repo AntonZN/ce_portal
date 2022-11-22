@@ -389,6 +389,18 @@ django-js-asset = "*"
 tests = ["coverage", "mock-django"]
 
 [[package]]
+name = "django-mptt-urls"
+version = "2.0.4"
+description = "Django app for creating hierarchical URLs associated with django-MPTT models."
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+django = ">=1.7"
+django-mptt = ">=0.6.1"
+
+[[package]]
 name = "django-polymorphic"
 version = "3.1.0"
 description = "Seamless polymorphic inheritance for Django models"
@@ -986,7 +998,7 @@ python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,>=2.7"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "053d18da5d1c92574f91e59e320a5a7b8f0c012bbc8459d913bda3adc2d36853"
+content-hash = "3ab71e5697cc98c61eab7ab71426e0cf95bf79d8da867577800d3a14d7c14e31"
 
 [metadata.files]
 arrow = [
@@ -1122,6 +1134,9 @@ django-modelcluster = [
 django-mptt = [
     {file = "django-mptt-0.14.0.tar.gz", hash = "sha256:2c92a2b1614c53086278795ccf50580cf1f9b8564f3ff03055dd62bab5987711"},
     {file = "django_mptt-0.14.0-py3-none-any.whl", hash = "sha256:d9a87433ab0e4f35247c6f6d5a93ace6990860a4ba8796f815d185f773b9acfc"},
+]
+django-mptt-urls = [
+    {file = "django-mptt-urls-2.0.4.tar.gz", hash = "sha256:96cac4a5117008feb7dda20692c2adee5919e03ffadd174fd86a584f3b259d60"},
 ]
 django-polymorphic = [
     {file = "django-polymorphic-3.1.0.tar.gz", hash = "sha256:d6955b5308bf6e41dcb22ba7c96f00b51dfa497a8a5ab1e9c06c7951bf417bf8"},

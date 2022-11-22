@@ -139,3 +139,6 @@ class Responses(models.Model):
     response = models.ManyToManyField(
         Answer, related_name="response", verbose_name="Ответы"
     )
+
+
+login_message = ""
