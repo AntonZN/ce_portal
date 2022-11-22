@@ -1,0 +1,139 @@
+{% extends 'base.html' %}
+{% load view_breadcrumbs %}
+{% load static %}
+{% load taggit_extras %}
+
+{% block head %}
+    <script src="{% static 'assets/js/htmx.min.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+    <div class="page-body">
+        <div class="container-fluid">
+            <div class="page-header">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="page-header-left">
+                            <h3>Библиотека
+                                <small>Загруженные книги</small>
+                            </h3>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        {% render_breadcrumbs "breadcrumbs.html" %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid">
+            <div class="card">
+                <div class="card-header">
+                    <form class="search-form search-box">
+                        <div class="form-group">
+                            <input id="bookSearch" type="search" name="query"
+                                   value="{{ request.GET.query }}"
+                                   placeholder="Поиск книг">
+                            <span
+                                    class="d-sm-none mobile-search"></span>
+                        </div>
+                    </form>
+                    <div class="tags mt-3">
+                        {% get_tag_list_for_books %}
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    <div class="table-responsive table-desi">
+                        <table class="all-package coupon-table table table-striped">
+                            <thead>
+                            <tr>
+                                <th></th>
+                                <th>Название</th>
+                                <th>Автор</th>
+                                <th></th>
+                            </tr>
+                            </thead>
+
+                            <tbody id="replaceableContent">
+                            {% include "books/results_partial.html" %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        const user_input = $("#bookSearch")
+        const tags = $(".tag-button")
+        const table = $('#replaceableContent')
+        const endpoint = '{% url 'books:book_list' %}'
+        const delay_by_in_ms = 600
+        let scheduled_function = false
+
+        let ajax_call = function (endpoint, request_parameters) {
+            $.getJSON(endpoint, request_parameters)
+                .done(response => {
+                    table.fadeTo('slow', 0).promise().then(() => {
+                        table.html(response['html_from_view'])
+                        table.fadeTo('slow', 1)
+                    })
+                })
+        }
+
+        user_input.on('keyup', function () {
+            const activeTag = $(".tag-button.active")
+            const request_parameters = {
+                query: $(this).val(),
+                tag: activeTag.val() ? activeTag.val() : undefined,
+            }
+            if (scheduled_function) {
+                clearTimeout(scheduled_function)
+            }
+
+            scheduled_function = setTimeout(ajax_call, delay_by_in_ms, endpoint, request_parameters)
+        })
+
+        user_input.on('search', function () {
+            const activeTag = $(".tag-button.active")
+            const request_parameters = {
+                query: $(this).val(),
+                tag: activeTag.val() ? activeTag.val() : undefined,
+            }
+            if (scheduled_function) {
+                clearTimeout(scheduled_function)
+            }
+
+            scheduled_function = setTimeout(ajax_call, delay_by_in_ms, endpoint, request_parameters)
+        })
+
+        user_input.on('clear', function () {
+            const activeTag = $(".tag-button.active")
+            const request_parameters = {
+                query: $(this).val(),
+                tag: activeTag.val() ? activeTag.val() : undefined,
+            }
+            if (scheduled_function) {
+                clearTimeout(scheduled_function)
+            }
+
+            scheduled_function = setTimeout(ajax_call, delay_by_in_ms, endpoint, request_parameters)
+        })
+
+        tags.on('click', function () {
+            const request_parameters = {
+                query: user_input.val() ? user_input.val() : undefined,
+                tag: $(this).val(),
+            }
+            if (scheduled_function) {
+                clearTimeout(scheduled_function)
+            }
+
+            scheduled_function = setTimeout(ajax_call, delay_by_in_ms, endpoint, request_parameters)
+        })
+    </script>
+{% endblock %}

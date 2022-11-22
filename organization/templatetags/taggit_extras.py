@@ -52,3 +52,14 @@ def get_tag_list_for_news(request):
         template_name="tagify/tag_list_news.html",
         context=context,
     )
+
+
+@register.simple_tag
+def get_tag_list_for_books():
+    queryset = get_queryset("Books")
+    queryset = queryset.order_by("-num_times")
+    context = {"tags": queryset}
+    return render_to_string(
+        template_name="tagify/tag_list_books.html",
+        context=context,
+    )

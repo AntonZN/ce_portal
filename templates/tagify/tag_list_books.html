@@ -1,0 +1,35 @@
+<div>
+    <button class="tag-button active" value="">Все</button>
+    {% for tag in tags %}
+        <button class="tag-button" value="{{ tag.name }}">#{{ tag.name }}</button>
+    {% endfor %}
+</div>
+
+<style>
+    .tag-button {
+        padding: 0 14px;
+        font-size: 14px;
+        line-height: 25px;
+        margin-bottom: 5px;
+        border: 0;
+        border-radius: 15px;
+        background-color: #f2f2f2;
+        color: #2f2f2f;
+    }
+
+    .tag-button.active {
+        background-color: var(--theme-color);
+        color: white;
+    }
+</style>
+
+<script>
+    document.querySelectorAll(".tag-button").forEach(element => {
+        element.addEventListener('click', function () {
+            document.querySelectorAll(".tag-button").forEach(element => {
+                element.className = "tag-button"
+            })
+            element.className = element.className + " active"
+        }, false);
+    })
+</script>

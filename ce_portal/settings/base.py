@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     "blog.apps.BlogConfig",
     "polls.apps.PollsConfig",
     "feedback.apps.FeedbackConfig",
+    "books.apps.BooksConfig",
     "view_breadcrumbs",
     "easy_thumbnails",
     "sorl.thumbnail",
@@ -184,3 +185,7 @@ CORS_ALLOWED_ORIGINS = [
 ]
 
 LOGOUT_REDIRECT_URL = "/login/"
+
+
+X_FRAME_OPTIONS = "SAMEORIGIN"
+SILENCED_SYSTEM_CHECKS = ["security.W019"]

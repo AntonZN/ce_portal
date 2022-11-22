@@ -40,6 +40,7 @@ urlpatterns = [
     path("albums/<int:pk>/", AlbumDetail.as_view(), name="album_detail"),
     path("documents/", Documents.as_view(), name="documents"),
     path("documents/<int:pk>/", Documents.as_view(), name="documents"),
+    path("books/", include('books.urls'), name="books"),
 
 ]
 
