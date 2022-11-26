@@ -86,19 +86,23 @@ class DepartmentTreeAPI(APIView):
 
         for department in departments:
 
-            if department.supervisor.avatar:
+            try:
                 avatar = get_thumbnail(department.supervisor.avatar, '200x200', crop='center', quality=99)
-            else:
+            except Exception:
                 avatar = get_thumbnail(config.logo, '200x200', crop='center', quality=99)
+
+            if department.filial:
+                title = department.filial.name
+            else:
+                title = ""
 
             employee_data = {
                 "id": department.id,
                 "person": {
                     "id": department.id,
                     "avatar": avatar.url,
-                    "department": department.filial.name,
                     "name": department.name,
-                    "title": department.filial.name,
+                    "title": title,
                     "totalReports": department.get_descendant_count(),
                     "link": reverse("organization:department_detail", args=[department.id]),
                 },
@@ -118,6 +122,7 @@ class DepartmentTreeAPI(APIView):
             return self.get_children(department)
         else:
             filial_id = self.request.query_params.get("filial_id", None)
+
             if filial_id is not None:
                 filial = Filial.objects.get(id=filial_id)
                 department = Department.objects.filter(filial=filial).first()
@@ -126,19 +131,23 @@ class DepartmentTreeAPI(APIView):
 
             config = OrganizationConfig.objects.get()
 
-            if department.supervisor.avatar:
+            try:
                 avatar = get_thumbnail(department.supervisor.avatar, '200x200', crop='center', quality=99)
-            else:
+            except Exception:
                 avatar = get_thumbnail(config.logo, '200x200', crop='center', quality=99)
+
+            if department.filial:
+                title = department.filial.name
+            else:
+                title = ""
 
             employee_data = {
                 "id": department.id,
                 "person": {
                     "id": department.id,
                     "avatar": avatar.url,
-                    "department": department.filial.name,
                     "name": department.name,
-                    "title": department.filial.name,
+                    "title": title,
                     "totalReports": department.get_descendant_count(),
                     "link": reverse("organization:department_detail", args=[department.id]),
                 },
