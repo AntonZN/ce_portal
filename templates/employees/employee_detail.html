@@ -87,7 +87,9 @@
                                             {% if employee.department %}
                                                 <tr>
                                                     <td>Департамент</td>
-                                                    <td>{{ employee.department }}</td>
+                                                    <td>
+                                                        <a href="{% url 'organization:department_detail' employee.department.id %}">{{ employee.department }}</a>
+                                                    </td>
                                                 </tr>
                                             {% endif %}
                                             {% if employee.position %}

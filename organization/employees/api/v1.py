@@ -13,6 +13,7 @@ from rest_framework.response import Response
 from django.middleware.csrf import get_token
 
 from rest_framework.views import APIView
+from sorl.thumbnail import get_thumbnail
 
 from organization.employees.api.serializers import EmployeeSearchSerializer
 from organization.employees.models import EmployeeLikes, Employee
@@ -71,9 +72,8 @@ class LikeEmployee(APIView):
         return HttpResponse(html, content_type="text/html")
 
 
-
 class EmployeeTreeAPI(APIView):
-    # permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated]
 
     employee_id = openapi.Parameter(
         "employee_id",
@@ -95,21 +95,24 @@ class EmployeeTreeAPI(APIView):
         children = []
 
         for employee in employees:
+
             if employee.avatar:
-                avatar = employee.avatar.url
+                avatar = get_thumbnail(employee.avatar, '200x200', crop='center', quality=99)
             else:
-                avatar = "https://portal.sm117.ru/static/assets/images/smlogo.jpg"
+                config = OrganizationConfig.objects.get()
+                avatar = get_thumbnail(config.logo, '200x200', crop='center', quality=99)
+
             descendants = len(employee.get_descendants())
             employee_data = {
                 "id": employee.id,
                 "person": {
                     "id": employee.id,
-                    "avatar": avatar,
+                    "avatar": avatar.url,
                     "department": employee.department.name,
-                    "name": employee.get_full_name(),
+                    "name": employee.fio,
                     "title": employee.position.name,
                     "totalReports": descendants,
-                    "link": reverse("organization:employee_detail", args=[employee.id]),
+                    "link": reverse("employees:employee_detail", args=[employee.id]),
                 },
                 "hasChild": not employee.is_leaf_node(),
                 "hasParent": True if descendants > 0 else False,
@@ -134,9 +137,10 @@ class EmployeeTreeAPI(APIView):
                 employee = Employee.objects.first().get_root()
 
             if employee.avatar:
-                avatar = employee.avatar.url
+                avatar = get_thumbnail(employee.avatar, '200x200', crop='center', quality=99)
             else:
-                avatar = "https://portal.sm117.ru/static/assets/images/smlogo.jpg"
+                config = OrganizationConfig.objects.get()
+                avatar = get_thumbnail(config.logo, '200x200', crop='center', quality=99)
 
             descendants = len(employee.get_descendants())
 
@@ -144,12 +148,12 @@ class EmployeeTreeAPI(APIView):
                 "id": employee.id,
                 "person": {
                     "id": employee.id,
-                    "avatar": avatar,
+                    "avatar": avatar.url,
                     "department": employee.department.name,
-                    "name": employee.get_full_name(),
+                    "name": employee.fio,
                     "title": employee.position.name,
                     "totalReports": descendants,
-                    "link": reverse("organization:employee_detail", args=[employee.id]),
+                    "link": reverse("employees:employee_detail", args=[employee.id]),
                 },
                 "hasChild": not employee.is_leaf_node(),
                 "hasParent": True if descendants > 0 else False,

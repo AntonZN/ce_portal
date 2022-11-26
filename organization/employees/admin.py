@@ -27,8 +27,8 @@ class ContactsInline(AdminImageMixin, TabularInline):
 
 
 @admin.register(Employee)
-class EmployeeAdmin(AdminImageMixin, UserAdmin):
-
+class EmployeeAdmin(AdminImageMixin, UserAdmin, DraggableMPTTAdmin):
+    mptt_indent_field = "fio"
     fieldsets = (
         (None, {"fields": ("username", "password")}),
         ("Персональная информация", {"fields": ("fio", "email", "birthday", "avatar")}),
@@ -55,8 +55,8 @@ class EmployeeAdmin(AdminImageMixin, UserAdmin):
             },
         ),
     )
-    list_display = ("username", "fio", "email", "parent", "is_staff")
-    list_display_links = ("username",)
+    list_display = ("tree_actions", "indented_title", "fio", "username",  "email", "parent", "is_staff")
+    list_display_links = ("indented_title",)
     search_fields = ("fio", "username", "email")
     autocomplete_fields = ("parent", "department")
     readonly_fields = ("last_login", "date_joined")

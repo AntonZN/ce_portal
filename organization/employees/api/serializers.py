@@ -3,12 +3,18 @@ from abc import ABC
 from rest_framework import serializers
 
 from organization.employees.models import Employee
-from organization.models import Filial
+from organization.models import Filial, Department
 
 
 class FilialSerializer(serializers.ModelSerializer):
     class Meta:
         model = Filial
+        fields = ["id", "name"]
+
+
+class DepartmentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Department
         fields = ["id", "name"]
 
 

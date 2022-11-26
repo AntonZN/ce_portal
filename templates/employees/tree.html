@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+    <div class="page-body">
+        <div id="root"></div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script type="text/javascript" src="{% static '/assets/js/tree/employees.js' %}"></script>
+{% endblock %}

@@ -15,7 +15,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from sorl.thumbnail import get_thumbnail
 
-from organization.employees.api.serializers import FilialSerializer
+from organization.employees.api.serializers import FilialSerializer, DepartmentSerializer
 from organization.models import PhraseDay, PhraseDayLikes, OrganizationConfig, Department, Filial
 
 
@@ -54,6 +54,11 @@ class LikePhrase(APIView):
 class FilialsView(generics.ListAPIView):
     serializer_class = FilialSerializer
     queryset = Filial.objects.all()
+
+
+class DepartmentsView(generics.ListAPIView):
+    serializer_class = DepartmentSerializer
+    queryset = Department.objects.all()
 
 
 class DepartmentTreeAPI(APIView):
