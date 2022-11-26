@@ -132,6 +132,8 @@ class Employee(AbstractUser, MPTTModel):
         date_joined__gte=timezone.now() - timedelta(days=7)
     ).order_by("-date_joined")
 
+    def __str__(self):
+        return self.fio
 
 class EmployeeLikes(models.Model):
     class Meta:
