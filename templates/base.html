@@ -7,9 +7,9 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="assets/images/dashboard/favicon.png" type="image/x-icon">
-    <link rel="shortcut icon" href="assets/images/dashboard/favicon.png" type="image/x-icon">
-    <title></title>
+    <link rel="icon" href="{% static 'assets/images/favicon.png' %}">
+    <link rel="shortcut icon" href="{% static 'assets/images/favicon.png' %}">
+    <title>{% block title %}{% endblock %}</title>
 
     <!-- Google font-->
     <link rel="stylesheet"
@@ -17,7 +17,6 @@
 
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap">
-
 
     <!-- Font Awesome-->
     <link rel="stylesheet" type="text/css" href="{% static 'assets/css/vendors/font-awesome.css' %}">
@@ -41,7 +40,6 @@
     <link rel="stylesheet" type="text/css" href="{% static 'assets/css/style.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'assets/css/custom.css' %}">
     <link rel="stylesheet" href="{% static 'assets/css/likes.css' %}">
-
 
     {% block head %}
     {% endblock %}
@@ -77,11 +75,6 @@
     <script src="{% static 'assets/js/icons/feather-icon/feather.min.js' %}"></script>
     <script src="{% static 'assets/js/icons/feather-icon/feather-icon.js' %}"></script>
     <script src="{% static 'assets/js/sidebar-menu.js' %}"></script>
-    <!--chartist js-->
-    <script src="{% static 'assets/js/chart/chartist/chartist.js' %}"></script>
-
-    <!--chartjs js-->
-    <script src="{% static 'assets/js/chart/chartjs/chart.min.js' %}"></script>
 
     <!-- lazyload js-->
     <script src="{% static 'assets/js/lazysizes.min.js' %}"></script>
@@ -96,20 +89,6 @@
     <script src="{% static 'assets/js/counter/jquery.counterup.min.js' %}"></script>
     <script src="{% static 'assets/js/counter/counter-custom.js' %}"></script>
 
-    <!--peity chart js-->
-    <script src="{% static 'assets/js/chart/peity-chart/peity.jquery.js' %}"></script>
-
-    <!-- Apex Chart Js -->
-    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-
-    <!--sparkline chart js-->
-    <script src="{% static 'assets/js/chart/sparkline/sparkline.js' %}"></script>
-
-    <!--Customizer admin
-    <script src="{% static 'assets/js/admin-customizer.js' %}"></script>-->
-
-    <!--dashboard custom js-->
-    <script src="{% static 'assets/js/dashboard/default.js' %}"></script>
 
     <!--right sidebar js-->
     <script src="{% static 'assets/js/chat-menu.js' %}"></script>
