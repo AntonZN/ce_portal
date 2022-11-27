@@ -16,6 +16,10 @@ class IdeaPageAdmin(SingletonModelAdmin):
     pass
 
 
+@admin.register(ReleasedEmployeeIdea)
+class ReleasedEmployeeIdeaAdmin(admin.ModelAdmin):
+    autocomplete_fields = ("employee",)
+
+
 admin.site.register(IdeaFeedback)
 admin.site.register(FeedbackForDirector)
-

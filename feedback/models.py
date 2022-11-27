@@ -86,11 +86,21 @@ class IdeaFeedback(BaseFeedback):
 class ReleasedEmployeeIdea(models.Model):
     class Meta:
         verbose_name = "Реализованная идея"
-        verbose_name_plural = "Реализованные идеи"
+        verbose_name_plural = "5. Реализованные идеи"
 
     name = models.CharField("Название", max_length=256)
-    description = models.TextField("Описание", blank=True, null=True)
-    image = ImageField("Изображение", upload_to="awards", null=True, blank=True)
+    description = EditorJsJSONField(
+        plugins=settings.PLUGINS,
+        tools=settings.EDITORJS_CONFIG_TOOLS,
+        hideToolbar=False,
+        inlineToolbar=True,
+        autofocus=True,
+        i18n=settings.EDITOR_I18N,
+        placeholder="Напишите что-нибудь...",
+        verbose_name="Контент",
+        null=True,
+        blank=True,
+    )
     employee = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.SET_NULL,

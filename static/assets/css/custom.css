@@ -175,17 +175,18 @@ form .errorlist {
 
 .home-slider .slider-contain h4, .center-slider .slider-contain h4 {
     font-weight: 700;
-    letter-spacing: 0.3em;
+    letter-spacing: 0.2em;
     color: #777;
     margin-bottom: 15px;
     text-transform: none;
+    font-size: 1.2em;
 }
 
 .home-slider .slider-contain h1, .center-slider .slider-contain h1 {
     margin-bottom: 10px;
     margin-top: 10px;
-    font-size: 48px;
-    line-height: 48px;
+    font-size: 2.1rem;
+    line-height: 2.1rem;
     color: #222;
 }
 
@@ -482,4 +483,21 @@ img.scaled:hover {
     transform: scale(1.7);
     -webkit-transition: all 0.4s ease;
     transition: all 0.4s ease;
+}
+
+@media (max-width: 768px) {
+    .main-title{
+        display: none;
+    }
+    .home-slider .slider-contain, .center-slider .slider-contain {
+        height: 75vh;
+    }
+
+    .home-slider .slider-contain .white-bg {
+        padding: 15px 0 !important;
+        width: 100% !important;
+    }
+    .static-top-widget .media-body h4 {
+        font-size: 12px;
+    }
 }

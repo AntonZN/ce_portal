@@ -153,3 +153,15 @@
     margin-left: 15px;
     border-left: 1px solid #ddd;
 }
+
+
+@media (max-width: 768px) {
+    .blog-page .blog-media .blog-right ul li + li {
+        margin-left: 0;
+        margin-top: 5px;
+    }
+    .blog-detail-page .blog-detail .post-social li + li{
+         margin-left: 0;
+        margin-top: 5px;
+    }
+}

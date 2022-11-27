@@ -45,6 +45,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="row">
                 <div class="col">
                     <div class="card">
@@ -75,6 +76,36 @@
                                     </div>
                                 </div>
                             </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5>Реализованные идеи</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="folderBlock">
+                                {% for idea in ideas %}
+                                    <div class="col-lg-3 col-sm-4">
+                                        <div class="overlay">
+                                            <div class="border-portfolio">
+                                                <a href="{% url 'idea_detail' idea.pk %}"
+                                                   class="bg-size overlay-block">
+                                                    <div class="overlay-background">
+                                                        <i class="" aria-hidden="true">Подробнее</i>
+                                                    </div>
+                                                    <div class="folderTitle">
+                                                        {{ idea.name }}
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
                         </div>
                     </div>
                 </div>

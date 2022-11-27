@@ -165,3 +165,9 @@
 .white-bg {
     background-color: #fff !important
 }
+
+@media (max-width: 768px) {
+    .full-banner.p-center .banner-contain {
+        padding: 40px;
+    }
+}

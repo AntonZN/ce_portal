@@ -17,7 +17,7 @@ from ce_portal.views import (
     AlbumDetail,
     AboutDetail,
     BankIdeas,
-    ImageUploadView, Documents,
+    ImageUploadView, Documents, IdeaDetail,
 )
 
 urlpatterns = [
@@ -26,6 +26,7 @@ urlpatterns = [
     path("home/", HomeView.as_view(), name="home"),
     path("about/", AboutDetail.as_view(), name="about"),
     path("ideas/", BankIdeas.as_view(), name="ideas"),
+    path("ideas/<int:pk>/", IdeaDetail.as_view(), name="idea_detail"),
     path(
         "profile/",
         ProfileView.as_view(),

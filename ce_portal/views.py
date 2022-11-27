@@ -22,6 +22,7 @@ from view_breadcrumbs import ListBreadcrumbMixin, DetailBreadcrumbMixin
 
 from blog.models import News
 from feedback.forms import IdeaFeedbackForm
+from feedback.models import ReleasedEmployeeIdea
 from organization.employees.froms import EmployeeForm, EmployeeContactsFormSet
 from organization.employees.models import Employee
 from organization.models import OrganizationConfig, Banner, Department
@@ -175,7 +176,31 @@ class BankIdeas(LoginRequiredMixin, DetailBreadcrumbMixin, TemplateView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         context["form"] = IdeaFeedbackForm()
+        context["ideas"] = ReleasedEmployeeIdea.objects.all()
+        return context
 
+
+class IdeaDetail(LoginRequiredMixin, DetailBreadcrumbMixin, DetailView):
+    template_name = "bank_ideas_detail.html"
+    model = ReleasedEmployeeIdea
+    breadcrumb_use_pk = True
+    context_object_name = "idea"
+
+    @cached_property
+    def crumbs(self):
+        return [
+            (
+                "Банк идей",
+                reverse("ideas", kwargs={}),
+            ),
+            (
+                self.object.name,
+                None
+            ),
+        ]
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
         return context
 
 

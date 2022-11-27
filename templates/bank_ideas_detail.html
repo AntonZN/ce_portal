@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load view_breadcrumbs %}
+{% load solo_tags %}
+{% load editorjs %}
+{% load compress %}
+{% load thumbnail %}
+
+{% block title %}Реализованная идея{% endblock %}
+
+{% block head %}
+    {% compress css %}
+        <link type="text/x-scss" href="{% static 'assets/css/content/content.scss' %}" rel="stylesheet" media="screen">
+    {% endcompress %}
+{% endblock %}
+
+{% block content %}
+    <div class="page-body">
+        <div class="container-fluid">
+            <div class="page-header">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="page-header-left">
+                            <h3>{{ idea.name }}</h3>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        {% render_breadcrumbs "breadcrumbs.html" %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="table-responsive table-desi">
+                                <h3>Автор</h3>
+                                <br>
+                                <table class="all-package coupon-table table table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>ФИО</th>
+                                        <th>Департамент</th>
+                                        <th>Должность</th>
+                                        <th></th>
+                                    </tr>
+                                    </thead>
+
+                                    <tbody id="replaceableContent">
+                                    <tr>
+                                        <td>
+                                            {% get_solo 'organization.OrganizationConfig' as org_config %}
+
+                                            {% if idea.employee.avatar %}
+                                                {% thumbnail idea.employee.avatar "500x500" crop="30%" as avatar %}
+                                                    <img style="width: 10vw" class="img-fluid blur-up lazyloaded"
+                                                         src="{{ avatar.url }}">
+                                                {% endthumbnail %}
+
+                                            {% else %}
+                                                {% thumbnail org_config.default_img "300x300" crop="30%" as avatar %}
+                                                    <img class="img-fluid img-{{ size }} rounded-circle blur-up lazyloaded"
+                                                         src="{{ avatar.url }}">
+                                                {% endthumbnail %}
+                                            {% endif %}
+                                        </td>
+                                        <td>{{ idea.employee.fio }}</td>
+                                        <td>{{ idea.employee.department.name }}</td>
+                                        <td>{{ idea.employee.position.name }}</td>
+                                        <td>
+                                            <a href="{% url 'employees:employee_detail' idea.employee.pk %}">Подробнее</a>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <br>
+                            <div class="editor-content">
+                                {{ idea.description | editorjs }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
