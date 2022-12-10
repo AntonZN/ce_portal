@@ -7,4 +7,5 @@ urlpatterns = [
     path(route="departments/tree/", view=DepartmentTreeAPI.as_view(), name="departments_tree"),
     path(route="filials/", view=FilialsView.as_view(), name="filial_list"),
     path(route="departments/", view=DepartmentsView.as_view(), name="filial_list"),
+    path(route="search/", view=Search.as_view(), name="search"),
 ]

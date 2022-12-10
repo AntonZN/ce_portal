@@ -1,10 +1,9 @@
 from datetime import timedelta
 
-from django.db.models import Q
-from django.http import JsonResponse, HttpResponse
+from django.db.models import Q, F
+from django.http import HttpResponse
 from django.template.loader import render_to_string
 from django.urls import reverse
-from django.utils import timezone
 from drf_yasg import openapi
 from drf_yasg.utils import swagger_auto_schema
 from rest_framework import status, generics
@@ -15,8 +14,18 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from sorl.thumbnail import get_thumbnail
 
-from organization.employees.api.serializers import FilialSerializer, DepartmentSerializer
-from organization.models import PhraseDay, PhraseDayLikes, OrganizationConfig, Department, Filial
+from organization.employees.api.serializers import (
+    FilialSerializer,
+    DepartmentSerializer,
+)
+from organization.employees.models import Employee
+from organization.models import (
+    PhraseDay,
+    PhraseDayLikes,
+    OrganizationConfig,
+    Department,
+    Filial,
+)
 
 
 class LikePhrase(APIView):
@@ -33,14 +42,10 @@ class LikePhrase(APIView):
         context["phrase"] = phrase
         context["csrf_token"] = get_token(request)
 
-        if PhraseDayLikes.objects.filter(
-            employee=request.user, phrase=phrase
-        ).exists():
+        if PhraseDayLikes.objects.filter(employee=request.user, phrase=phrase).exists():
             context["htmx_message"] = "Вы уже голосовали за эту фразу"
         else:
-            PhraseDayLikes.objects.create(
-                employee=request.user, phrase=phrase
-            )
+            PhraseDayLikes.objects.create(employee=request.user, phrase=phrase)
             context["htmx_message"] = "Голос успешно засчитан"
 
         html = render_to_string(
@@ -87,9 +92,13 @@ class DepartmentTreeAPI(APIView):
         for department in departments:
 
             try:
-                avatar = get_thumbnail(department.supervisor.avatar, '200x200', crop='center', quality=99)
+                avatar = get_thumbnail(
+                    department.supervisor.avatar, "200x200", crop="center", quality=99
+                )
             except Exception:
-                avatar = get_thumbnail(config.logo, '200x200', crop='center', quality=99)
+                avatar = get_thumbnail(
+                    config.logo, "200x200", crop="center", quality=99
+                )
 
             if department.filial:
                 title = department.filial.name
@@ -104,7 +113,9 @@ class DepartmentTreeAPI(APIView):
                     "name": department.name,
                     "title": title,
                     "totalReports": department.get_descendant_count(),
-                    "link": reverse("organization:department_detail", args=[department.id]),
+                    "link": reverse(
+                        "organization:department_detail", args=[department.id]
+                    ),
                 },
                 "hasChild": not department.is_leaf_node(),
                 "hasParent": department.is_child_node(),
@@ -132,9 +143,13 @@ class DepartmentTreeAPI(APIView):
             config = OrganizationConfig.objects.get()
 
             try:
-                avatar = get_thumbnail(department.supervisor.avatar, '200x200', crop='center', quality=99)
+                avatar = get_thumbnail(
+                    department.supervisor.avatar, "200x200", crop="center", quality=99
+                )
             except Exception:
-                avatar = get_thumbnail(config.logo, '200x200', crop='center', quality=99)
+                avatar = get_thumbnail(
+                    config.logo, "200x200", crop="center", quality=99
+                )
 
             if department.filial:
                 title = department.filial.name
@@ -149,12 +164,14 @@ class DepartmentTreeAPI(APIView):
                     "name": department.name,
                     "title": title,
                     "totalReports": department.get_descendant_count(),
-                    "link": reverse("organization:department_detail", args=[department.id]),
+                    "link": reverse(
+                        "organization:department_detail", args=[department.id]
+                    ),
                 },
                 "hasChild": not department.is_leaf_node(),
                 "hasParent": department.is_child_node(),
                 "isHighlight": True,
-                "children": self.get_children(department)
+                "children": self.get_children(department),
             }
             return employee_data
 
@@ -166,4 +183,38 @@ class DepartmentTreeAPI(APIView):
     )
     def get(self, request, *args, **kwargs):
         employees = self.get_departments()
+        return Response(data=employees, status=status.HTTP_200_OK)
+
+
+class Search(APIView):
+    permission_classes = [IsAuthenticated]
+
+    query = openapi.Parameter(
+        "query",
+        openapi.IN_QUERY,
+        type=openapi.TYPE_STRING,
+        required=False,
+    )
+
+    def get_employees(self):
+        query = self.request.query_params.get("query", None)
+
+        if query:
+            query = query.strip()
+            return (
+                [employee.get_search_data() for employee in Employee.objects.filter(
+                    Q(fio__icontains=query)
+                    | Q(username__icontains=query)
+                    | Q(position__name__icontains=query)
+                    | Q(department__name__icontains=query)
+                )]
+            )
+
+    @swagger_auto_schema(
+        manual_parameters=[
+            query,
+        ],
+    )
+    def get(self, request, *args, **kwargs):
+        employees = self.get_employees()
         return Response(data=employees, status=status.HTTP_200_OK)

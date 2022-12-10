@@ -133,7 +133,22 @@ class Employee(AbstractUser, MPTTModel):
     ).order_by("-date_joined")
 
     def __str__(self):
-        return self.fio
+        return f"Сотрудник: {self.fio}"
+
+    def get_search_data(self):
+        return {
+            "id": self.id,
+            "title": self.fio,
+            "type": "Cотрудник",
+            "url": self.get_absolute_url()
+        }
+
+    def get_absolute_url(self):
+        return reverse(
+            "employees:employee_detail",
+            kwargs={"pk": self.id}
+        )
+
 
 class EmployeeLikes(models.Model):
     class Meta:
