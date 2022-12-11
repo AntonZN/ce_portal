@@ -150,7 +150,7 @@ div[data-editorjs-holder] {
 	.change-form #container #content-main .ce-conversion-toolbar {
 		background-color: #ffffff;
 		border-color: #4c6b7a;
-		color: #fbfbfb
+		color: #000;
 	}
 
 	.change-form #container #content-main .ce-popover__item:hover,
