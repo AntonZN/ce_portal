@@ -30,7 +30,7 @@ class ContactsInline(AdminImageMixin, TabularInline):
 class EmployeeAdmin(AdminImageMixin, UserAdmin, DraggableMPTTAdmin):
 
     fieldsets = (
-        (None, {"fields": ("username", "password")}),
+        (None, {"fields": ("username")}),
         ("Персональная информация", {"fields": ("fio", "email", "birthday", "avatar")}),
         ("Штатная информация", {"fields": ("department", "parent", "position")}),
         ("Прочая информация", {"fields": ("description",)}),
