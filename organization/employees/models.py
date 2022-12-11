@@ -43,7 +43,7 @@ class Contacts(models.Model):
     )
 
     def __str__(self):
-        return ""
+        return self.name
 
 
 class Awards(models.Model):
@@ -62,7 +62,7 @@ class Awards(models.Model):
         )
 
     def __str__(self):
-        return ""
+        return self.name
 
 
 class EmployeeAwards(models.Model):
