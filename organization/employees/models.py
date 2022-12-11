@@ -133,7 +133,7 @@ class Employee(AbstractUser, MPTTModel):
     ).order_by("-date_joined")
 
     def __str__(self):
-        return f"Сотрудник: {self.fio}"
+        return f"{self.fio}"
 
     def get_search_data(self):
         return {

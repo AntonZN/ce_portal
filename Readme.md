@@ -16,5 +16,3 @@ create database portal owner portal_user;
 1. create venv or miniconda env
 2. install poetry
 3. run poetry install
-
-1. [x] [admin@OldoGeNtuDiC](http://168.119.13.25:8777/admin/)
