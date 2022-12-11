@@ -136,19 +136,19 @@ div[data-editorjs-holder] {
 
 	.change-form #container #content-main .ce-toolbar__plus:hover,
 	.change-form #container #content-main .ce-toolbar__settings-btn:hover {
-		background-color: #264b5d;
+		background-color: #e1e1e1;
 	}
 
 	.change-form #container #content-main .ce-popover__item-icon,
 	.change-form #container #content-main .ce-conversion-tool__icon {
-		background: #2fa9a9;
+		background: #ffffff;
 	}
 
 	.change-form #container #content-main .ce-popover,
 	.change-form #container #content-main .ce-settings,
 	.change-form #container #content-main .ce-inline-toolbar,
 	.change-form #container #content-main .ce-conversion-toolbar {
-		background-color: #264b5d;
+		background-color: #ffffff;
 		border-color: #4c6b7a;
 		color: #fbfbfb
 	}
