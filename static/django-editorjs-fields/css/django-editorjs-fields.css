@@ -104,6 +104,7 @@ div[data-editorjs-holder] {
 	.change-form #container #content-main .codex-editor .ce-header,
 	.change-form #container #content-main .codex-editor blockquote {
 		color: var(--body-fg);
+		background: none;
 	}
 
 	.change-form #container #content-main .codex-editor .ce-rawtool__textarea {
@@ -130,7 +131,7 @@ div[data-editorjs-holder] {
 	}
 
 	.change-form #container #content-main .codex-editor svg {
-		fill: #fff
+		fill: #000;
 	}
 
 	.change-form #container #content-main .ce-toolbar__plus:hover,
