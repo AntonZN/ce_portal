@@ -103,14 +103,25 @@ class EmployeeTreeAPI(APIView):
                 avatar = get_thumbnail(config.logo, '200x200', crop='center', quality=99)
 
             descendants = len(employee.get_descendants())
+
+            try:
+                position = employee.position.name
+            except AttributeError:
+                position = "Не указано"
+
+            try:
+                department = employee.department.name
+            except AttributeError:
+                department = "Не указано"
+
             employee_data = {
                 "id": employee.id,
                 "person": {
                     "id": employee.id,
                     "avatar": avatar.url,
-                    "department": employee.department.name,
+                    "department": department,
                     "name": employee.fio,
-                    "title": employee.position.name,
+                    "title":position,
                     "totalReports": descendants,
                     "link": reverse("employees:employee_detail", args=[employee.id]),
                 },
@@ -144,14 +155,24 @@ class EmployeeTreeAPI(APIView):
 
             descendants = len(employee.get_descendants())
 
+            try:
+                position = employee.position.name
+            except AttributeError:
+                position = "Не указано"
+
+            try:
+                department = employee.department.name
+            except AttributeError:
+                department = "Не указано"
+
             employee_data = {
                 "id": employee.id,
                 "person": {
                     "id": employee.id,
                     "avatar": avatar.url,
-                    "department": employee.department.name,
+                    "department": department,
                     "name": employee.fio,
-                    "title": employee.position.name,
+                    "title": position,
                     "totalReports": descendants,
                     "link": reverse("employees:employee_detail", args=[employee.id]),
                 },
