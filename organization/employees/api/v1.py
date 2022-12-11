@@ -144,6 +144,10 @@ class EmployeeTreeAPI(APIView):
             if department_id is not None:
                 department = Department.objects.get(id=department_id)
                 employee = department.supervisor
+
+                if not employee:
+                    employee = Employee.objects.first().get_root()
+
             else:
                 employee = Employee.objects.first().get_root()
 
