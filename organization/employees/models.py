@@ -92,10 +92,11 @@ class Employee(AbstractUser, MPTTModel):
     email = models.EmailField(
         "Email",
         unique=True,
-        blank=True,
+        blank=False,
         help_text="Email должен быть уникальным, так как будет служить для авторизации сотрудников на портале",
     )
-    fio = models.CharField(verbose_name="ФИО", max_length=150, null=True, blank=True)
+
+    fio = models.CharField(verbose_name="ФИО", max_length=150, null=True, blank=False)
 
     parent = TreeForeignKey(
         "self",
@@ -112,7 +113,7 @@ class Employee(AbstractUser, MPTTModel):
         verbose_name="Должность",
         on_delete=models.SET_NULL,
         null=True,
-        blank=True,
+        blank=False,
     )
     department = models.ForeignKey(
         "organization.Department",
@@ -121,7 +122,7 @@ class Employee(AbstractUser, MPTTModel):
         related_name="employees",
         max_length=150,
         null=True,
-        blank=True,
+        blank=False,
     )
     description = models.TextField("Информация о сотруднике", blank=True, null=True)
     likes = models.PositiveIntegerField("Лайки", default=0)

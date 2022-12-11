@@ -51,7 +51,7 @@ class EmployeeAdmin(AdminImageMixin, UserAdmin, DraggableMPTTAdmin):
         (
             None,
             {
-                "fields": ("fio", "username", "email", "password1", "password2"),
+                "fields": ("fio", "username", "email", "password1", "password2", "parent", "department"),
             },
         ),
     )
