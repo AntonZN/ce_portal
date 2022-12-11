@@ -55,8 +55,7 @@ class EmployeeAdmin(AdminImageMixin, UserAdmin, DraggableMPTTAdmin):
             },
         ),
     )
-    list_display = ("tree_actions", "indented_title", "username",  "email", "parent", "is_staff")
-    list_display_links = ("indented_title",)
+    list_display = ("tree_actions", "id", "indented_title", "username",  "email", "parent", "is_staff")
     mptt_indent_field = "indented_title"
     search_fields = ("fio", "username", "email")
     autocomplete_fields = ("parent", "department")
