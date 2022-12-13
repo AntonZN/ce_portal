@@ -132,7 +132,6 @@ AUTH_PASSWORD_VALIDATORS = [
 AUTHENTICATION_BACKENDS = [
     "ce_portal.settings.backends.EmailBackend",
 ]
-
 LOGIN_URL = "/login/"
 LOGIN_REDIRECT_URL = "/profile/"
 
@@ -186,6 +185,11 @@ CORS_ALLOWED_ORIGINS = [
 
 LOGOUT_REDIRECT_URL = "/login/"
 
-
 X_FRAME_OPTIONS = "SAMEORIGIN"
 SILENCED_SYSTEM_CHECKS = ["security.W019"]
+
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smtp.mail.ru"
+EMAIL_PORT = 465
+EMAIL_USE_TLS = False
+EMAIL_USE_SSL = True
