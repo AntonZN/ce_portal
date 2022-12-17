@@ -2658,7 +2658,7 @@ table thead .border-bottom-warning th, table tbody .border-bottom-warning th, ta
 }
 
 body {
-    font-family: Lato, sans-serif;
+    font-family: 'IBM Plex Sans', sans-serif;
     position: relative;
     background: #fff;
     font-size: 14px
@@ -2782,7 +2782,7 @@ body {
     background-color: rgba(246, 246, 246, 0.6);
     font-size: 14px;
     overflow-x: hidden;
-    font-family: work-Sans, sans-serif;
+    font-family: 'IBM Plex Sans', sans-serif;
     color: #313131
 }
 
@@ -6492,14 +6492,14 @@ table tbody tr td a .lnr.lnr-trash {
     top: 10px;
     border: none;
     background: transparent;
-    font-family: "Roboto", sans-serif;
+    font-family: 'IBM Plex Sans', sans-serif;
     font-size: 18px;
     color: #232323;
     font-weight: 300
 }
 
 .login-section .materialContainer .input label {
-    font-family: "Roboto", sans-serif;
+    font-family: 'IBM Plex Sans', sans-serif;
     font-size: calc(15px + (18 - 15) * ((100vw - 320px) / (1920 - 320)));
     color: rgba(0, 0, 0, 0.8);
     font-weight: 300
@@ -6510,7 +6510,7 @@ table tbody tr td a .lnr.lnr-trash {
 }
 
 .login-section .materialContainer .button button {
-    font-family: "Roboto", sans-serif;
+    font-family: 'IBM Plex Sans', sans-serif;
     font-size: 24px;
     color: rgba(35, 35, 35, 0.8);
     font-weight: 300
@@ -7930,7 +7930,7 @@ a:hover {
 }
 
 .digital-add .col-form-label {
-    font-family: Nunito
+    font-family: 'IBM Plex Sans', sans-serif;
 }
 
 .digital-add .form-control {
@@ -8032,7 +8032,7 @@ a:hover {
 
 .order-graph h6 {
     color: #313131;
-    font-family: Nunito;
+    font-family: 'IBM Plex Sans', sans-serif;
     font-weight: 700;
     margin-bottom: 20px
 }
@@ -8139,12 +8139,12 @@ a:hover {
 }
 
 .static-top-widget .media-body h3 {
-    font-family: work-Sans, sans-serif;
+    font-family: 'IBM Plex Sans', sans-serif;
     color: inherit;
 }
 
 .static-top-widget .media-body:hover h3 {
-    font-family: work-Sans, sans-serif;
+    font-family: 'IBM Plex Sans', sans-serif;
     color: #f48320;
 }
 
@@ -9003,7 +9003,7 @@ footer.footer-starter-kit {
     margin-bottom: 0;
     font-weight: 800;
     text-transform: uppercase;
-    font-family: Nunito
+    font-family: 'IBM Plex Sans', sans-serif;
 }
 
 .page-wrapper .page-body-wrapper .page-header .row h3 small {
@@ -9026,7 +9026,7 @@ footer.footer-starter-kit {
 }
 
 .page-wrapper .page-body-wrapper .page-header .breadcrumb .breadcrumb-item {
-    font-family: Nunito
+    font-family: 'IBM Plex Sans', sans-serif;
 }
 
 .page-wrapper .page-body-wrapper .page-header .breadcrumb .breadcrumb-item + .breadcrumb-item:before {
@@ -9941,7 +9941,7 @@ ul.notification-dropdown.onhover-show-div li + li:hover {
 }
 
 .digits {
-    font-family: work-Sans, sans-serif
+    font-family: 'IBM Plex Sans', sans-serif;
 }
 
 .custom-scrollbar {
@@ -10106,7 +10106,7 @@ ul.notification-dropdown.onhover-show-div li + li:hover {
     letter-spacing: 1px;
     font-size: 12px;
     color: 999999;
-    font-family: work-Sans, sans-serif
+    font-family: 'IBM Plex Sans', sans-serif;
 }
 
 .chat-box .chat-right-aside .chat .chat-msg-box .message {
@@ -10405,7 +10405,7 @@ ul.notification-dropdown.onhover-show-div li + li:hover {
     width: 70px;
     height: 70px;
     font-size: 18px;
-    font-family: work-Sans, sans-serif;
+    font-family: 'IBM Plex Sans', sans-serif;
     background-clip: content-box
 }
 
