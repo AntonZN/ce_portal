@@ -73,6 +73,17 @@ class Filial(models.Model):
         return self.name
 
 
+class City(models.Model):
+    class Meta:
+        verbose_name = "Город"
+        verbose_name_plural = "2. Города"
+
+    name = models.CharField("Название", max_length=128)
+
+    def __str__(self):
+        return self.name
+
+
 class Department(MPTTModel):
     class Meta:
         verbose_name = "Департамент"

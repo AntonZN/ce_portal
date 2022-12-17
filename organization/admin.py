@@ -3,7 +3,7 @@ from django.contrib.admin import display
 from mptt.admin import DraggableMPTTAdmin
 from sorl.thumbnail.admin import AdminImageMixin
 
-from .models import Department, Filial, OrganizationConfig, PhraseForHomePage, PhraseDay, Banner
+from .models import Department, Filial, OrganizationConfig, PhraseForHomePage, PhraseDay, Banner, City
 from solo.admin import SingletonModelAdmin
 
 
@@ -37,4 +37,4 @@ class PhraseDayAdmin(admin.ModelAdmin):
         return obj.likes.count()
 
 
-admin.site.register(Filial)
+admin.site.register(City)

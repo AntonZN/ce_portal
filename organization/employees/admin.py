@@ -32,7 +32,7 @@ class EmployeeAdmin(AdminImageMixin, UserAdmin, DraggableMPTTAdmin):
     fieldsets = (
         (None, {"fields": ("username",)}),
         ("Персональная информация", {"fields": ("fio", "email", "birthday", "avatar")}),
-        ("Штатная информация", {"fields": ("department", "parent", "position", "internal_phone")}),
+        ("Штатная информация", {"fields": ("city", "department", "parent", "position", "internal_phone")}),
         ("Прочая информация", {"fields": ("description",)}),
         (
             "Привилегии",

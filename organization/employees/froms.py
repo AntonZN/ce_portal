@@ -15,8 +15,10 @@ class EmployeeForm(forms.ModelForm):
 
     class Meta:
         model = Employee
-        fields = ["fio", "birthday", "email", "avatar", "internal_phone"]
-
+        fields = ["fio", "birthday", "email", "avatar", "internal_phone", "description"]
+        labels = {
+            "description": "О себе",
+        }
         widgets = {
             "fio": forms.TextInput(
                 attrs={
@@ -39,6 +41,14 @@ class EmployeeForm(forms.ModelForm):
                     "name": "internal_phone",
                     "class": "form-control",
                     "id": "internal_phone",
+                }
+            ),
+            "description": forms.Textarea(
+                attrs={
+                    "name": "description",
+                    "class": "form-control",
+                    "id": "description",
+                    "rows": 3,
                 }
             ),
             "avatar": forms.FileInput(

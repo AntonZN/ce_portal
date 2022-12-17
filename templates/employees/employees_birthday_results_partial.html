@@ -10,7 +10,7 @@
 
     <td>{{ employee.fio }}</td>
 
-    <td>{{ employee.birthday }}</td>
+    <td>{{ employee.birthday|date:"d.m" }}</td>
 
     <td><a href="{% url 'employees:employee_detail' employee.pk %}">Подробнее</a></td>
     </tr>

@@ -120,7 +120,14 @@ class Employee(AbstractUser, MPTTModel):
         verbose_name="Департамент",
         on_delete=models.SET_NULL,
         related_name="employees",
-        max_length=150,
+        null=True,
+        blank=False,
+    )
+    city = models.ForeignKey(
+        "organization.City",
+        verbose_name="Город",
+        on_delete=models.SET_NULL,
+        related_name="employees",
         null=True,
         blank=False,
     )
