@@ -1,4 +1,5 @@
 from datetime import timedelta
+from typing import List
 
 from django.db.models import Q
 from django.http import JsonResponse, HttpResponse
@@ -90,67 +91,14 @@ class EmployeeTreeAPI(APIView):
     )
 
     @staticmethod
-    def get_children(employee: Employee):
-        employees = employee.get_children()
+    def get_children(employee: Employee = None, employees: List[Employee] = None):
+
+        if employee:
+            employees = employee.get_children()
+
         children = []
 
         for employee in employees:
-
-            if employee.avatar:
-                avatar = get_thumbnail(employee.avatar, '200x200', crop='center', quality=99)
-            else:
-                config = OrganizationConfig.objects.get()
-                avatar = get_thumbnail(config.logo, '200x200', crop='center', quality=99)
-
-            descendants = len(employee.get_descendants())
-
-            try:
-                position = employee.position.name
-            except AttributeError:
-                position = "Не указано"
-
-            try:
-                department = employee.department.name
-            except AttributeError:
-                department = "Не указано"
-
-            employee_data = {
-                "id": employee.id,
-                "person": {
-                    "id": employee.id,
-                    "avatar": avatar.url,
-                    "department": department,
-                    "name": employee.fio,
-                    "title":position,
-                    "totalReports": descendants,
-                    "link": reverse("employees:employee_detail", args=[employee.id]),
-                },
-                "hasChild": not employee.is_leaf_node(),
-                "hasParent": True if descendants > 0 else False,
-                "isHighlight": True,
-                "children": [],
-            }
-            children.append(employee_data)
-        return children
-
-    def get_employees(self):
-        employee_id = self.request.query_params.get("employee_id", None)
-
-        if employee_id is not None:
-            employee = Employee.objects.get(id=employee_id)
-            return self.get_children(employee)
-        else:
-            department_id = self.request.query_params.get("department_id", None)
-            if department_id is not None:
-                department = Department.objects.get(id=department_id)
-                employee = department.supervisor
-
-                if not employee:
-                    employee = Employee.objects.first().get_root()
-
-            else:
-                employee = Employee.objects.first().get_root()
-
             if employee.avatar:
                 avatar = get_thumbnail(employee.avatar, '200x200', crop='center', quality=99)
             else:
@@ -183,8 +131,85 @@ class EmployeeTreeAPI(APIView):
                 "hasChild": not employee.is_leaf_node(),
                 "hasParent": True if descendants > 0 else False,
                 "isHighlight": True,
-                "children": self.get_children(employee)
+                "children": [],
             }
+            children.append(employee_data)
+        return children
+
+    def get_employees(self):
+        employee_id = self.request.query_params.get("employee_id", None)
+        department = None
+        if employee_id is not None:
+            employee = Employee.objects.get(id=employee_id)
+            return self.get_children(employee=employee)
+        else:
+            department_id = self.request.query_params.get("department_id", None)
+            if department_id is not None:
+                department = Department.objects.get(id=department_id)
+                employee = department.supervisor
+            else:
+                employee = Employee.objects.first().get_root()
+
+            if employee:
+                if employee.avatar:
+                    avatar = get_thumbnail(employee.avatar, '200x200', crop='center', quality=99)
+                else:
+                    config = OrganizationConfig.objects.get()
+                    avatar = get_thumbnail(config.logo, '200x200', crop='center', quality=99)
+
+                descendants = len(employee.get_descendants())
+
+                try:
+                    position = employee.position.name
+                except AttributeError:
+                    position = "Не указано"
+
+                try:
+                    department = employee.department.name
+                except AttributeError:
+                    department = "Не указано"
+
+                employee_data = {
+                    "id": employee.id,
+                    "person": {
+                        "id": employee.id,
+                        "avatar": avatar.url,
+                        "department": department,
+                        "name": employee.fio,
+                        "title": position,
+                        "totalReports": descendants,
+                        "link": reverse("employees:employee_detail", args=[employee.id]),
+                    },
+                    "hasChild": not employee.is_leaf_node(),
+                    "hasParent": True if descendants > 0 else False,
+                    "isHighlight": True,
+                    "children": self.get_children(employee=employee)
+                }
+            elif department:
+                config = OrganizationConfig.objects.get()
+                avatar = get_thumbnail(config.logo, '200x200', crop='center', quality=99)
+                employees = Employee.objects.filter(department=department)
+                descendants = employees.count()
+
+                employee_data = {
+                    "id": employee.id,
+                    "person": {
+                        "id": 100000,
+                        "avatar": avatar.url,
+                        "department": "",
+                        "name": department.name,
+                        "title": "",
+                        "totalReports": descendants,
+                        "link": "",
+                    },
+                    "hasChild": True,
+                    "hasParent": True if descendants > 0 else False,
+                    "isHighlight": True,
+                    "children": self.get_children(employees=employees)
+                }
+            else:
+                employee_data = {}
+
             return employee_data
 
     @swagger_auto_schema(

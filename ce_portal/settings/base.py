@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django.contrib.sites",
     "django.forms",
+    "django_extensions",
     "organization.apps.OrgConfig",
     "organization.employees.apps.EmployeesConfig",
     "blog.apps.BlogConfig",

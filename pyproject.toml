@@ -48,6 +48,7 @@ psycopg2 = "^2.9.5"
 redis = "^4.3.4"
 django-cors-headers = "^3.13.0"
 django-mptt-urls = "^2.0.4"
+django-extensions = "^3.2.1"
 
 [build-system]
 requires = ["poetry-core"]

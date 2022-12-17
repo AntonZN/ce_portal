@@ -112,7 +112,7 @@ class DepartmentTreeAPI(APIView):
                     "avatar": avatar.url,
                     "name": department.name,
                     "title": title,
-                    "totalReports": department.get_descendant_count(),
+                    "totalReports": department.get_children().count(),
                     "link": reverse(
                         "organization:department_detail", args=[department.id]
                     ),
@@ -163,7 +163,7 @@ class DepartmentTreeAPI(APIView):
                     "avatar": avatar.url,
                     "name": department.name,
                     "title": title,
-                    "totalReports": department.get_descendant_count(),
+                    "totalReports": department.get_children().count(),
                     "link": reverse(
                         "organization:department_detail", args=[department.id]
                     ),
