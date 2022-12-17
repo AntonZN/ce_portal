@@ -129,10 +129,7 @@ class Department(MPTTModel):
     )
 
     def __str__(self):
-        try:
-            return f"{self.name} ({self.filial.name})"
-        except AttributeError:
-            return self.name
+        return f"{self.name}"
 
 
 class PhraseDay(models.Model):

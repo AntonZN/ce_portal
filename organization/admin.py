@@ -10,6 +10,7 @@ from solo.admin import SingletonModelAdmin
 @admin.register(Department)
 class DepartmentAdmin(DraggableMPTTAdmin):
     search_fields = ("name",)
+    exclude = ("filial",)
 
 
 class PhraseForHomeInline(admin.TabularInline):
