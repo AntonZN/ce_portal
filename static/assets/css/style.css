@@ -11630,7 +11630,6 @@ ul.notification-dropdown.onhover-show-div li + li:hover {
     .page-wrapper .page-body-wrapper .page-sidebar {
         top: 0 !important;
         height: 100% !important;
-        background: #2f2f2f;
         z-index: 11
     }
 
