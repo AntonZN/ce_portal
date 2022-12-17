@@ -15,7 +15,7 @@ class EmployeeForm(forms.ModelForm):
 
     class Meta:
         model = Employee
-        fields = ["fio", "birthday", "email", "avatar"]
+        fields = ["fio", "birthday", "email", "avatar", "internal_phone"]
 
         widgets = {
             "fio": forms.TextInput(
@@ -32,6 +32,13 @@ class EmployeeForm(forms.ModelForm):
                     "class": "form-control",
                     "id": "birthday",
                     "name": "birthday",
+                }
+            ),
+            "internal_phone": forms.TextInput(
+                attrs={
+                    "name": "internal_phone",
+                    "class": "form-control",
+                    "id": "internal_phone",
                 }
             ),
             "avatar": forms.FileInput(

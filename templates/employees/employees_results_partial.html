@@ -12,7 +12,7 @@
 
     <td>{{ employee.email }}</td>
 
-    <td>{{ employee.department.name }}</td>
+    <td>{% if employee.internal_phone %}{{ employee.internal_phone }}{% else %} не заполнено {% endif %}</td>
 
     <td>{{ employee.position.name }}</td>
     <td><a href="{% url 'employees:employee_detail' employee.pk %}">Подробнее</a></td>

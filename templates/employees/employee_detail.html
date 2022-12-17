@@ -114,6 +114,14 @@
                                                     </td>
                                                 </tr>
                                             {% endif %}
+                                            {% if employee.internal_phone %}
+                                                <tr>
+                                                    <td>Внутренний телефон:</td>
+                                                    <td>
+                                                        {{ employee.internal_phone }}
+                                                    </td>
+                                                </tr>
+                                            {% endif %}
                                             </tbody>
                                         </table>
                                     </div>
