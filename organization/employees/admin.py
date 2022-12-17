@@ -8,7 +8,11 @@ from utils.admin import copy_user_action
 from utils.forms import TagsAdminForm
 from .models import Employee, Position, Contacts, Awards, EmployeeAwards
 
-admin.site.register(Position)
+
+@admin.register(Position)
+class PositionAdmin(AdminImageMixin, admin.ModelAdmin):
+    search_fields = ("name",)
+    ordering = ("name",)
 
 
 class EmployeeAwardsInline(TabularInline):
@@ -75,3 +79,4 @@ class EmployeeAdmin(AdminImageMixin, UserAdmin, DraggableMPTTAdmin):
 @admin.register(Awards)
 class AwardsAdmin(AdminImageMixin, admin.ModelAdmin):
     inlines = (EmployeeAwardsInline,)
+    ordering = ("name",)

@@ -78,6 +78,8 @@ class City(models.Model):
         verbose_name = "Город"
         verbose_name_plural = "2. Города"
 
+        ordering = ("name",)
+
     name = models.CharField("Название", max_length=128)
 
     def __str__(self):

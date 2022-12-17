@@ -31,6 +31,7 @@ class OrganizationConfigAdmin(AdminImageMixin, SingletonModelAdmin):
 class PhraseDayAdmin(admin.ModelAdmin):
     search_fields = ("name",)
     list_display = ("name", "get_likes")
+    ordering = ("name",)
 
     @display(description='Оценок')
     def get_likes(self, obj):
