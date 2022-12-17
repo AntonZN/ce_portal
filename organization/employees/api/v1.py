@@ -192,7 +192,7 @@ class EmployeeTreeAPI(APIView):
                 descendants = employees.count()
 
                 employee_data = {
-                    "id": employee.id,
+                    "id": 100001,
                     "person": {
                         "id": 100000,
                         "avatar": avatar.url,
