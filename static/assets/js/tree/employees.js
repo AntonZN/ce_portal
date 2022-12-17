@@ -596,7 +596,7 @@
                 return t.person.name
             })), q.append("text").attr("class", m + " unedited").attr("x", v / 2).attr("y", z.y + 2.4 * w).attr("dy", "4em").style("font-size", 12).style("cursor", "pointer").style("fill", N).text((function (t) {
                 return t.person.title
-            })), q.append("text").attr("class", "org-chart-person-reports").attr("x", b + 50).attr("y", z.y + w + 60).attr("dy", "3em").style("font-size", 14).style("font-weight", 400).style("cursor", "pointer").style("fill", L).text(a.getTextForTitle), q.append("image").attr("id", (function (t) {
+            })), q.append("text").attr("class", "org-chart-person-reports").attr("x", b + 50).attr("y", z.y + w + 60).attr("dy", "4.2em").style("font-size", 14).style("font-weight", 400).style("cursor", "pointer").style("fill", L).text(a.getTextForTitle), q.append("image").attr("id", (function (t) {
                 return "image-" + t.id
             })).attr("width", _).attr("height", _).attr("x", U.x).attr("y", 20).attr("stroke", k).attr("s", (function (t) {
                 t.person.hasImage ? t.person.avatar : T(t).then((function (e) {
@@ -8078,7 +8078,7 @@
             margin: {top: 20, right: 20, bottom: 20, left: 20},
             animationDuration: 350,
             nodeWidth: 220,
-            nodeHeight: 280,
+            nodeHeight: 300,
             nodeSpacing: 24,
             nodePaddingX: 16,
             nodePaddingY: 16,
