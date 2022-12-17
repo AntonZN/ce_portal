@@ -53,14 +53,12 @@
                 <li>
                     <a class="sidebar-header" href="{% url 'blog:news_list' %}">
                         <span>Новости</span>
-                        <i class="fa fa-angle-right pull-right"></i>
                     </a>
                 </li>
 
                 <li>
                     <a class="sidebar-header" href="{% url 'organization:departments' %}">
                         <span>Подразделения</span>
-                        <i class="fa fa-angle-right pull-right"></i>
                     </a>
                 </li>
 
@@ -94,16 +92,14 @@
                 </li>
 
                 <li>
-                    <a class="sidebar-header" href="{% url 'employees:awards_list' %}">
+                    <a class="sidebar-header" href="{% url 'awards_list' %}">
                         <span>Корп. награды</span>
-                        <i class="fa fa-angle-right pull-right"></i>
                     </a>
                 </li>
                 {% if org_config.albums_folder %}
                     <li>
                         <a class="sidebar-header" href="{% url 'album_list' %}">
                             <span>Фотогалерея</span>
-                            <i class="fa fa-angle-right pull-right"></i>
                         </a>
                     </li>
                 {% endif %}
@@ -156,7 +152,6 @@
                 <li>
                     <a class="sidebar-header" href="{% url 'ideas' %}">
                         <span>Банк идей</span>
-                        <i class="fa fa-angle-right pull-right"></i>
                     </a>
                 </li>
             {% else %}

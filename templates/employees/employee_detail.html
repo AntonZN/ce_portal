@@ -156,7 +156,7 @@
                                             <tbody>
                                             {% for award in employee.awards.all %}
                                                 <tr>
-                                                    <td><a href="#">{{ award.award.name }}</a></td>
+                                                    <td><a href="{% url 'awards_detail' award.award.pk %}">{{ award.award.name }}</a></td>
                                                 </tr>
                                             {% endfor %}
                                             </tbody>

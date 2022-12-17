@@ -19,6 +19,7 @@ from ce_portal.views import (
     BankIdeas,
     ImageUploadView, Documents, IdeaDetail,
 )
+from organization.views import AwardList, AwardDetail
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -51,6 +52,8 @@ urlpatterns += [
     path("polls/", include("polls.urls")),
     path("organization/", include("organization.urls")),
     path("organization/employees/", include("organization.employees.urls")),
+    path("organization/awards/", view=AwardList.as_view(), name="awards_list"),
+    path("organization/awards/<int:pk>/", view=AwardDetail.as_view(), name="awards_detail"),
     path("feedback/", include("feedback.urls")),
     path("editorjs/", include("django_editorjs_fields.urls")),
     path("comments/", include("django_comments.urls")),

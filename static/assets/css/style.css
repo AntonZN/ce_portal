@@ -9506,7 +9506,6 @@ ul.notification-dropdown.onhover-show-div li + li:hover {
     overflow: auto;
     -webkit-box-shadow: 0 0 11px rgba(143, 164, 232, 0.08);
     box-shadow: 0 0 11px rgba(143, 164, 232, 0.08);
-    background-color: #2f2f2f
 }
 
 .page-wrapper .page-body-wrapper .page-sidebar {
@@ -9539,7 +9538,7 @@ ul.notification-dropdown.onhover-show-div li + li:hover {
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
-    background-color: #2f2f2f;
+    background-color: #ffffff;
     z-index: 10;
     -webkit-box-shadow: -3px 1px 3px 1px rgba(68, 102, 242, 0.1);
     box-shadow: -3px 1px 3px 1px rgba(68, 102, 242, 0.1)
@@ -9616,7 +9615,7 @@ ul.notification-dropdown.onhover-show-div li + li:hover {
     padding-top: 12px;
     text-transform: capitalize;
     font-weight: 500;
-    color: #fff;
+    color: #313131;
     padding: 15px 18px
 }
 
@@ -9642,10 +9641,8 @@ ul.notification-dropdown.onhover-show-div li + li:hover {
 }
 
 .page-wrapper .page-body-wrapper .page-sidebar .sidebar-menu > li > a.active {
-    color: #fff;
-    background: #fff;
-    background: -webkit-gradient(linear, left top, right top, from(rgba(255, 255, 255, 0.2)), color-stop(80%, rgba(255, 255, 255, 0)));
-    background: linear-gradient(90deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 80%);
+    color:#fff;
+    background: #f48320;
     -webkit-transition: .3s;
     transition: .3s;
     border-radius: 5px;
@@ -9665,10 +9662,7 @@ ul.notification-dropdown.onhover-show-div li + li:hover {
 }
 
 .page-wrapper .page-body-wrapper .page-sidebar .sidebar-menu > li > a:not(.active):hover {
-    color: #fff;
-    background: #fff;
-    background: -webkit-gradient(linear, left top, right top, from(rgba(255, 255, 255, 0.2)), color-stop(80%, rgba(255, 255, 255, 0)));
-    background: linear-gradient(90deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 80%);
+    color: #f48320;
     -webkit-transition: .3s;
     transition: .3s;
     border-radius: 5px;
@@ -9810,7 +9804,7 @@ ul.notification-dropdown.onhover-show-div li + li:hover {
 }
 
 .page-wrapper .page-body-wrapper .page-sidebar .sidebar-menu .sidebar-submenu > li > a:hover {
-    color: #fff;
+    color: #f48320;
     -webkit-transition: .3s;
     transition: .3s
 }
@@ -9820,7 +9814,7 @@ ul.notification-dropdown.onhover-show-div li + li:hover {
 }
 
 .page-wrapper .page-body-wrapper .page-sidebar .sidebar-menu .sidebar-submenu > li.active > a.active {
-    color: #fff
+    color: #f48320
 }
 
 .page-wrapper .page-body-wrapper .page-sidebar ~ .page-body {

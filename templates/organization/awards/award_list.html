@@ -30,7 +30,7 @@
                             <div class="card-body product-box">
                                 <div class="img-wrapper">
                                     <div class="front">
-                                        <a href="{% url 'employees:awards_detail' award.id %}">
+                                        <a href="{% url 'awards_detail' award.id %}">
                                             {% if award.image %}
                                                 {% thumbnail award.image "x400" as image %}
                                                     <img
@@ -48,7 +48,7 @@
                                     </div>
                                 </div>
                                 <div class="product-detail">
-                                    <a href="{% url 'employees:awards_detail' award.id %}">
+                                    <a href="{% url 'awards_detail' award.id %}">
                                         <h6>{{ award.name }}</h6>
                                     </a>
                                 </div>
