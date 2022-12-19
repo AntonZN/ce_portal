@@ -1,5 +1,5 @@
 <div>
-    <button class="tag-button active" onclick="window.location='{% url 'employees:employee_list' %}'">Все</button>
+    <button class="tag-button tag-buttonStart active" onclick="window.location='{% url 'employees:employee_list' %}'">Все</button>
     {% for tag in tags %}
         <button class="tag-button" value="{{ tag.name }}">#{{ tag.name }}</button>
     {% endfor %}
@@ -25,7 +25,11 @@
 <script>
     document.querySelectorAll(".tag-button").forEach(element => {
         element.addEventListener('click', function () {
-            document.querySelectorAll(".tag-button").forEach(element => {
+            if (this.classList.contains('active')) {
+                this.classList.remove('active');
+                return
+            }
+            document.querySelectorAll(".tag-buttonStart").forEach(element => {
                 element.className = "tag-button"
             })
             element.className = element.className + " active"

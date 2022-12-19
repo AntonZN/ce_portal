@@ -29,7 +29,8 @@ class EmployeeList(LoginRequiredMixin, ListBreadcrumbMixin, ListView):
             queryset = Employee.objects.all()
 
         query = params.get("query", None)
-        tag = params.get("tag", None)
+
+        tag = params.getlist("tag[]", None)
 
         if query and not tag:
             query = query.strip()
@@ -38,23 +39,25 @@ class EmployeeList(LoginRequiredMixin, ListBreadcrumbMixin, ListView):
                 | Q(username__icontains=query)
                 | Q(position__name__icontains=query)
                 | Q(department__name__icontains=query)
-                | Q(tags__name__in=[query])
             )
 
         if tag and not query:
-            queryset = queryset.filter(tags__name__in=[tag])
+            for t in tag:
+                queryset = queryset.filter(tags__name=t)
 
         if tag and query:
             query = query.strip()
             queryset = queryset.filter(
-                Q(tags__name__in=[tag])
-                & (
+                (
                     Q(fio__icontains=query)
                     | Q(username__icontains=query)
                     | Q(position__name__icontains=query)
                     | Q(department__name__icontains=query)
                 )
             )
+
+            for t in tag:
+                queryset = queryset.filter(tags__name=t)
 
         if params.get("department_id", None):
             department_id = params.get("department_id")

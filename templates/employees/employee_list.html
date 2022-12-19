@@ -93,10 +93,13 @@
         }
 
         user_input.on('keyup', function () {
-            const activeTag = $(".tag-button.active")
+            let tags = []
+            $(".tag-button.active").each(function () {
+                tags.push($(this).val())
+            })
             const request_parameters = {
                 query: $(this).val(),
-                tag: activeTag.val() ? activeTag.val() : undefined,
+                tag: tags ? tags : undefined,
                 new: params.new ? params.new : undefined
             }
             if (scheduled_function) {
@@ -107,10 +110,13 @@
         })
 
         user_input.on('search', function () {
-            const activeTag = $(".tag-button.active")
+            let tags = []
+            $(".tag-button.active").each(function () {
+                tags.push($(this).val())
+            })
             const request_parameters = {
                 query: $(this).val(),
-                tag: activeTag.val() ? activeTag.val() : undefined,
+                tag: tags ? tags : undefined,
                 new: params.new ? params.new : undefined
             }
             if (scheduled_function) {
@@ -121,10 +127,13 @@
         })
 
         user_input.on('clear', function () {
-            const activeTag = $(".tag-button.active")
+            let tags = []
+            $(".tag-button.active").each(function () {
+                tags.push($(this).val())
+            })
             const request_parameters = {
                 query: $(this).val(),
-                tag: activeTag.val() ? activeTag.val() : undefined,
+                tag: tags ? tags : undefined,
                 new: params.new ? params.new : undefined
             }
             if (scheduled_function) {
@@ -135,9 +144,13 @@
         })
 
         tags.on('click', function () {
+            let tags = []
+            $(".tag-button.active").each(function () {
+                tags.push($(this).val())
+            })
             const request_parameters = {
                 query: user_input.val() ? user_input.val() : undefined,
-                tag: $(this).val(),
+                tag: tags,
                 new: params.new ? params.new : undefined
             }
             if (scheduled_function) {
