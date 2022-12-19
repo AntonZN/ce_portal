@@ -107,7 +107,6 @@ class ReleasedEmployeeIdea(models.Model):
         related_name="released_ideas",
         verbose_name="Сотрудник",
         null=True,
-        blank=True,
     )
 
     def __str__(self):
