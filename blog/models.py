@@ -126,6 +126,15 @@ class News(Post):
     def __str__(self):
         return self.title
 
+    def get_search_data(self):
+        return {
+            "id": self.id,
+            "title": self.title,
+            "type": "Новость",
+            "url": self.get_absolute_url()
+        }
+
+
     def get_absolute_url(self):
         return reverse(
             "blog:news_detail",

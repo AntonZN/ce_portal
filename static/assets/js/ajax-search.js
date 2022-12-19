@@ -14,10 +14,10 @@ var substringMatcher = function (strs) {
 
 
 var states = new Bloodhound({
-    datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
+    datumTokenizer: Bloodhound.tokenizers.obj.whitespace('title'),
     queryTokenizer: Bloodhound.tokenizers.whitespace,
     remote: {
-        url: '/organization/api/v1/employees/search?query=%QUERY',
+        url: '/organization/api/v1/search?query=%QUERY',
         wildcard: '%QUERY'
     }
 });
@@ -28,11 +28,12 @@ states.initialize();
 $('.the-basics .typeahead').typeahead({
         hint: true,
         highlight: true,
-        minLength: 1
+        minLength: 5
     },
     {
         name: 'states',
-        display: 'name',
+        display: 'title',
+        limit: 100,
         source: states.ttAdapter(),
         templates: {
             empty: [
@@ -41,11 +42,9 @@ $('.the-basics .typeahead').typeahead({
                 '</div>'
             ].join('\n'),
             suggestion: function (data) {
-                var avatar = "/static/assets/images/smlogo.jpg"
-                if (data.avatar){
-                    avatar = data.avatar
-                }
-                return '<a href=' + '"/organization/employees/' + data.pk +'" class="man-section"><div class="image-section"><img src=' + avatar + '></div><div class="description-section"><h4>' + data.name + '</h4><span>' + data.position + '</span></div></a>';
+                console.log(data.url)
+
+                return '<a href="' + data.url +'" class="man-section"><div class="description-section"><h4>' + data.title + '</h4><span>' + data.type + '</span></div></a>';
             }
         },
     });

@@ -14,6 +14,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from sorl.thumbnail import get_thumbnail
 
+from blog.models import News
 from organization.employees.api.serializers import (
     FilialSerializer,
     DepartmentSerializer,
@@ -186,6 +187,30 @@ class DepartmentTreeAPI(APIView):
         return Response(data=employees, status=status.HTTP_200_OK)
 
 
+def get_news(query):
+
+    return (
+        [news.get_search_data() for news in News.objects.filter(
+            Q(title__icontains=query)
+            | Q(description__icontains=query)
+            | Q(tags__name__in=[query])
+        ).distinct()]
+    )
+
+
+def get_employees(query):
+
+    return (
+        [employee.get_search_data() for employee in Employee.objects.filter(
+            Q(fio__icontains=query)
+            | Q(username__icontains=query)
+            | Q(position__name__icontains=query)
+            | Q(department__name__icontains=query)
+            | Q(tags__name__in=[query])
+        ).distinct()]
+    )
+
+
 class Search(APIView):
     permission_classes = [IsAuthenticated]
 
@@ -196,25 +221,20 @@ class Search(APIView):
         required=False,
     )
 
-    def get_employees(self):
-        query = self.request.query_params.get("query", None)
-
-        if query:
-            query = query.strip()
-            return (
-                [employee.get_search_data() for employee in Employee.objects.filter(
-                    Q(fio__icontains=query)
-                    | Q(username__icontains=query)
-                    | Q(position__name__icontains=query)
-                    | Q(department__name__icontains=query)
-                )]
-            )
-
     @swagger_auto_schema(
         manual_parameters=[
             query,
         ],
     )
     def get(self, request, *args, **kwargs):
-        employees = self.get_employees()
-        return Response(data=employees, status=status.HTTP_200_OK)
+        query = self.request.query_params.get("query", None)
+
+        if query:
+            query = query.strip()
+            employees = get_employees(query)
+            news = get_news(query)
+            data_list = employees + news
+            return Response(data=data_list, status=status.HTTP_200_OK)
+        else:
+            return Response(data=[], status=status.HTTP_200_OK)
+

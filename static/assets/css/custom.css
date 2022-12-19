@@ -485,10 +485,92 @@ img.scaled:hover {
     transition: all 0.4s ease;
 }
 
+
+/**=====================
+    Ajax Search start
+==========================**/
+.ajax-search.form_search {
+    overflow: unset;
+}
+
+
+
+.ajax-search .empty-message {
+    color: var(--theme-color);
+    text-align: center;
+    padding: 10px 0px;
+    font-size: 16px;
+}
+
+.ajax-search .tt-menu {
+    display: block;
+    width: 100%;
+    background-color: #fff;
+    border: unset !important;
+    -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    max-height: 350px;
+    overflow: auto;
+    top: 55px !important;
+    border-radius: 5px;
+    padding: 15px 0;
+}
+
+.ajax-search .tt-suggestion {
+    padding: 10px 14px;
+    font-size: 18px;
+    line-height: 24px;
+    cursor: pointer;
+}
+
+.ajax-search .man-section {
+    position: relative;
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    border-bottom: 1px solid;
+}
+
+.ajax-search .image-section {
+    padding: 5px 0;
+}
+
+.ajax-search .image-section img {
+    width: 50px;
+    -webkit-filter: invert(0) !important;
+    filter: invert(0) !important;
+}
+
+.ajax-search .description-section {
+    width: 80%;
+    text-align: left;
+}
+
+.ajax-search .description-section h4 {
+    margin: 0px;
+    padding: 0px 7px;
+    font-size: 17px;
+    color: #222222;
+    margin-top: 0;
+    margin-bottom: 2px;
+    text-transform: capitalize;
+}
+
+.ajax-search .description-section span {
+    padding: 7px;
+    font-size: 16px;
+    color: #a09999;
+}
+
 @media (max-width: 768px) {
-    .main-title{
+    .main-title {
         display: none;
     }
+
     .home-slider .slider-contain, .center-slider .slider-contain {
         height: 75vh;
     }
@@ -497,6 +579,7 @@ img.scaled:hover {
         padding: 15px 0 !important;
         width: 100% !important;
     }
+
     .static-top-widget .media-body h4 {
         font-size: 12px;
     }

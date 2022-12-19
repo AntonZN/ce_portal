@@ -9496,9 +9496,10 @@ ul.notification-dropdown.onhover-show-div li + li:hover {
 
 .search-form input {
     border: 1px solid #eff0f1;
-    padding: 10px 10px 10px 70px;
+    padding: 10px 10px 10px 50px;
     border-radius: 5px;
-    background-color: #f8f8f9
+    background-color: #f8f8f9;
+    width: 380px;
 }
 
 .page-wrapper .page-body-wrapper .sidebar {

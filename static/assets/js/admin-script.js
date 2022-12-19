@@ -3,16 +3,8 @@
     $(".mobile-toggle").click(function () {
         $(".nav-menus").toggleClass("open");
     });
-    $(".mobile-search").click(function () {
-        $(".form-control-plaintext").toggleClass("open");
-    });
-    $(".form-control-plaintext").keyup(function (e) {
-        if (e.target.value) {
-            $("body").addClass("offcanvas");
-        } else {
-            $("body").removeClass("offcanvas");
-        }
-    });
+
+
 })(jQuery);
 
 function toggleFullScreen() {

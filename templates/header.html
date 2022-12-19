@@ -28,9 +28,11 @@
             <div class="nav-right col">
                 <ul class="nav-menus">
                     <li>
-                        <form class="form-inline search-form">
+                        <form class="form-inline search-form ajax-search the-basics" role="form" method="GET"
+                              action="{% url 'organization:search' %}">
                             <div class="form-group">
-                                <input class="form-control-plaintext" type="search" placeholder="Поиск...">
+                                <input class="form-control-plaintext typeahead" ng-trim="false" aria-expanded="true"
+                                       type="search" name="query" placeholder="Поиск...">
                                 <span class="d-sm-none mobile-search">
                                             <i data-feather="search"></i>
                                         </span>

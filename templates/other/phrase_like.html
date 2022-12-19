@@ -11,7 +11,7 @@
 
     <script>
         {% if htmx_message %}
-            $("#pidor").html('<div id="htmxResponseMessage">{{ htmx_message }}</div>')
+            $("#phraseLike").html('<div id="htmxResponseMessage">{{ htmx_message }}</div>')
             if (document.getElementById('htmxResponseMessage')) {
                 setTimeout(function () {
                     document.getElementById('htmxResponseMessage').remove();
