@@ -28,7 +28,7 @@ states.initialize();
 $('.the-basics .typeahead').typeahead({
         hint: true,
         highlight: true,
-        minLength: 5
+        minLength: 2
     },
     {
         name: 'states',

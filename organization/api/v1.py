@@ -231,6 +231,7 @@ class Search(APIView):
 
         if query:
             query = query.strip()
+            query = query.replace("#", "")
             employees = get_employees(query)
             news = get_news(query)
             data_list = employees + news
