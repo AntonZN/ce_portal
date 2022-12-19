@@ -9507,6 +9507,7 @@ ul.notification-dropdown.onhover-show-div li + li:hover {
     overflow: auto;
     -webkit-box-shadow: 0 0 11px rgba(143, 164, 232, 0.08);
     box-shadow: 0 0 11px rgba(143, 164, 232, 0.08);
+    background-color: #2f2f2f;
 }
 
 .page-wrapper .page-body-wrapper .page-sidebar {
@@ -9853,8 +9854,7 @@ ul.notification-dropdown.onhover-show-div li + li:hover {
     -webkit-transition: .3s;
     transition: .3s;
     -webkit-transform: translate(-255px);
-    transform: translate(-255px)
-        background-color: #2f2f2f;
+    transform: translate(-255px);
 }
 
 .page-wrapper .page-body-wrapper .sidebar-close .page-body {
