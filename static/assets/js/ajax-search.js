@@ -42,8 +42,6 @@ $('.the-basics .typeahead').typeahead({
                 '</div>'
             ].join('\n'),
             suggestion: function (data) {
-                console.log(data.url)
-
                 return '<a href="' + data.url +'" class="man-section"><div class="description-section"><h4>' + data.title + '</h4><span>' + data.type + '</span></div></a>';
             }
         },
