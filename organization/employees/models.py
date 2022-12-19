@@ -172,3 +172,31 @@ class EmployeeLikes(models.Model):
     )
     created = models.DateTimeField("Создание", auto_now_add=True)
 
+
+class EmployeeAdditionalPosition(models.Model):
+    class Meta:
+        verbose_name = "Дополнительная должность"
+        verbose_name_plural = "Дополнительные должности"
+
+    employee = models.ForeignKey(
+        "Employee", on_delete=models.CASCADE, related_name="additional_positions"
+    )
+    position = models.ForeignKey(
+        Position,
+        verbose_name="Должность",
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=False,
+        related_name="+",
+    )
+    department = models.ForeignKey(
+        "organization.Department",
+        verbose_name="Департамент",
+        on_delete=models.SET_NULL,
+        related_name="+",
+        null=True,
+        blank=False,
+    )
+
+    def __str__(self):
+        return ""

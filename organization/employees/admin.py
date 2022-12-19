@@ -6,13 +6,20 @@ from sorl.thumbnail.admin import AdminImageMixin
 
 from utils.admin import copy_user_action
 from utils.forms import TagsAdminForm
-from .models import Employee, Position, Contacts, Awards, EmployeeAwards
+from .models import Employee, Position, Contacts, Awards, EmployeeAwards, EmployeeAdditionalPosition
 
 
 @admin.register(Position)
 class PositionAdmin(AdminImageMixin, admin.ModelAdmin):
     search_fields = ("name",)
     ordering = ("name",)
+
+
+class EmployeeAdditionalPositionInline(TabularInline):
+    model = EmployeeAdditionalPosition
+    extra = 0
+    show_change_link = False
+    autocomplete_fields = ("position", "department")
 
 
 class EmployeeAwardsInline(TabularInline):
@@ -66,7 +73,7 @@ class EmployeeAdmin(AdminImageMixin, UserAdmin, DraggableMPTTAdmin):
     autocomplete_fields = ("parent", "department")
     readonly_fields = ("last_login", "date_joined")
     list_filter = ("is_staff", "is_superuser", "is_active", "department", "position")
-    inlines = (ContactsInline,)
+    inlines = (ContactsInline, EmployeeAdditionalPositionInline)
     actions = (copy_user_action,)
     form = TagsAdminForm
 

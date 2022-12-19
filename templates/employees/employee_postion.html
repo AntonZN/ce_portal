@@ -1,0 +1,10 @@
+<td>
+    {% if employee.additional_positions.all %}
+        {{ employee.position }} <br>
+        {% for position in employee.additional_positions.all %}
+            {{ position.position }} ({{ position.department }})<br>
+        {% endfor %}
+    {% else %}
+        {{ employee.position }}
+    {% endif %}
+</td>

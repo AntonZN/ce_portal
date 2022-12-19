@@ -70,7 +70,7 @@
                                         </td>
                                         <td>{{ idea.employee.fio }}</td>
                                         <td>{{ idea.employee.department.name }}</td>
-                                        <td>{{ idea.employee.position.name }}</td>
+                                        {% include 'employees/employee_postion.html' with employee=idea.employee %}
                                         <td>
                                             <a href="{% url 'employees:employee_detail' idea.employee.pk %}">Подробнее</a>
                                         </td>

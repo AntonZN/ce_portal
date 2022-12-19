@@ -14,7 +14,7 @@
 
     <td>{% if employee.internal_phone %}{{ employee.internal_phone }}{% else %} не заполнено {% endif %}</td>
 
-    <td>{{ employee.position.name }}</td>
+    {% include 'employees/employee_postion.html' with employee=employee %}
     <td><a href="{% url 'employees:employee_detail' employee.pk %}">Подробнее</a></td>
     </tr>
 {% empty %}

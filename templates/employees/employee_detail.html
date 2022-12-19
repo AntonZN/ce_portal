@@ -96,7 +96,7 @@
                                             {% if employee.position %}
                                                 <tr>
                                                     <td>Должность:</td>
-                                                    <td>{{ employee.position }}</td>
+                                                    {% include 'employees/employee_postion.html' with employee=employee %}
                                                 </tr>
                                             {% endif %}
                                             {% if employee.birthday %}
