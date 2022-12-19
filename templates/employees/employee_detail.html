@@ -102,7 +102,7 @@
                                             {% if employee.birthday %}
                                                 <tr>
                                                     <td>Дата рождения:</td>
-                                                    <td>{{ employee.birthday }}</td>
+                                                    <td>{{ employee.birthday| date:"d.m"}}</td>
                                                 </tr>
                                             {% endif %}
                                             {% if employee.parent %}
