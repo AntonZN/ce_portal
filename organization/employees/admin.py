@@ -32,8 +32,6 @@ class EmployeeAwardsInline(TabularInline):
 
 class ContactsInline(AdminImageMixin, TabularInline):
     model = Contacts
-    can_delete = False
-    show_change_link = False
     extra = 0
 
 
