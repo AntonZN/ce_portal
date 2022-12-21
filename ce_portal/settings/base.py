@@ -176,7 +176,6 @@ from .taggit import *  # noqa
 from .editor_conf import *  # noqa
 from .filer import *  # noqa
 
-
 CORS_ALLOWED_ORIGINS = [
     "https://example.com",
     "https://sub.example.com",
@@ -194,3 +193,4 @@ EMAIL_HOST = "smtp.mail.ru"
 EMAIL_PORT = 465
 EMAIL_USE_TLS = False
 EMAIL_USE_SSL = True
+FILE_UPLOAD_MAX_MEMORY_SIZE = 15621440
