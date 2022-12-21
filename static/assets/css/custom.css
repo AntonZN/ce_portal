@@ -577,7 +577,13 @@ img.scaled:hover {
 .closeTree.active{
         right: 5%;
 }
-
+.embed.youtube{
+    margin: 35px 0;
+}
+.embed.youtube iframe{
+    width: 100%;
+    height: 350px;
+}
 @media (max-width: 768px) {
     .main-title {
         display: none;
