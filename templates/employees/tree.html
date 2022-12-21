@@ -5,10 +5,27 @@
 
 {% block content %}
     <div class="page-body">
-        <div id="root"></div>
+        <div id="root">
+
+        </div>
+        <button type="button" class="btn-close closeTree" aria-label="Close"><span aria-hidden="true">×</span></button>
     </div>
 {% endblock %}
 
 {% block scripts %}
     <script type="text/javascript" src="{% static '/assets/js/tree/employees.js' %}"></script>
+    <script>
+        $('.closeTree').click(function () {
+            if ($(this)[0].classList.contains('active')) {
+                $(this)[0].classList.remove('active');
+                $(this).text('×');
+                $('.departments').show();
+            } else {
+                $('.departments').hide();
+                $(this).addClass('active');
+                $(this).text('←');
+            }
+        });
+    </script>
+
 {% endblock %}

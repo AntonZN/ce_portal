@@ -494,7 +494,6 @@ img.scaled:hover {
 }
 
 
-
 .ajax-search .empty-message {
     color: var(--theme-color);
     text-align: center;
@@ -564,6 +563,19 @@ img.scaled:hover {
     padding: 7px;
     font-size: 16px;
     color: #a09999;
+}
+
+.closeTree {
+    font-size: 40px;
+    color: #f48320;
+    position: absolute;
+    top: 0;
+    right: 385px;
+    opacity: 1;
+    z-index: 10000;
+}
+.closeTree.active{
+        right: 50px;
 }
 
 @media (max-width: 768px) {
