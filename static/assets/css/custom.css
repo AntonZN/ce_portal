@@ -570,12 +570,12 @@ img.scaled:hover {
     color: #f48320;
     position: absolute;
     top: 0;
-    right: 385px;
+    right: 26%;
     opacity: 1;
     z-index: 10000;
 }
 .closeTree.active{
-        right: 50px;
+        right: 5%;
 }
 
 @media (max-width: 768px) {
