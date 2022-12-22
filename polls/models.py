@@ -82,7 +82,8 @@ class Form(models.Model):
     creator = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         verbose_name="Автор",
-        on_delete=models.CASCADE,
+        on_delete=models.SET_NULL,
+        null=True,
         related_name="creator",
     )
     background_color = ColorField(

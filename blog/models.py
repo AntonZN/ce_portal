@@ -43,7 +43,7 @@ class Post(models.Model):
         abstract = True
 
     author = models.ForeignKey(
-        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="posts"
+        settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, related_name="posts"
     )
 
     description = models.TextField("Краткое описание", null=False, blank=False)
