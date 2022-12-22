@@ -1,8 +1,6 @@
 from django.conf import settings
 from django.db import models
-from django.urls import reverse
 from django_editorjs_fields import EditorJsJSONField
-from sorl.thumbnail import ImageField
 from solo.models import SingletonModel
 
 
@@ -102,9 +100,8 @@ class ReleasedEmployeeIdea(models.Model):
         null=True,
         blank=True,
     )
-    employee = models.ForeignKey(
+    employee = models.ManyToManyField(
         settings.AUTH_USER_MODEL,
-        on_delete=models.SET_NULL,
         related_name="released_ideas",
         verbose_name="Сотрудник",
         null=True,

@@ -3,19 +3,9 @@ from organization.employees.models import Employee, Contacts
 
 
 class EmployeeForm(forms.ModelForm):
-    email = forms.EmailField(
-        widget=forms.EmailInput(
-            attrs={
-                "name": "email",
-                "id": "email",
-                "class": "form-control",
-            }
-        ),
-    )
-
     class Meta:
         model = Employee
-        fields = ["fio", "birthday", "email", "avatar", "internal_phone", "description"]
+        fields = ["fio", "birthday", "description"]
         labels = {
             "description": "О себе",
         }
@@ -36,26 +26,12 @@ class EmployeeForm(forms.ModelForm):
                     "name": "birthday",
                 }
             ),
-            "internal_phone": forms.TextInput(
-                attrs={
-                    "name": "internal_phone",
-                    "class": "form-control",
-                    "id": "internal_phone",
-                }
-            ),
             "description": forms.Textarea(
                 attrs={
                     "name": "description",
                     "class": "form-control",
                     "id": "description",
                     "rows": 3,
-                }
-            ),
-            "avatar": forms.FileInput(
-                attrs={
-                    "class": "form-control clearablefileinput",
-                    "type": "file",
-                    "id": "avatar",
                 }
             ),
         }

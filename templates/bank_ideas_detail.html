@@ -37,44 +37,22 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="table-responsive table-desi">
-                                <h3>Автор</h3>
+                                <h3>Авторы</h3>
                                 <br>
                                 <table class="all-package coupon-table table table-striped">
                                     <thead>
                                     <tr>
-                                        <th></th>
+                                        <th>Фото</th>
                                         <th>ФИО</th>
-                                        <th>Департамент</th>
+                                        <th>Email</th>
+                                        <th>Внутренний телефон</th>
                                         <th>Должность</th>
                                         <th></th>
                                     </tr>
                                     </thead>
 
                                     <tbody id="replaceableContent">
-                                    <tr>
-                                        <td>
-                                            {% get_solo 'organization.OrganizationConfig' as org_config %}
-
-                                            {% if idea.employee.avatar %}
-                                                {% thumbnail idea.employee.avatar "500x500" crop="30%" as avatar %}
-                                                    <img style="width: 10vw" class="img-fluid blur-up lazyloaded"
-                                                         src="{{ avatar.url }}">
-                                                {% endthumbnail %}
-
-                                            {% else %}
-                                                {% thumbnail org_config.default_img "300x300" crop="30%" as avatar %}
-                                                    <img class="img-fluid img-{{ size }} rounded-circle blur-up lazyloaded"
-                                                         src="{{ avatar.url }}">
-                                                {% endthumbnail %}
-                                            {% endif %}
-                                        </td>
-                                        <td>{{ idea.employee.fio }}</td>
-                                        <td>{{ idea.employee.department.name }}</td>
-                                        {% include 'employees/employee_postion.html' with employee=idea.employee %}
-                                        <td>
-                                            <a href="{% url 'employees:employee_detail' idea.employee.pk %}">Подробнее</a>
-                                        </td>
-                                    </tr>
+                                    {% include "employees/employees_results_partial.html" with employees=idea.employee.all %}
                                     </tbody>
                                 </table>
                             </div>

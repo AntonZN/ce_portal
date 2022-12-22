@@ -8,6 +8,7 @@ from django.views.generic import TemplateView, RedirectView
 from drf_yasg import openapi
 from drf_yasg.views import get_schema_view as get_schema_view_yasg
 from rest_framework import permissions
+from django.contrib.auth import views as auth_views
 
 from ce_portal.views import (
     HomeView,
@@ -17,7 +18,9 @@ from ce_portal.views import (
     AlbumDetail,
     AboutDetail,
     BankIdeas,
-    ImageUploadView, Documents, IdeaDetail,
+    ImageUploadView,
+    Documents,
+    IdeaDetail,
 )
 from organization.views import AwardList, AwardDetail
 
@@ -42,18 +45,22 @@ urlpatterns = [
     path("albums/<int:pk>/", AlbumDetail.as_view(), name="album_detail"),
     path("documents/", Documents.as_view(), name="documents"),
     path("documents/<int:pk>/", Documents.as_view(), name="documents"),
-    path("books/", include('books.urls'), name="books"),
-
+    path("books/", include("books.urls"), name="books"),
 ]
 
 urlpatterns += [
-    path("", include("django.contrib.auth.urls")),
+    path("login/", auth_views.LoginView.as_view(), name="login"),
+    path("logout/", auth_views.LogoutView.as_view(), name="logout"),
     path("blog/", include("blog.urls")),
     path("polls/", include("polls.urls")),
     path("organization/", include("organization.urls")),
     path("organization/employees/", include("organization.employees.urls")),
     path("organization/awards/", view=AwardList.as_view(), name="awards_list"),
-    path("organization/awards/<int:pk>/", view=AwardDetail.as_view(), name="awards_detail"),
+    path(
+        "organization/awards/<int:pk>/",
+        view=AwardDetail.as_view(),
+        name="awards_detail",
+    ),
     path("feedback/", include("feedback.urls")),
     path("editorjs/", include("django_editorjs_fields.urls")),
     path("comments/", include("django_comments.urls")),
