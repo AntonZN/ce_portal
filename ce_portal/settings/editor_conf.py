@@ -67,7 +67,7 @@ EDITOR_I18N = {
 
 PLUGINS = [
     "@editorjs/paragraph",
-    "@editorjs/image",
+    "@editorjs/image@2.6.0",
     "@editorjs/header",
     "@editorjs/list",
     "@editorjs/quote",
