@@ -15,16 +15,18 @@ class EmployeeForm(forms.ModelForm):
                     "name": "fio",
                     "class": "form-control",
                     "id": "fio",
+                    "readonly": "readonly",
                 }
             ),
             "birthday": forms.DateInput(
-                format='%Y-%m-%d',
+                format="%Y-%m-%d",
                 attrs={
                     "type": "date",
                     "class": "form-control",
                     "id": "birthday",
                     "name": "birthday",
-                }
+                    "readonly": "readonly",
+                },
             ),
             "description": forms.Textarea(
                 attrs={
@@ -38,7 +40,6 @@ class EmployeeForm(forms.ModelForm):
 
 
 class EmployeeContactsForm(forms.ModelForm):
-
     class Meta:
         model = Contacts
         fields = ["name", "value"]
@@ -63,5 +64,5 @@ class EmployeeContactsForm(forms.ModelForm):
 
 
 EmployeeContactsFormSet = forms.inlineformset_factory(
-    Employee, Contacts, form=EmployeeContactsForm, extra=1, max_num=10)
-
+    Employee, Contacts, form=EmployeeContactsForm, extra=1, max_num=10
+)

@@ -2695,7 +2695,7 @@ h3 {
 
 h4 {
     font-size: 18px;
-    text-transform: capitalize;
+    text-transform: unset;
     font-weight: 400;
     letter-spacing: 0.03em;
     line-height: 1
@@ -4322,7 +4322,7 @@ button.btn.btn-solid:active, button.btn.btn-outline:active {
     -webkit-transition: all 0.5s ease;
     transition: all 0.5s ease;
     font-size: 16px;
-    text-transform: capitalize;
+    text-transform: unset;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden
@@ -4837,7 +4837,7 @@ table tr th {
 .tracker-table tbody tr td a {
     font-weight: 400;
     font-size: 14px;
-    text-transform: capitalize;
+    text-transform: unset;
     display: inline-block
 }
 
@@ -4902,7 +4902,7 @@ table tr th {
     background-color: rgba(226, 36, 84, 0.15);
     color: var(--theme-color);
     padding: 5px 10px;
-    text-transform: capitalize;
+    text-transform: unset;
     display: inline-block;
     border-radius: 5px;
     font-size: 12px
@@ -4912,7 +4912,7 @@ table tr th {
     background-color: rgba(47, 135, 51, 0.15);
     color: #2f8733;
     padding: 5px 10px;
-    text-transform: capitalize;
+    text-transform: unset;
     display: inline-block;
     border-radius: 5px;
     font-size: 12px
@@ -5352,7 +5352,7 @@ table tbody tr td a .lnr.lnr-trash {
 
 .order-details-table .order-success h4 {
     font-weight: 700;
-    text-transform: capitalize;
+    text-transform: unset;
     font-size: 16px;
     color: #232323
 }
@@ -5365,7 +5365,7 @@ table tbody tr td a .lnr.lnr-trash {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    text-transform: capitalize;
+    text-transform: unset;
     line-height: 1.6;
     font-size: 15px;
     margin-bottom: 3px;
@@ -5390,7 +5390,7 @@ table tbody tr td a .lnr.lnr-trash {
 
 .order-details-table .order-success .delivery-sec h3 {
     color: #7e7e7e;
-    text-transform: capitalize;
+    text-transform: unset;
     font-size: 16px;
     margin-bottom: 0;
     font-weight: 400
@@ -5409,7 +5409,7 @@ table tbody tr td a .lnr.lnr-trash {
 
 .order-details-table .order-success .delivery-sec a {
     font-size: 16px;
-    text-transform: capitalize;
+    text-transform: unset;
     margin-top: 5px;
     display: block;
     font-weight: 600;
@@ -5496,7 +5496,7 @@ table tbody tr td a .lnr.lnr-trash {
     color: #7e7e7e;
     font-weight: 400;
     font-size: 14px;
-    text-transform: capitalize;
+    text-transform: unset;
     margin-bottom: 0
 }
 
@@ -5514,7 +5514,7 @@ table tbody tr td a .lnr.lnr-trash {
     color: #777;
     font-weight: 400;
     font-size: 14px;
-    text-transform: capitalize;
+    text-transform: unset;
     margin-bottom: 0;
     line-height: 18px
 }
@@ -5834,7 +5834,7 @@ table tbody tr td a .lnr.lnr-trash {
 
 .product-right .product-title {
     color: #222;
-    text-transform: capitalize;
+    text-transform: unset;
     font-weight: 700;
     margin-bottom: 3px;
     font-size: 16px
@@ -6092,7 +6092,7 @@ table tbody tr td a .lnr.lnr-trash {
 }
 
 .product-right .label-section .label-text {
-    text-transform: capitalize;
+    text-transform: unset;
     padding-left: 5px
 }
 
@@ -9011,7 +9011,7 @@ footer.footer-starter-kit {
     font-size: 12px;
     margin-top: 7px;
     letter-spacing: 1px;
-    text-transform: capitalize;
+    text-transform: unset;
     color: #777
 }
 
@@ -9615,7 +9615,7 @@ ul.notification-dropdown.onhover-show-div li + li:hover {
     letter-spacing: .5px;
     padding-bottom: 12px;
     padding-top: 12px;
-    text-transform: capitalize;
+    text-transform: unset;
     font-weight: 500;
     color: #ffffff;
     padding: 15px 18px
@@ -9781,7 +9781,7 @@ ul.notification-dropdown.onhover-show-div li + li:hover {
     color: #898989;
     -webkit-transition: .3s;
     transition: .3s;
-    text-transform: capitalize;
+    text-transform: unset;
     position: relative;
     padding-left: 30px;
     line-height: 2.5;

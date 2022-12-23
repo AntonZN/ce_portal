@@ -556,7 +556,7 @@ img.scaled:hover {
     color: #222222;
     margin-top: 0;
     margin-bottom: 2px;
-    text-transform: capitalize;
+    text-transform: unset;
 }
 
 .ajax-search .description-section span {

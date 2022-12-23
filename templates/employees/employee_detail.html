@@ -122,6 +122,14 @@
                                                     </td>
                                                 </tr>
                                             {% endif %}
+                                            % if employee.mobile_phone %}
+                                                <tr>
+                                                    <td>Мобильный телефон:</td>
+                                                    <td>
+                                                        {{ employee.mobile_phone }}
+                                                    </td>
+                                                </tr>
+                                            {% endif %}
                                             {% for contact in employee.contacts.all %}
                                                 <tr>
                                                     <td>{{ contact.name }}</td>

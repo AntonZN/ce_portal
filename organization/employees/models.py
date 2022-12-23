@@ -132,6 +132,7 @@ class Employee(AbstractUser, MPTTModel):
         blank=False,
     )
     internal_phone = models.CharField("Внутренний телефон", max_length=150, blank=True, null=True)
+    mobile_phone = models.CharField("Мобильный телефон", max_length=150, blank=True, null=True)
     description = models.TextField("Информация о сотруднике", blank=True, null=True)
     likes = models.PositiveIntegerField("Лайки", default=0)
     avatar = ImageField("Аватар", upload_to="avatars", null=True, blank=True)

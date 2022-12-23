@@ -6,7 +6,14 @@ from sorl.thumbnail.admin import AdminImageMixin
 
 from utils.admin import copy_user_action
 from utils.forms import TagsAdminForm
-from .models import Employee, Position, Contacts, Awards, EmployeeAwards, EmployeeAdditionalPosition
+from .models import (
+    Employee,
+    Position,
+    Contacts,
+    Awards,
+    EmployeeAwards,
+    EmployeeAdditionalPosition,
+)
 
 
 @admin.register(Position)
@@ -41,7 +48,19 @@ class EmployeeAdmin(AdminImageMixin, UserAdmin, DraggableMPTTAdmin):
     fieldsets = (
         (None, {"fields": ("username",)}),
         ("Персональная информация", {"fields": ("fio", "email", "birthday", "avatar")}),
-        ("Штатная информация", {"fields": ("city", "department", "parent", "position", "internal_phone")}),
+        (
+            "Штатная информация",
+            {
+                "fields": (
+                    "city",
+                    "department",
+                    "parent",
+                    "position",
+                    "internal_phone",
+                    "mobile_phone",
+                )
+            },
+        ),
         ("Прочая информация", {"fields": ("description",)}),
         (
             "Привилегии",
@@ -60,11 +79,26 @@ class EmployeeAdmin(AdminImageMixin, UserAdmin, DraggableMPTTAdmin):
         (
             None,
             {
-                "fields": ("fio", "username", "email", "password1", "password2", "parent", "department"),
+                "fields": (
+                    "fio",
+                    "username",
+                    "email",
+                    "password1",
+                    "password2",
+                    "parent",
+                    "department",
+                ),
             },
         ),
     )
-    list_display = ("tree_actions", "indented_title", "username",  "email", "parent", "is_staff")
+    list_display = (
+        "tree_actions",
+        "indented_title",
+        "username",
+        "email",
+        "parent",
+        "is_staff",
+    )
     list_display_links = ("indented_title",)
     mptt_indent_field = "indented_title"
     search_fields = ("fio", "username", "email")

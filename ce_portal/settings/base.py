@@ -134,11 +134,11 @@ AUTHENTICATION_BACKENDS = [
     "ce_portal.settings.backends.EmailBackend",
 ]
 LOGIN_URL = "/login/"
-LOGIN_REDIRECT_URL = "/profile/"
+LOGIN_REDIRECT_URL = "/home/"
 
 LANGUAGE_CODE = "ru-ru"
 
-TIME_ZONE = "UTC"
+TIME_ZONE = "Asia/Novosibirsk"
 
 USE_I18N = True
 
