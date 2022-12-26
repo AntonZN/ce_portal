@@ -58,11 +58,12 @@
                                                 </tr>
                                             {% endif %}
 
-                                            <tr>
-                                                <td>Филиал:</td>
-                                                <td>{{ department.filial }}</td>
-                                            </tr>
-
+                                            {% if department.filial %}
+                                                <tr>
+                                                    <td>Филиал:</td>
+                                                    <td>{{ department.filial }}</td>
+                                                </tr>
+                                            {% endif %}
                                             </tbody>
                                         </table>
                                     </div>
