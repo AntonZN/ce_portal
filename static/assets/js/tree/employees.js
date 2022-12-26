@@ -20040,7 +20040,7 @@
         }, t
     }
 
-    var g = "Api-Key 7vzRAHaL.vcxeL1uYvmN50VRDmvysnWYb3TKoRe3W", m = "http://172.16.2.8/organization/api/v1",
+    var g = "Api-Key 7vzRAHaL.vcxeL1uYvmN50VRDmvysnWYb3TKoRe3W", m = "http://portalnew.local/organization/api/v1",
         v = function () {
             var t = c(Object(r.useState)(), 2), e = t[0], n = t[1], o = c(Object(r.useState)(), 2), a = o[0], s = o[1],
                 l = c(Object(r.useState)(null), 2), f = l[0], v = l[1], y = Object(r.useRef)(null);
