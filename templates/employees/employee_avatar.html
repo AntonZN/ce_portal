@@ -2,15 +2,14 @@
 {% load static %}
 {% load solo_tags %}
 
-{% get_solo 'organization.OrganizationConfig' as org_config %}
-
 {% if obj.avatar %}
-    {% thumbnail obj.avatar "500x500" crop="30%" as avatar %}
+    {% thumbnail obj.avatar "500x500" crop="1%" as avatar %}
         <img class="img-fluid img-{{ size }} rounded-circle blur-up lazyloaded {% if not no_scaled %}scaled{% endif %}"
              src="{{ avatar.url }}">
     {% endthumbnail %}
 
 {% else %}
+    {% get_solo 'organization.OrganizationConfig' as org_config %}
     {% thumbnail org_config.default_img "300x300" crop="30%" as avatar %}
         <img class="img-fluid img-{{ size }} rounded-circle blur-up lazyloaded"
              src="{{ avatar.url }}">
