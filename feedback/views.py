@@ -1,13 +1,16 @@
 from datetime import timedelta
 
+from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect
 from django.utils import timezone
 from django.views import View
+from post_office import mail
 
 from feedback.forms import FeedbackForm, DirectorFeedbackForm, IdeaFeedbackForm
 from feedback.models import Feedback, FeedbackForDirector, IdeaFeedback
+from organization.models import OrganizationConfig
 
 
 class FeedbackView(LoginRequiredMixin, View):
@@ -113,6 +116,18 @@ class IdeaFeedbackView(LoginRequiredMixin, View):
 
         if form.is_valid():
             form.save()
+            config = OrganizationConfig.objects.get()
+            if config.ideas_email:
+                mail.send(
+                    config.ideas_email,
+                    settings.DEFAULT_FROM_EMAIL,
+                    template="new_idea",
+                    context={
+                        "employee": request.user,
+                        "topic": form.cleaned_data["topic"],
+                        "text": form.cleaned_data["text"]
+                    },
+                )
             messages.success(request, f"Ваше идея успешно зафиксирована")
             return redirect("ideas")
         else:

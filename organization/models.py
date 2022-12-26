@@ -38,6 +38,9 @@ class OrganizationConfig(SingletonModel):
     director_feedback_email = models.EmailField(
         "Почта на которую отправлять обращения директору", null=True, blank=True
     )
+    ideas_email = models.EmailField(
+        "Почта на которую отправлять новые идеи", null=True, blank=True
+    )
     albums_folder = models.OneToOneField(
         Folder,
         verbose_name="Папка для фотоальбомов",

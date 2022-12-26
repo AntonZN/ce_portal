@@ -49,6 +49,8 @@ redis = "^4.3.4"
 django-cors-headers = "^3.13.0"
 django-mptt-urls = "^2.0.4"
 django-extensions = "^3.2.1"
+django-mailer = "^2.2"
+django-post-office = "^3.6.3"
 
 [build-system]
 requires = ["poetry-core"]

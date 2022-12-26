@@ -67,6 +67,7 @@ INSTALLED_APPS = [
     "filer",
     "compressor",
     "corsheaders",
+    "post_office",
 ]
 
 MIDDLEWARE = [
@@ -189,7 +190,7 @@ LOGOUT_REDIRECT_URL = "/login/"
 X_FRAME_OPTIONS = "SAMEORIGIN"
 SILENCED_SYSTEM_CHECKS = ["security.W019"]
 
-EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_BACKEND = "post_office.EmailBackend"
 EMAIL_HOST = "smtp.mail.ru"
 EMAIL_PORT = 465
 EMAIL_USE_TLS = False
