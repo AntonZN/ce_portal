@@ -131,6 +131,7 @@ class Employee(AbstractUser, MPTTModel):
         null=True,
         blank=False,
     )
+    tree_root = models.BooleanField("Первый в иерархии", default=False)
     internal_phone = models.CharField("Внутренний телефон", max_length=150, blank=True, null=True)
     mobile_phone = models.CharField("Мобильный телефон", max_length=150, blank=True, null=True)
     description = models.TextField("Информация о сотруднике", blank=True, null=True)

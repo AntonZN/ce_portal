@@ -46,7 +46,7 @@ class ContactsInline(AdminImageMixin, TabularInline):
 class EmployeeAdmin(AdminImageMixin, UserAdmin, DraggableMPTTAdmin):
 
     fieldsets = (
-        (None, {"fields": ("username",)}),
+        (None, {"fields": ("username", "tree_root")}),
         ("Персональная информация", {"fields": ("fio", "email", "birthday", "avatar")}),
         (
             "Штатная информация",
@@ -112,6 +112,8 @@ class EmployeeAdmin(AdminImageMixin, UserAdmin, DraggableMPTTAdmin):
     def get_readonly_fields(self, request, obj=None):
         if obj and not request.user.is_superuser:
             return self.readonly_fields + ("is_active", "is_staff", "is_superuser")
+        if Employee.objects.filter(tree_root=True).exists() and not obj.tree_root:
+            return self.readonly_fields + ("tree_root",)
         return self.readonly_fields
 
 

@@ -24,9 +24,9 @@ class EmployeeList(LoginRequiredMixin, ListBreadcrumbMixin, ListView):
         new = params.get("new", None)
 
         if new:
-            queryset = Employee.new.all()
+            queryset = Employee.new.all().exclude(username="admin")
         else:
-            queryset = Employee.objects.all()
+            queryset = Employee.objects.exclude(username="admin")
 
         query = params.get("query", None)
 

@@ -35,7 +35,7 @@ class EmployeeSearch(generics.ListAPIView):
                 | Q(username__icontains=query)
                 | Q(position__name__icontains=query)
                 | Q(department__name__icontains=query)
-            )
+            ).exclude(username="admin")
 
 
 class LikeEmployee(APIView):
@@ -148,7 +148,7 @@ class EmployeeTreeAPI(APIView):
                 department = Department.objects.get(id=department_id)
                 employee = department.supervisor
             else:
-                employee = Employee.objects.first().get_root()
+                employee = Employee.objects.get(tree_root=True).get_root()
 
             if employee:
                 if employee.avatar:
