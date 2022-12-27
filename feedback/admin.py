@@ -9,6 +9,7 @@ from .models import *
 class FeedbackAdmin(admin.ModelAdmin):
     list_display = ("topic", "status", "author", "created")
     list_filter = ("status",)
+    readonly_fields = ("author", "created", "text", "topic")
 
 
 @admin.register(IdeaPage)
@@ -21,5 +22,14 @@ class ReleasedEmployeeIdeaAdmin(admin.ModelAdmin):
     autocomplete_fields = ("employee",)
 
 
-admin.site.register(IdeaFeedback)
-admin.site.register(FeedbackForDirector)
+@admin.register(IdeaFeedback)
+class IdeaFeedbackAdmin(admin.ModelAdmin):
+    list_display = ("topic", "status", "author", "created")
+    readonly_fields = ("author", "created", "text", "topic")
+
+
+@admin.register(FeedbackForDirector)
+class FeedbackForDirectorkAdmin(admin.ModelAdmin):
+    list_display = ("topic", "status", "author", "created")
+    readonly_fields = ("author", "created", "text", "topic")
+
