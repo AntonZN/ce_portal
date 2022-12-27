@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-{% load thumbnail %}
+{% load easy_thumb %}
 {% load view_breadcrumbs %}
 {% block title %}Библиотека{% endblock %}
 
@@ -25,12 +25,11 @@
                 <div class="row product-page-main card-body">
                     <div class="col-xl-4">
                         {% if book.cover %}
-                            {% thumbnail book.cover "x400" as image %}
-                                <img
-                                        src="{{ image.url }}"
+                            {% thumbnail_mf book.cover 450x250 crop as cover %}
+                            <img
+                                        src="{{ cover.url }}"
                                         class="img-fluid lazyload"
                                 >
-                            {% endthumbnail %}
                         {% else %}
                             <img class="img-fluid lazyload"
                                  src="{% static 'assets/images/dashboard/user3.jpg' %}">
