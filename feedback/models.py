@@ -118,12 +118,14 @@ class IdeaPage(SingletonModel):
         verbose_name_plural = "4. Настройка банка идей"
 
     description = EditorJsJSONField(
+        plugins=settings.PLUGINS,
+        tools=settings.EDITORJS_CONFIG_TOOLS,
         hideToolbar=False,
         inlineToolbar=True,
         autofocus=True,
         i18n=settings.EDITOR_I18N,
         placeholder="Напишите что-нибудь...",
-        verbose_name="Описание",
+        verbose_name="Контент",
         null=True,
         blank=True,
     )

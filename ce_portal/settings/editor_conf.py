@@ -73,11 +73,9 @@ PLUGINS = [
     "@editorjs/quote",
     "@editorjs/embed",
     "@editorjs/delimiter",
-    # "@editorjs/warning",
     "@editorjs/link",
     "@editorjs/marker",
     "@editorjs/table",
-    #"@calumk/editorjs-columns",
     "@weekwood/editorjs-video",
 ]
 
