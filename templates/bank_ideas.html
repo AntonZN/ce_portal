@@ -48,36 +48,50 @@
 
             <div class="row">
                 <div class="col">
-                    <div class="card">
-                        <div class="card-header">
-                            <h5>Предложите идею </h5>
-                        </div>
-                        <div class="card-body">
-                            <form method="POST" action="{% url 'feedback:idea_feedback' %}">
-                                {% csrf_token %}
-                                {% for hidden in form.hidden_fields %}
-                                    {{ hidden }}
-                                {% endfor %}
-                                <div class="card-body">
-                                    <div class="digital-add">
-                                        {% for field in form.visible_fields %}
-                                            <div class="form-group">
-                                                <label for="{{ field.auto_id }}" class="col-form-label pt-0">
-                                                    <span>*</span>
-                                                    {{ field.label }}</label>
-                                                {% render_field field class+="form-control minimal" %}
+                    {% if not exist %}
+
+                        <div class="card">
+                            <div class="card-header">
+                                <h5>Предложите идею </h5>
+                            </div>
+                            <div class="card-body">
+                                <form method="POST" action="{% url 'feedback:idea_feedback' %}">
+                                    {% csrf_token %}
+                                    {% for hidden in form.hidden_fields %}
+                                        {{ hidden }}
+                                    {% endfor %}
+                                    <div class="card-body">
+                                        <div class="digital-add">
+                                            {% for field in form.visible_fields %}
+                                                <div class="form-group">
+                                                    <label for="{{ field.auto_id }}" class="col-form-label pt-0">
+                                                        <span>*</span>
+                                                        {{ field.label }}</label>
+                                                    {% render_field field class+="form-control minimal" %}
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+                                        <div class="form-group mb-0 mt-5">
+                                            <div class="product-buttons">
+                                                <button type="submit" class="btn btn-primary">Отправить</button>
                                             </div>
-                                        {% endfor %}
-                                    </div>
-                                    <div class="form-group mb-0 mt-5">
-                                        <div class="product-buttons">
-                                            <button type="submit" class="btn btn-primary">Отправить</button>
                                         </div>
                                     </div>
-                                </div>
-                            </form>
+                                </form>
+                            </div>
                         </div>
-                    </div>
+                    {% else %}
+                        <div class="">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h3>Ваша идея отправлена!</h3>
+                                    <p>Информация о ходе обработки обращения и его текущий статус представлены в
+                                        разделе
+                                        <a href="{% url 'feedback:my' %}">Обращения</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
                 </div>
             </div>
             <div class="row">

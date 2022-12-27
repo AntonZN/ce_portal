@@ -1,5 +1,5 @@
 import os
-from datetime import datetime
+from datetime import datetime, timedelta
 from functools import cached_property
 
 from ckeditor_uploader.utils import storage
@@ -8,6 +8,7 @@ from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.template.loader import render_to_string
 from django.urls import reverse
+from django.utils import timezone
 from django.utils.decorators import method_decorator
 from django.views import View
 from django.views.decorators.csrf import csrf_exempt
@@ -22,7 +23,7 @@ from view_breadcrumbs import ListBreadcrumbMixin, DetailBreadcrumbMixin
 
 from blog.models import News
 from feedback.forms import IdeaFeedbackForm
-from feedback.models import ReleasedEmployeeIdea
+from feedback.models import ReleasedEmployeeIdea, IdeaFeedback
 from organization.employees.froms import EmployeeForm, EmployeeContactsFormSet
 from organization.employees.models import Employee
 from organization.models import OrganizationConfig, Banner, Department
@@ -174,9 +175,18 @@ class BankIdeas(LoginRequiredMixin, DetailBreadcrumbMixin, TemplateView):
         ]
 
     def get_context_data(self, *, object_list=None, **kwargs):
+
         context = super().get_context_data(**kwargs)
         context["form"] = IdeaFeedbackForm()
         context["ideas"] = ReleasedEmployeeIdea.objects.all()
+
+        if IdeaFeedback.objects.filter(
+                author=self.request.user, created__gt=timezone.now() - timedelta(days=1)
+        ).exists():
+            context["exist"] = True
+        else:
+            context["exist"] = False
+
         return context
 
 

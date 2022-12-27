@@ -28,6 +28,13 @@ class FeedbackView(LoginRequiredMixin, View):
 
         form = FeedbackForm(instance=feedback)
 
+        if Feedback.objects.filter(
+                author=request.user, created__gt=timezone.now() - timedelta(days=1)
+        ).exists():
+            self.context_object["exist"] = True
+        else:
+            self.context_object["exist"] = False
+
         self.context_object["form"] = form
 
         return render(request, self.template_name, self.context_object)
@@ -64,8 +71,14 @@ class DirectorFeedbackView(LoginRequiredMixin, View):
     def get(self, request):
 
         form = DirectorFeedbackForm()
-
         self.context_object["form"] = form
+
+        if FeedbackForDirector.objects.filter(
+                author=request.user, created__gt=timezone.now() - timedelta(days=1)
+        ).exists():
+            self.context_object["exist"] = True
+        else:
+            self.context_object["exist"] = False
 
         return render(request, self.template_name, self.context_object)
 
@@ -134,3 +147,15 @@ class IdeaFeedbackView(LoginRequiredMixin, View):
             self.context_object["form"] = form
             messages.error(request, f"Произошла ошибка, проверьте правильность данных")
             return render(request, self.template_name, self.context_object)
+
+
+class MyFeedbackView(LoginRequiredMixin, View):
+    template_name = "feedbacks/my.html"
+    context_object = {}
+
+    def get(self, request):
+        feedbacks = Feedback.objects.filter(author=request.user)
+        ideas = IdeaFeedback.objects.filter(author=request.user)
+        self.context_object["feedbacks"] = feedbacks
+        self.context_object["ideas"] = ideas
+        return render(request, self.template_name, self.context_object)

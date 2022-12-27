@@ -17,11 +17,13 @@ class FeedbackCategory(models.Model):
 
 class BaseFeedback(models.Model):
     CREATED = "CREATED"
+    INPROGRESS = "INPROGRESS"
     RESOLVED = "RESOLVED"
 
     STATUS_CHOICES = (
-        (CREATED, "Создано"),
-        (RESOLVED, "Обработано"),
+        (CREATED, "Отправлено"),
+        (INPROGRESS, "На рассмотрении"),
+        (RESOLVED, "Рассмотрено"),
     )
 
     topic = models.CharField(max_length=512, verbose_name="Тема")
@@ -56,7 +58,6 @@ class Feedback(BaseFeedback):
 
     TYPE_CHOICES = (
         (QUESTION, "Вопрос"),
-        (IDEA, "Идея"),
     )
 
     type = models.CharField(
