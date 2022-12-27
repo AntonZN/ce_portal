@@ -1,9 +1,32 @@
+from autoslug import AutoSlugField
 from django.db import models
 from filer.fields.image import FilerImageField, FilerFileField
 
 
+class Category(models.Model):
+    name = models.CharField("Название", max_length=100, null=False, blank=False)
+    slug = AutoSlugField("Название для ulr", populate_from="name")
+    date_created = models.DateTimeField(auto_now_add=True)
+    date_updated = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        unique_together = ("name",)
+        verbose_name = "Категория"
+        verbose_name_plural = "Категории"
+
+    def __str__(self):
+        return self.name
+
+
 class Book(models.Model):
     name = models.CharField("Название", max_length=200)
+    category = models.ForeignKey(
+        Category,
+        on_delete=models.SET_NULL,
+        null=True,
+        verbose_name="Категория",
+        related_name="books"
+    )
     author = models.CharField(
         max_length=200, null=True, blank=True, verbose_name="Автор"
     )

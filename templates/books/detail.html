@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load thumbnail %}
+{% load view_breadcrumbs %}
+{% block title %}Библиотека{% endblock %}
+
+{% block content %}
+    <div class="page-body">
+        <div class="container-fluid">
+            <div class="page-header">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="page-header-left">
+                            <h3>О книге</h3>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        {% render_breadcrumbs "breadcrumbs.html" %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="card">
+                <div class="row product-page-main card-body">
+                    <div class="col-xl-4">
+                        {% if book.cover %}
+                            {% thumbnail book.cover "x400" as image %}
+                                <img
+                                        src="{{ image.url }}"
+                                        class="img-fluid lazyload"
+                                >
+                            {% endthumbnail %}
+                        {% else %}
+                            <img class="img-fluid lazyload"
+                                 src="{% static 'assets/images/dashboard/user3.jpg' %}">
+                        {% endif %}
+                    </div>
+
+                    <div class="col-xl-8">
+                        <div class="product-page-details product-right mb-0">
+                            <h2>{{ book.name }}</h2>
+                            <hr>
+                            <p>Автор: {{ book.author }}</p>
+                            <hr>
+                            <p>Категория: {{ book.category }}</p>
+                            <hr>
+                            <p>{{ book.description }}</p>
+                            <hr>
+                            <a target="_blank" href="{{ book.file.url }}"><b>Скачать</b></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

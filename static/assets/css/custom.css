@@ -591,7 +591,17 @@ img.scaled:hover {
 .card.existBlock{
     margin-top: 10%;
 }
+.book-sidebar .theme-card{
+    padding: 30px;
+}
 
+.book-sidebar .theme-card a{
+    color: #777;
+}
+
+.book-sidebar .theme-card h4.active a {
+    color: #f48320;
+}
 @media (max-width: 768px) {
     .main-title {
         display: none;

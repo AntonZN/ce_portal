@@ -17,6 +17,7 @@
     <td>{{ book.author }}</td>
 
     <td><a target="_blank" href="{{ book.file.url }}"><b>Скачать</b></a></td>
+    <td><a target="_blank" href="{% url 'books:book_detail' book.pk %}"><b>Подробнее</b></a></td>
     </tr>
 {% empty %}
     <tr>

@@ -16,7 +16,7 @@
                     <div class="col-lg-6">
                         <div class="page-header-left">
                             <h3>Библиотека
-                                <small>Загруженные книги</small>
+                                <small>{{ active_category.name }}</small>
                             </h3>
                         </div>
                     </div>
@@ -28,38 +28,62 @@
         </div>
 
         <div class="container-fluid">
-            <div class="card">
-                <div class="card-header">
-                    <form class="search-form search-box">
-                        <div class="form-group">
-                            <input id="bookSearch" type="search" name="query"
-                                   value="{{ request.GET.query }}"
-                                   placeholder="Поиск книг">
-                            <span
-                                    class="d-sm-none mobile-search"></span>
+            <div class="row">
+                <div class="col-xl-9 col-lg-9 col-md-8">
+                    <div class="card">
+                        <div class="card-header">
+                            <form class="search-form search-box">
+                                <div class="form-group">
+                                    <input id="bookSearch" type="search" name="query"
+                                           value="{{ request.GET.query }}"
+                                           placeholder="Поиск книг">
+                                    <span
+                                            class="d-sm-none mobile-search"></span>
+                                </div>
+                            </form>
+                            <div class="tags mt-3">
+                                {% get_tag_list_for_books %}
+                            </div>
                         </div>
-                    </form>
-                    <div class="tags mt-3">
-                        {% get_tag_list_for_books %}
+
+                        <div class="card-body">
+                            <div class="table-responsive table-desi">
+                                <table class="all-package coupon-table table table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>Название</th>
+                                        <th>Автор</th>
+                                        <th>Файл</th>
+                                        <th></th>
+                                    </tr>
+                                    </thead>
+
+                                    <tbody id="replaceableContent">
+                                    {% include "books/results_partial.html" %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
-
-                <div class="card-body">
-                    <div class="table-responsive table-desi">
-                        <table class="all-package coupon-table table table-striped">
-                            <thead>
-                            <tr>
-                                <th></th>
-                                <th>Название</th>
-                                <th>Автор</th>
-                                <th></th>
-                            </tr>
-                            </thead>
-
-                            <tbody id="replaceableContent">
-                            {% include "books/results_partial.html" %}
-                            </tbody>
-                        </table>
+                <div class="col-xl-3 col-lg-3 col-md-4">
+                    <div class="book-sidebar card o-hidden widget-cards">
+                        <div class="theme-card">
+                            <h3>Категории</h3>
+                            <br>
+                            <h4 class="{% if not active_category %}active{% endif %}"><a
+                                    href="{% url 'books:book_list' %}">Все</a></h4>
+                            {% for category in categories %}
+                                <br>
+                                <h4 class="{% if active_category.slug == category.slug %}active{% endif %}">
+                                    <a href="{% url 'books:book_category_list' category.slug %}">
+                                        {{ category.name }}
+                                    </a>
+                                </h4>
+                            {% endfor %}
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -72,7 +96,13 @@
         const user_input = $("#bookSearch")
         const tags = $(".tag-button")
         const table = $('#replaceableContent')
-        const endpoint = '{% url 'books:book_list' %}'
+
+        {% if not active_category %}
+            const endpoint = '{% url 'books:book_list' %}'
+        {% else %}
+            const endpoint = '{% url 'books:book_category_list' active_category.slug %}'
+        {% endif %}
+
         const delay_by_in_ms = 600
         let scheduled_function = false
 

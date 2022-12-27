@@ -4,12 +4,11 @@ from django.db.models import Q
 from django.http import JsonResponse
 from django.shortcuts import render
 
-# Create your views here.
 from django.template.loader import render_to_string
-from django.views.generic import ListView
-from view_breadcrumbs import ListBreadcrumbMixin
+from django.views.generic import ListView, DetailView
+from view_breadcrumbs import ListBreadcrumbMixin, DetailBreadcrumbMixin
 
-from books.models import Book
+from books.models import Book, Category
 
 
 class BooksList(LoginRequiredMixin, ListBreadcrumbMixin, ListView):
@@ -19,8 +18,13 @@ class BooksList(LoginRequiredMixin, ListBreadcrumbMixin, ListView):
     paginate_by = 25
 
     def get_queryset(self):
+
+        if self.kwargs.get("slug"):
+            queryset = Book.objects.filter(category__slug=self.kwargs.get("slug"))
+        else:
+            queryset = Book.objects.all()
+
         params = self.request.GET
-        queryset = Book.objects.all()
         query = params.get("query", None)
         tag = params.getlist("tag[]", None)
 
@@ -53,6 +57,7 @@ class BooksList(LoginRequiredMixin, ListBreadcrumbMixin, ListView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
+
         return context
 
     def get(self, request, *args, **kwargs):
@@ -60,6 +65,12 @@ class BooksList(LoginRequiredMixin, ListBreadcrumbMixin, ListView):
         queryset = self.get_queryset()
         is_ajax_request = request.headers.get("x-requested-with") == "XMLHttpRequest"
         context.update({"books": queryset})
+        context["categories"] = Category.objects.all()
+
+        if kwargs.get("slug"):
+            context["active_category"] = Category.objects.filter(slug=kwargs.get("slug")).first()
+        else:
+            context["active_category"] = None
 
         if is_ajax_request:
             html = render_to_string(
@@ -77,3 +88,10 @@ class BooksList(LoginRequiredMixin, ListBreadcrumbMixin, ListView):
             )
 
         return render(request, "books/list.html", context=context)
+
+
+class BookDetail(LoginRequiredMixin, DetailBreadcrumbMixin, DetailView):
+    template_name = "books/detail.html"
+    model = Book
+    context_object_name = "book"
+    breadcrumb_use_pk = True
