@@ -5,7 +5,7 @@ from mptt.admin import DraggableMPTTAdmin
 from sorl.thumbnail.admin import AdminImageMixin
 
 from utils.admin import copy_user_action
-from utils.forms import TagsAdminForm
+from utils.forms import TagsAdminForm, UserAdminForm
 from .models import (
     Employee,
     Position,
@@ -46,7 +46,7 @@ class ContactsInline(AdminImageMixin, TabularInline):
 class EmployeeAdmin(AdminImageMixin, UserAdmin, DraggableMPTTAdmin):
 
     fieldsets = (
-        (None, {"fields": ("username", "tree_root")}),
+        (None, {"fields": ("username", "password", "tree_root")}),
         ("Персональная информация", {"fields": ("fio", "email", "birthday", "avatar")}),
         (
             "Штатная информация",
@@ -107,7 +107,7 @@ class EmployeeAdmin(AdminImageMixin, UserAdmin, DraggableMPTTAdmin):
     list_filter = ("is_staff", "is_superuser", "is_active", "department", "position")
     inlines = (ContactsInline, EmployeeAdditionalPositionInline)
     actions = (copy_user_action,)
-    form = TagsAdminForm
+    form = UserAdminForm
 
     def get_readonly_fields(self, request, obj=None):
         if obj and not request.user.is_superuser:
